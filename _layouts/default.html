@@ -5,51 +5,61 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title | default: "Site" }}</title>
+    <title>{{ site.title }}</title>
     <meta name="description" content="{{ site.description | escape }}">
 
-    <!-- Cayman theme CSS loads via remote_theme; our overrides come after -->
+    <!-- One stylesheet, same as Project #1 (but green palette) -->
     <link rel="stylesheet" href="{{ '/assets/css/theme-overrides.css' | relative_url }}">
   </head>
   <body>
-    <!-- HERO with author card + CTAs (same layout as Project #1) -->
-    <section class="hero">
-      <div class="container hero-wrap">
-        <aside class="author">
-          <img class="photo" src="{{ site.author_photo | default: site.baseurl | append: '/assets/images/liad-mizrachi.jpg' }}" alt="Author">
-          <h3>About the Author</h3>
-          <p><strong>{{ site.author | default: 'Liad Mizrachi' }}</strong><br>{{ site.author_title | default: '' }}</p>
-          <div class="links">
-            {% for link in site.author_links %}
-              <a href="{{ link.url }}">{{ link.icon }}&nbsp;{{ link.label }}</a>
-            {% endfor %}
-          </div>
-        </aside>
 
-        <div>
-          <h1 style="margin:0 0 .35rem 0;">{{ page.title | default: site.title }}</h1>
-          {% if site.description %}
-            <p style="max-width:62ch;color:var(--muted-text);margin:.3rem 0 0 0;">{{ site.description }}</p>
-          {% endif %}
-          <div class="hero-cta">
-            <a class="btn" href="{{ site.live_dashboard_url | default: '#' }}">View Live Dashboard</a>
-            <a class="btn btn-ghost" href="{{ site.repo_url | default: '#' }}">View on GitHub</a>
-          </div>
+    <!-- ===== Header / Split Hero (identical structure to Project #1) ===== -->
+    <header class="hero-split">
+
+      <!-- Left: Author card -->
+      <aside class="author-card">
+        <div class="author-card__heading">Author</div>
+        <img class="author-card__photo" src="{{ site.author_photo }}" alt="Author photo">
+        <div class="author-card__name">{{ site.author }}</div>
+        <div class="author-card__title">{{ site.author_title }}</div>
+
+        <div class="author-card__links">
+          {% for l in site.author_links %}
+            <a class="author-card__btn" href="{{ l.url }}">
+              {{ l.icon }} {{ l.label }}
+            </a>
+          {% endfor %}
         </div>
-      </div>
-    </section>
+      </aside>
 
-    <main>
-      <div class="container">
-        {{ content }}
-      </div>
+      <!-- Right: Title, tagline, CTAs -->
+      <section class="hero-main">
+        <h1 class="hero-main__title">{{ site.title }}</h1>
+        {% if site.description %}
+          <p class="hero-main__tagline">{{ site.description }}</p>
+        {% endif %}
+        <div class="hero-actions">
+          {% if site.live_dashboard_url %}
+            <a class="btn" href="{{ site.live_dashboard_url }}" target="_blank" rel="noopener">View Live Dashboard</a>
+          {% endif %}
+          {% if site.github.repository_url %}
+            <a class="btn" href="{{ site.github.repository_url }}" target="_blank" rel="noopener">View on GitHub</a>
+          {% endif %}
+        </div>
+      </section>
+    </header>
+
+    <!-- ===== Main Content (README from “## Summary”) ===== -->
+    <main id="content" class="main-content" role="main">
+      {{ content }}
+
+      <footer class="site-footer">
+        {% if site.github.is_project_page %}
+          <span class="site-footer-owner">
+            <a href="{{ site.github.repository_url }}">{{ site.github.repository_nwo }}</a>
+          </span>
+        {% endif %}
+      </footer>
     </main>
-
-    <footer>
-      <div class="container" style="padding: 1rem 0;">
-        <hr>
-        <p style="opacity:.8">© {{ site.time | date: '%Y' }} {{ site.author | default: 'Liad Mizrachi' }}</p>
-      </div>
-    </footer>
   </body>
 </html>
