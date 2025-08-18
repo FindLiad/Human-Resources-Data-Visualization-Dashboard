@@ -1,14 +1,14 @@
-title: "Data-Backed Decision Making for YouTube Campaigns"
-description: "Marketer-facing dashboard to pick high-ROI YouTube channel collabs."
+title: "Human Resources Data Visualization Dashboard"
+description: "Leadership-facing HR analytics: Attrition, Hiring Funnel, Diversity, and Compensation."
 author: "Liad Mizrachi"
 
 # MUST match repo name (case-sensitive)
-baseurl: "/Data-Backed-Decision-Making-for-Youtube-Campaigns"
+baseurl: "/Human-Resources-Data-Visualization-Dashboard"
 
 author_title: "Senior Product Manager • AI Data-Driven Solutions"
 
-# photo location matches assets/images in your repo
-author_photo: "/Data-Backed-Decision-Making-for-Youtube-Campaigns/assets/images/liad-mizrachi.jpg"
+# photo path must include baseurl (to work on GitHub Pages)
+author_photo: "/Human-Resources-Data-Visualization-Dashboard/assets/images/liad-mizrachi.jpg"
 
 author_links:
   - label: "Portfolio"
@@ -24,7 +24,9 @@ author_links:
     url: "mailto:Liad%20Mizrachi%20<FindLiad@gmail.com>"
     icon: "✉️"
 
-live_dashboard_url: "https://public.tableau.com/app/profile/liad.mizrachi/viz/YoutubeVisualization_17550201203060/Dashboard1?publish=yes"
+# HR dashboard (Tableau) + repo link for the hero CTAs
+live_dashboard_url: "https://public.tableau.com/app/profile/liad.mizrachi/viz/HRProject_17554488176360/hr_dashboard?publish=yes"
+repo_url: "https://github.com/FindLiad/Human-Resources-Data-Visualization-Dashboard"
 
 remote_theme: "pages-themes/cayman@v0.2.0"
 plugins:
@@ -35,4 +37,3 @@ readme_index:
 titles_from_headings:
   enabled: false
 show_downloads: false
-

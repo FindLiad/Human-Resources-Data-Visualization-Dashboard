@@ -5,38 +5,48 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>
-      {% if page.title %}{{ page.title }} · {% endif %}{{ site.title | default: "Site" }}
-    </title>
+    <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title | default: "Site" }}</title>
     <meta name="description" content="{{ site.description | escape }}">
 
-    <!-- Load main theme stylesheet -->
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-
-    <!-- Jungle Green overrides -->
+    <!-- Cayman theme CSS loads via remote_theme; our overrides come after -->
     <link rel="stylesheet" href="{{ '/assets/css/theme-overrides.css' | relative_url }}">
   </head>
-
   <body>
-    <header style="padding: 1.2rem 0;">
-      <div class="container" style="max-width: 980px; margin: 0 auto; padding: 0 1rem;">
-        <h1 style="margin: 0;">
-          {{ page.title | default: site.title }}
-        </h1>
-        {% if site.description %}
-          <p style="margin: .35rem 0 0; opacity: .9;">{{ site.description }}</p>
-        {% endif %}
+    <!-- HERO with author card + CTAs (same layout as Project #1) -->
+    <section class="hero">
+      <div class="container hero-wrap">
+        <aside class="author">
+          <img class="photo" src="{{ site.author_photo | default: site.baseurl | append: '/assets/images/liad-mizrachi.jpg' }}" alt="Author">
+          <h3>About the Author</h3>
+          <p><strong>{{ site.author | default: 'Liad Mizrachi' }}</strong><br>{{ site.author_title | default: '' }}</p>
+          <div class="links">
+            {% for link in site.author_links %}
+              <a href="{{ link.url }}">{{ link.icon }}&nbsp;{{ link.label }}</a>
+            {% endfor %}
+          </div>
+        </aside>
+
+        <div>
+          <h1 style="margin:0 0 .35rem 0;">{{ page.title | default: site.title }}</h1>
+          {% if site.description %}
+            <p style="max-width:62ch;color:var(--muted-text);margin:.3rem 0 0 0;">{{ site.description }}</p>
+          {% endif %}
+          <div class="hero-cta">
+            <a class="btn" href="{{ site.live_dashboard_url | default: '#' }}">View Live Dashboard</a>
+            <a class="btn btn-ghost" href="{{ site.repo_url | default: '#' }}">View on GitHub</a>
+          </div>
+        </div>
       </div>
-    </header>
+    </section>
 
     <main>
-      <div class="container" style="max-width: 980px; margin: 0 auto; padding: 0 1rem 2rem;">
+      <div class="container">
         {{ content }}
       </div>
     </main>
 
     <footer>
-      <div class="container" style="max-width: 980px; margin: 0 auto; padding: 1rem;">
+      <div class="container" style="padding: 1rem 0;">
         <hr>
         <p style="opacity:.8">© {{ site.time | date: '%Y' }} {{ site.author | default: 'Liad Mizrachi' }}</p>
       </div>

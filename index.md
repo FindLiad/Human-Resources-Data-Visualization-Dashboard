@@ -3,10 +3,7 @@ layout: default
 title: Human Resources Data Visualization Dashboard
 ---
 
-{% comment %}
-Render README.md but drop everything before the first "## Summary".
-{% endcomment %}
-
+{% comment %} Render README.md but drop everything before the first "## Summary". {% endcomment %}
 {% capture readme_raw %}{% include_relative README.md %}{% endcapture %}
 {% assign split_token = '## Summary' %}
 {% assign parts = readme_raw | split: split_token %}
