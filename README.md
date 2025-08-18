@@ -148,8 +148,8 @@ The dashboard visualizes **Attrition Trends, Hiring Funnel Conversion, Diversity
   [/assets/docs/Product_Requirements_Document.pdf](/Human-Resources-Data-Visualization-Dashboard/assets/docs/Product_Requirements_Document.pdf)  
 - **Screenshots:**  
   - Mockup → `/assets/images/mockup-dashboard.png`  
-  - Final Dashboard → `/assets/images/finished-dashboard.png`  
   - Container Design → `/assets/images/tableu-container-design.png`
+  - Final Dashboard → `/assets/images/finished-dashboard.png`  
 
 <div align="right"><a href="#table-of-contents">↑ Back to top</a></div>
 
