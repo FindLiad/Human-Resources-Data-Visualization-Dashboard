@@ -1,19 +1,18 @@
-# Data-Backed Decision Making for YouTube Campaigns
+# Human Resources Data Visualization Dashboard
 
-A marketer-facing dashboard to **identify high-ROI YouTube channels** for brand collaborations using clean, comparable metrics.
+A leadership-facing dashboard to **track workforce health** using clean, comparable metrics across attrition, hiring funnel, diversity, and compensation.
 
 - 🔗 **Live Dashboard (Tableau Public):**  
-  [Live Dashboard](https://public.tableau.com/app/profile/liad.mizrachi/viz/YoutubeVisualization_17550201203060/Dashboard1?publish=yes)
+  [Live Dashboard](https://public.tableau.com/app/profile/liad.mizrachi/viz/HRProject_17554488176360/hr_dashboard?publish=yes)
 
 - 📦 **Repository:**  
-  [GitHub Repo](https://github.com/FindLiad/Data-Backed-Decision-Making-for-Youtube-Campaigns)
+  [GitHub Repo](https://github.com/FindLiad/Human-Resources-Data-Visualization-Dashboard)
 
 ---
 
 ## Summary
-A productized analytics workflow that lets marketing leaders **rank, screen, and shortlist** UK YouTube channels using **Subscribers, Total Views, Videos, Avg Views per Video, Engagement Ratio (proxy), and Views per Subscriber**.  
-
-The goal is a **transparent, reproducible, and explainable** way to pick creators for brand collaborations.
+A productized analytics workflow that lets HR leaders **monitor, diagnose, and act** on key people metrics.  
+The dashboard visualizes **Attrition Trends, Hiring Funnel Conversion, Diversity Mix, and Compensation Bands** to enable **data-driven workforce planning**.
 
 <div align="right"><a href="#table-of-contents">↑ Back to top</a></div>
 
@@ -24,7 +23,7 @@ The goal is a **transparent, reproducible, and explainable** way to pick creator
 - [What I Built & Why](#what-i-built--why)
 - [End-to-End Walkthrough](#end-to-end-walkthrough)
   - [1) Data In](#1-data-in)
-  - [2) Clean & Normalize (Python)](#2-clean--normalize-python)
+  - [2) Clean & Transform](#2-clean--transform)
   - [3) Guardrails (Data Quality Checks)](#3-guardrails-data-quality-checks)
   - [4) Derive Metrics](#4-derive-metrics)
   - [5) Visualize in Tableau](#5-visualize-in-tableau)
@@ -39,25 +38,25 @@ The goal is a **transparent, reproducible, and explainable** way to pick creator
 ---
 
 ## Objective & Success Criteria
-**Problem:** Scouting YouTube creators is slow and subjective.  
-**Objective:** Ship a repeatable workflow that surfaces high-potential UK channels for brand collabs.
+**Problem:** Workforce planning is often reactive and anecdotal.  
+**Objective:** Ship a repeatable workflow that surfaces **early warning signs** for attrition, bottlenecks in hiring, DEI representation, and comp band alignment.
 
 **Success Criteria**
-1. Rank channels by comparable KPIs (reach, consistency, responsiveness).
-2. Explain *why* a channel is shortlisted (transparent inputs).
-3. Refresh quickly when new data arrives.
+1. Unified view of workforce health across departments and levels.  
+2. Explain *why* a trend is occurring (transparent inputs).  
+3. Refresh quickly when new HR data arrives.  
 
 <div align="right"><a href="#table-of-contents">↑ Back to top</a></div>
 
 ---
 
 ## What I Built & Why
-- A **single CSV-based pipeline** (no databases to set up).  
-- A small **Python prep script** to clean/normalize inputs and write a **final CSV** for visualization.  
-- A **Tableau dashboard** that surfaces top channels across KPIs with simple, defensible calculations.  
+- A **single CSV-based dataset** created with a **Python generator script**.  
+- A **clean dataset** (`dataset.csv`) stored in the repo for transparency.  
+- A **Tableau workbook** (`HR Project.twbx`) that surfaces actionable HR KPIs.  
 - A **GitHub Pages site** (this page) that documents assumptions, steps, and outcomes.
 
-**Why this approach?** It’s **fast, portable, and auditable**—teams can open the script, CSVs, and workbook to understand exactly how rankings are produced.
+**Why this approach?** It’s **fast, portable, and auditable**—teams can open the script, CSVs, and workbook to understand exactly how metrics are produced.
 
 <div align="right"><a href="#table-of-contents">↑ Back to top</a></div>
 
@@ -66,57 +65,46 @@ The goal is a **transparent, reproducible, and explainable** way to pick creator
 ## End-to-End Walkthrough
 
 ### 1) Data In
-- **Raw input:** `/Data-Backed-Decision-Making-for-Youtube-Campaigns/assets/data/raw_youtube_data.csv`  
-  Columns of interest: `channel_name`, `subscribers`, `total_views`, `videos` (+ optional engagement fields if available).
+- **Raw input:** `assets/data/dataset.csv`  
+  Columns include `employee_id`, `gender`, `department`, `job_title`, `education_level`, `salary`, `performance_rating`, `overtime`, etc.
 
-### 2) Clean & Normalize (Python)
-- Script: `/Data-Backed-Decision-Making-for-Youtube-Campaigns/scripts/prep_youtube_uk.py`  
-- Output: `/Data-Backed-Decision-Making-for-Youtube-Campaigns/assets/data/final_youtube_data.csv`
-
-**What the script does (at a glance):**
-- trims `channel_name`
-- coerces numeric types (`subscribers`, `total_views`, `videos`)
-- drops unused columns
-- handles empties/nulls with simple rules (drop or fill where safe)
-- writes **final_youtube_data.csv**
+### 2) Clean & Transform
+- Generated via: `assets/scripts/generate_hr_dataset.py`  
+- Includes logic for demographics, hiring/termination dates, job roles, salary, and attrition.
 
 ### 3) Guardrails (Data Quality Checks)
-Before visualizing, I run a few quick checks (baked into the script/notebook or run ad-hoc):
-- **Row count** — expected volume present  
-- **Column & type sanity** — integers where expected, text for names  
-- **Duplicates** — no duplicate `channel_name` rows
+- **Row count** — ~8,950 employees generated.  
+- **Column & type sanity** — salary numeric, job titles categorical, dates valid.  
+- **Duplicates** — unique `employee_id` values.
 
 ### 4) Derive Metrics
-All metrics are either precomputed in Python or calculated in Tableau:
-
-- **Avg Views per Video** = `total_views / videos` (0-safe)  
-- **Views per Subscriber** = `total_views / subscribers` (0-safe)  
-- **Engagement Ratio (proxy)** = based on available fields; if likes/comments aren’t present, omit or mark as N/A.
-
-These create a **balanced scorecard**: reach (subs/views) × responsiveness (engagement/efficiency).
+- **Attrition Rate** = `# exits / avg headcount`.  
+- **Time-to-Hire** = request open → accepted offer.  
+- **Diversity Mix** = representation across gender/state/education.  
+- **Comp Band Fit** = midpoint variance vs. performance rating.
 
 ### 5) Visualize in Tableau
-- Workbook: `/Data-Backed-Decision-Making-for-Youtube-Campaigns/visualizations/Youtube_Visualization.twb`  
-- Data source: `/Data-Backed-Decision-Making-for-Youtube-Campaigns/assets/data/final_youtube_data.csv`
+- Workbook: `assets/visualizations/HR Project.twbx`  
+- Data source: `assets/data/dataset.csv`  
 
 **Dashboard Components**
-- Top-N lists by each KPI (subscribers, views, videos, avg views/video, views/subscriber).  
-- KPI tiles for quick scanning.  
-- Treemap/bars for distribution and dominance.  
-- Controls to toggle Top 10/Top 20, simple filtering.
+- KPI tiles for Attrition, Avg Salary, Hiring Funnel metrics.  
+- Breakdown by Department, Job Role, Gender.  
+- Funnel view for recruitment stages.  
+- Salary distribution plots.
 
 ### 6) Publish & Share
 - Published to **Tableau Public**, linked at the top of this page.  
-- Repo includes raw/clean CSVs, the script, the workbook, and this write-up so the logic is **inspectable and reproducible**.
+- Repo includes dataset, generator script, workbook, and documentation.
 
 <div align="right"><a href="#table-of-contents">↑ Back to top</a></div>
 
 ---
 
 ## Design Notes
-- **Why these KPIs?** They balance *scale* (subs/views) and *performance* (avg views, views/sub).  
-- **Why CSV pipeline?** Lightweight, easy for non-engineers, zero infra.  
-- **Why Tableau?** Fast iteration and simple publishing for stakeholders.
+- **Why synthetic dataset?** Avoids PII, reproducible with generator script.  
+- **Why these KPIs?** They balance *stability* (attrition), *growth* (hiring funnel), *inclusion* (diversity), and *fairness* (comp).  
+- **Why Tableau?** Fast iteration and publishing for non-technical stakeholders.
 
 <div align="right"><a href="#table-of-contents">↑ Back to top</a></div>
 
@@ -125,17 +113,24 @@ These create a **balanced scorecard**: reach (subs/views) × responsiveness (eng
 ## Results (Screenshots)
 
 <figure class="centered-figure">
-  <a href="/Data-Backed-Decision-Making-for-Youtube-Campaigns/assets/images/dashboard_mock.png" target="_blank" rel="noopener">
-    <img src="/Data-Backed-Decision-Making-for-Youtube-Campaigns/assets/images/dashboard_mock.png" alt="Mock Up">
+  <a href="/Human-Resources-Data-Visualization-Dashboard/assets/images/mockup-dashboard.png" target="_blank" rel="noopener">
+    <img src="/Human-Resources-Data-Visualization-Dashboard/assets/images/mockup-dashboard.png" alt="Mock Up">
   </a>
   <figcaption>Mock Up</figcaption>
 </figure>
 
 <figure class="centered-figure">
-  <a href="/Data-Backed-Decision-Making-for-Youtube-Campaigns/assets/images/dashboard.png" target="_blank" rel="noopener">
-    <img src="/Data-Backed-Decision-Making-for-Youtube-Campaigns/assets/images/dashboard.png" alt="Final Interface">
+  <a href="/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png" target="_blank" rel="noopener">
+    <img src="/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png" alt="Final Interface">
   </a>
   <figcaption>Final Interface</figcaption>
+</figure>
+
+<figure class="centered-figure">
+  <a href="/Human-Resources-Data-Visualization-Dashboard/assets/images/tableu-container-design.png" target="_blank" rel="noopener">
+    <img src="/Human-Resources-Data-Visualization-Dashboard/assets/images/tableu-container-design.png" alt="Tableau Container Design">
+  </a>
+  <figcaption>Tableau Container Design</figcaption>
 </figure>
 
 <div align="right"><a href="#table-of-contents">↑ Back to top</a></div>
@@ -143,16 +138,18 @@ These create a **balanced scorecard**: reach (subs/views) × responsiveness (eng
 ---
 
 ## Files & Folders
-- **Raw data:**  
-  [/Data-Backed-Decision-Making-for-Youtube-Campaigns/assets/data/raw_youtube_data.csv](/Data-Backed-Decision-Making-for-Youtube-Campaigns/assets/data/raw_youtube_data.csv)
-- **Final dataset:**  
-  [/Data-Backed-Decision-Making-for-Youtube-Campaigns/assets/data/final_youtube_data.csv](/Data-Backed-Decision-Making-for-Youtube-Campaigns/assets/data/final_youtube_data.csv)
-- **Prep script:**  
-  [/Data-Backed-Decision-Making-for-Youtube-Campaigns/assets/scripts/prep_youtube_uk.py](/Data-Backed-Decision-Making-for-Youtube-Campaigns/assets/scripts/prep_youtube_uk.py)
+- **Dataset (final):**  
+  [/assets/data/dataset.csv](/Human-Resources-Data-Visualization-Dashboard/assets/data/dataset.csv)  
+- **Dataset Generator Script:**  
+  [/assets/scripts/generate_hr_dataset.py](/Human-Resources-Data-Visualization-Dashboard/assets/scripts/generate_hr_dataset.py)  
 - **Tableau workbook:**  
-  [/Data-Backed-Decision-Making-for-Youtube-Campaigns/assets/visualizations/Youtube_Visualization.twb](/Data-Backed-Decision-Making-for-Youtube-Campaigns/assets/visualizations/Youtube_Visualization.twb)
-- **PRD:**  
-  [/Data-Backed-Decision-Making-for-Youtube-Campaigns/assets/docs/Product_Requirements_Document.pdf](/Data-Backed-Decision-Making-for-Youtube-Campaigns/assets/docs/Product_Requirements_Document.pdf)
+  [/assets/visualizations/HR Project.twbx](/Human-Resources-Data-Visualization-Dashboard/assets/visualizations/HR%20Project.twbx)  
+- **Documentation:**  
+  [/assets/docs/Product_Requirements_Document.pdf](/Human-Resources-Data-Visualization-Dashboard/assets/docs/Product_Requirements_Document.pdf)  
+- **Screenshots:**  
+  - Mockup → `/assets/images/mockup-dashboard.png`  
+  - Final Dashboard → `/assets/images/finished-dashboard.png`  
+  - Container Design → `/assets/images/tableu-container-design.png`
 
 <div align="right"><a href="#table-of-contents">↑ Back to top</a></div>
 
@@ -160,27 +157,29 @@ These create a **balanced scorecard**: reach (subs/views) × responsiveness (eng
 
 ## How to Reproduce
 1. **Clone** this repo.  
-2. Run `scripts/prep_youtube_uk.py` (writes `assets/data/final_youtube_data.csv`).  
-3. Open `visualizations/Youtube_Visualization.twb` in **Tableau** and point it at `assets/data/final_youtube_data.csv`.  
+2. Run `assets/scripts/generate_hr_dataset.py` → creates `assets/data/dataset.csv`.  
+3. Open `HR Project.twbx` in **Tableau** and point it at `dataset.csv`.  
 4. Explore the dashboard; publish to Tableau Public if desired.  
-5. To refresh later: replace `raw_youtube_data.csv` → re-run script → open workbook (data updates).
+5. To refresh later: rerun the script → re-open workbook (data updates automatically).
 
 <div align="right"><a href="#table-of-contents">↑ Back to top</a></div>
 
 ---
 
 ## Limitations & Next Steps
-- Engagement details (likes/comments) may be missing; **Engagement Ratio** is a placeholder when fields aren’t available.  
-- Add **recency weighting** or **growth trends** (subs/view velocity).  
-- Introduce **cost data** to estimate **ROI** (views × conv. rate × margin − fee).  
-- Optional: creator **categories/verticals** to filter comparisons.
+- Synthetic dataset (not real HRIS).  
+- Attrition not split into voluntary vs involuntary.  
+- Hiring funnel simplified to static assumptions.  
+- Next: connect to live HRIS export for scheduled refresh.  
+- Add predictive attrition risk modeling.
 
 <div align="right"><a href="#table-of-contents">↑ Back to top</a></div>
 
 ---
 
 ## Credits
-Concept inspired by a public learning project; this version uses a **CSV-only pipeline** with **Python + Tableau**, documented for product stakeholders.  
+Adapted from the open-source HR Analytics tutorial by [Data With Baraa](https://www.datawithbaraa.com/tableau/tableau-hr-project-thank-you/).  
+This version re-implements the workflow with my own repo, structure, and documentation.  
 © Liad Mizrachi.
 
 <div align="right"><a href="#table-of-contents">↑ Back to top</a></div>
