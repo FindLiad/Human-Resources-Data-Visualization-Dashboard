@@ -1,4 +1,3 @@
-<!-- _layouts/default.html -->
 <!doctype html>
 <html lang="en">
   <head>
@@ -11,11 +10,10 @@
     </title>
     <meta name="description" content="{{ site.description | escape }}">
 
-    {%- comment -%}
-      If your theme already ships a main stylesheet (e.g., /assets/css/style.css),
-      it will still load via the theme. We’re adding our jungle overrides AFTER,
-      so they win.
-    {%- endcomment -%}
+    <!-- Load main theme stylesheet -->
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+
+    <!-- Jungle Green overrides -->
     <link rel="stylesheet" href="{{ '/assets/css/theme-overrides.css' | relative_url }}">
   </head>
 

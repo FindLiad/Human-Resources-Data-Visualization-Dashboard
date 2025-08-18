@@ -9,7 +9,7 @@
 }
 
 /* Page */
-html, body { background: var(--bg); color: var(--text); }
+html, body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
 a { color: var(--accent); text-decoration: none; }
 a:hover { color: var(--text); background: var(--brand-2); }
 hr { border: 0; height: 1px; background: rgba(255,255,255,.12); }
@@ -18,26 +18,26 @@ hr { border: 0; height: 1px; background: rgba(255,255,255,.12); }
 h1, h2, h3, h4 { color: var(--text); }
 h1 { border-bottom: 2px solid var(--brand); padding-bottom: .25rem; }
 
-/* Buttons / badges (if any) */
+/* Buttons */
 .btn, .btn-primary { background: var(--brand); color: var(--text); border: none; }
 .btn:hover, .btn-primary:hover { background: var(--brand-2); }
 
-/* Cards / blocks */
-.card { border: 1px solid var(--muted); border-radius: 10px; padding: 1rem; background: rgba(255,255,255,.02); }
+/* Cards */
+.card { border: 1px solid var(--muted); border-radius: 10px; padding: 1rem; background: rgba(255,255,255,.03); }
 
-/* Images & captions on project pages */
+/* Figures */
 figure { margin: 1.2rem 0; text-align: center; }
-figure img { max-width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,.15); }
+figure img { max-width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,.2); }
 figcaption { color: var(--accent); font-size: .95rem; margin-top: .4rem; }
 
-/* Tables (for README sections) */
+/* Tables */
 table { width: 100%; border-collapse: collapse; }
-th, td { border: 1px solid rgba(255,255,255,.15); padding: .5rem .6rem; }
-th { background: rgba(38, 166, 91, .18); }
+th, td { border: 1px solid rgba(255,255,255,.2); padding: .5rem .6rem; }
+th { background: rgba(46,125,50,.25); }
 
-/* Code blocks */
+/* Code */
 pre, code { background: rgba(255,255,255,.08); color: #e8ffe8; }
 pre { padding: .75rem; border-radius: 8px; overflow-x: auto; }
 
-/* Anchor "Back to top" alignment */
+/* Back to top links */
 div[align="right"] a { background: transparent; color: var(--accent); }
