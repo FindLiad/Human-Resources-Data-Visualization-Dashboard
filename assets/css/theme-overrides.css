@@ -1,0 +1,43 @@
+/* ===== Jungle Green Theme Overrides ===== */
+:root {
+  --bg: #0d1a0f;        /* dark jungle */
+  --text: #f0f5f0;      /* light mist */
+  --brand: #1b5e20;     /* jungle green */
+  --brand-2: #2e7d32;   /* forest green */
+  --accent: #66bb6a;    /* leaf */
+  --muted: #4caf50;     /* soft green */
+}
+
+/* Page */
+html, body { background: var(--bg); color: var(--text); }
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--text); background: var(--brand-2); }
+hr { border: 0; height: 1px; background: rgba(255,255,255,.12); }
+
+/* Headings */
+h1, h2, h3, h4 { color: var(--text); }
+h1 { border-bottom: 2px solid var(--brand); padding-bottom: .25rem; }
+
+/* Buttons / badges (if any) */
+.btn, .btn-primary { background: var(--brand); color: var(--text); border: none; }
+.btn:hover, .btn-primary:hover { background: var(--brand-2); }
+
+/* Cards / blocks */
+.card { border: 1px solid var(--muted); border-radius: 10px; padding: 1rem; background: rgba(255,255,255,.02); }
+
+/* Images & captions on project pages */
+figure { margin: 1.2rem 0; text-align: center; }
+figure img { max-width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,.15); }
+figcaption { color: var(--accent); font-size: .95rem; margin-top: .4rem; }
+
+/* Tables (for README sections) */
+table { width: 100%; border-collapse: collapse; }
+th, td { border: 1px solid rgba(255,255,255,.15); padding: .5rem .6rem; }
+th { background: rgba(38, 166, 91, .18); }
+
+/* Code blocks */
+pre, code { background: rgba(255,255,255,.08); color: #e8ffe8; }
+pre { padding: .75rem; border-radius: 8px; overflow-x: auto; }
+
+/* Anchor "Back to top" alignment */
+div[align="right"] a { background: transparent; color: var(--accent); }

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Data-Backed Decision Making for YouTube Campaigns
+title: Human Resources Data Visualization Dashboard
 ---
 
 {% comment %}
