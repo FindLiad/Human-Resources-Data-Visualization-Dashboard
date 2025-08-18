@@ -120,18 +120,19 @@ The dashboard visualizes **Attrition Trends, Hiring Funnel Conversion, Diversity
 </figure>
 
 <figure class="centered-figure">
+  <a href="/Human-Resources-Data-Visualization-Dashboard/assets/images/tableu-container-design.png" target="_blank" rel="noopener">
+    <img src="/Human-Resources-Data-Visualization-Dashboard/assets/images/tableu-container-design.png" alt="Tableau Container Design">
+  </a>
+  <figcaption>Tableau Container Design</figcaption>
+</figure>
+
+<figure class="centered-figure">
   <a href="/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png" target="_blank" rel="noopener">
     <img src="/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png" alt="Final Interface">
   </a>
   <figcaption>Final Interface</figcaption>
 </figure>
 
-<figure class="centered-figure">
-  <a href="/Human-Resources-Data-Visualization-Dashboard/assets/images/tableu-container-design.png" target="_blank" rel="noopener">
-    <img src="/Human-Resources-Data-Visualization-Dashboard/assets/images/tableu-container-design.png" alt="Tableau Container Design">
-  </a>
-  <figcaption>Tableau Container Design</figcaption>
-</figure>
 
 <div align="right"><a href="#table-of-contents">↑ Back to top</a></div>
 
