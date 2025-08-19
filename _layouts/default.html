@@ -3,37 +3,34 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>{{ page.title | default: site.title }}</title>
 
+    <!-- Theme colors -->
     <meta name="color-scheme" content="light dark">
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#0f3b22">
     <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#0b2e1a">
 
     <!-- Cayman first, then our overrides -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle8">
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle8">
-
-    <script>
-      // Always land visitors at the very top on initial load
-      window.addEventListener('load', () => { window.scrollTo(0,0); }, { once:true });
-    </script>
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle7">
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle7">
   </head>
   <body>
 
-    <!-- ===== Sticky Frosted Top Menu ===== -->
-    <div class="topbar">
-      <div class="topbar__label">✨ Main Menu ✨</div>
-      <nav class="topbar__nav">
-        <a class="btn btn--sm btn--seg" href="{{ site.menu.last_project_url }}">Last Project</a>
-        <a class="btn btn--sm btn--seg" href="{{ site.menu.home_portfolio_url }}">Return to Home Portfolio</a>
-        <a class="btn btn--sm btn--seg" href="{{ site.menu.next_project_url }}">Next Project</a>
-      </nav>
-    </div>
+    <!-- ===== Sticky Main Menu (not a button) ===== -->
+    <nav class="site-topbar" role="navigation" aria-label="Main menu">
+      <div class="site-topbar__inner">
+        <div class="site-topbar__label">✨ Main Menu ✨</div>
+        <div class="topbar-actions">
+          <a class="menu-btn" href="https://findliad.github.io/Data-Backed-Decision-Making-for-Youtube-Campaigns/">Last Project</a>
+          <a class="menu-btn" href="https://findliad.github.io/">Return to Home Portfolio</a>
+          <a class="menu-btn" href="#">Next Project</a>
+        </div>
+      </div>
+    </nav>
 
-    <!-- ===== Split Banner ===== -->
+    <!-- ===== Split Hero ===== -->
     <header class="hero-split">
-      <!-- Author Card -->
+      <!-- Author (left) -->
       <aside class="author-card">
         <div class="author-card__heading">About the Author</div>
         <a href="{{ site.author_photo }}" target="_blank" rel="noopener">
@@ -52,14 +49,9 @@
         </div>
       </aside>
 
-      <!-- Project column -->
+      <!-- Title, preview, actions (right) -->
       <section class="hero-main">
-        <h1 class="hero-main__title">
-          <span class="title-left">Project 2</span>
-          <span class="title-divider"> | </span>
-          <span class="title-right">Human Resource Dashboard</span>
-        </h1>
-
+        <h1 class="hero-main__title">Project 2 | Human Resource Dashboard</h1>
         {% if site.description %}
           <p class="hero-main__tagline">{{ site.description }}</p>
         {% endif %}
@@ -75,35 +67,14 @@
           {% if site.github.repository_url %}
             <a class="btn" href="{{ site.github.repository_url }}" target="_blank" rel="noopener">View on GitHub</a>
           {% endif %}
-          {% if site.prd_url %}
-            <a class="btn" href="{{ site.prd_url }}" target="_blank" rel="noopener">View Product Requirements Document</a>
-          {% endif %}
+          <a class="btn" href="{{ site.baseurl }}/assets/docs/Product_Requirements_Document.pdf" target="_blank" rel="noopener">View Product Requirements Document</a>
         </div>
       </section>
     </header>
 
-    <!-- ===== Main Content ===== -->
+    <!-- ===== Main ===== -->
     <main id="content" class="main-content" role="main">
       {{ content }}
-
-      <!-- Mobile-only author card after the story section -->
-      <aside class="author-card author-card--mobile">
-        <div class="author-card__heading">About the Author</div>
-        <a href="{{ site.author_photo }}" target="_blank" rel="noopener">
-          <img class="author-card__photo" src="{{ site.author_photo }}" alt="{{ site.author }}">
-        </a>
-        <div class="author-card__name">{{ site.author }}</div>
-        {% if site.author_title %}
-          <div class="author-card__title">{{ site.author_title }}</div>
-        {% endif %}
-        <div class="author-card__links">
-          {% for l in site.author_links %}
-            <a class="author-card__btn" href="{{ l.url | escape }}" target="_blank" rel="noopener noreferrer">
-              {{ l.icon }} {{ l.label }}
-            </a>
-          {% endfor %}
-        </div>
-      </aside>
 
       <footer class="site-footer">
         {% if site.github.is_project_page %}
