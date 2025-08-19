@@ -22,24 +22,23 @@ author_links:
     url: "mailto:Liad%20Mizrachi%20<FindLiad@gmail.com>"
     icon: "✉️"
 
-# Banner preview image
+# Banner screenshot
+hero_preview: "/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png"
 hero_screenshot_url: "/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png"
 
-# Split title so we can control desktop vs mobile layout
-project_label: "Project 2"
-project_title: "Human Resource Dashboard"
-
-# Comic-strip images (1200×800)
+# Story images (your new 1200x800 assets)
 cartoon_context: "/Human-Resources-Data-Visualization-Dashboard/assets/images/story-context.png"
 cartoon_action:  "/Human-Resources-Data-Visualization-Dashboard/assets/images/story-action.png"
 cartoon_result:  "/Human-Resources-Data-Visualization-Dashboard/assets/images/story-result.png"
 
-# Links for hero buttons / nav
+# Links
 live_dashboard_url: "https://public.tableau.com/app/profile/liad.mizrachi/viz/HRProject_17554488176360/hr_dashboard?publish=yes"
 prd_url: "/Human-Resources-Data-Visualization-Dashboard/assets/docs/Product_Requirements_Document.pdf"
-last_project_url: "https://findliad.github.io/Data-Backed-Decision-Making-for-Youtube-Campaigns/"
-home_portfolio_url: "https://findliad.github.io/"
-next_project_url: "https://findliad.github.io/"   # change when you have Project 3
+
+menu:
+  last_project_url: "https://findliad.github.io/Data-Backed-Decision-Making-for-Youtube-Campaigns/"
+  home_portfolio_url: "https://findliad.github.io/"
+  next_project_url: "https://findliad.github.io/" # update when you have Project 3
 
 remote_theme: "pages-themes/cayman@v0.2.0"
 plugins:

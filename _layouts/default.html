@@ -6,30 +6,34 @@
 
     <title>{{ page.title | default: site.title }}</title>
 
-    <!-- Color palette -->
     <meta name="color-scheme" content="light dark">
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#0f3b22">
     <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#0b2e1a">
 
-    <!-- Cayman then our overrides -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle9">
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle9">
+    <!-- Cayman first, then our overrides -->
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle7">
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle7">
+
+    <script>
+      // Always land visitors at the very top on initial load
+      window.addEventListener('load', () => { window.scrollTo(0,0); }, { once:true });
+    </script>
   </head>
   <body>
 
-    <!-- ===== Top Nav (with decorative Main Menu label) ===== -->
-    <nav class="top-nav">
-      <span class="nav-label">✨ Main Menu ✨</span>
-      <div class="nav-actions">
-        <a class="chip" href="{{ site.last_project_url }}" rel="noopener">Last Project</a>
-        <a class="chip" href="{{ site.home_portfolio_url }}" rel="noopener">Return to Home Portfolio</a>
-        <a class="chip" href="{{ site.next_project_url }}" rel="noopener">Next Project</a>
-      </div>
-    </nav>
+    <!-- ===== Frosted top menu (not sticky to keep hero spacing under control) ===== -->
+    <div class="topbar">
+      <div class="topbar__label">✨ Main Menu ✨</div>
+      <nav class="topbar__nav">
+        <a class="btn btn--sm btn--pill" href="{{ site.menu.last_project_url }}">Last Project</a>
+        <a class="btn btn--sm btn--pill" href="{{ site.menu.home_portfolio_url }}">Return to Home Portfolio</a>
+        <a class="btn btn--sm btn--pill" href="{{ site.menu.next_project_url }}">Next Project</a>
+      </nav>
+    </div>
 
     <!-- ===== Split Banner ===== -->
     <header class="hero-split">
-      <!-- Author Card (desktop/tablet) -->
+      <!-- Author Card -->
       <aside class="author-card">
         <div class="author-card__heading">About the Author</div>
         <a href="{{ site.author_photo }}" target="_blank" rel="noopener">
@@ -48,13 +52,15 @@
         </div>
       </aside>
 
-      <!-- Project Title + tagline + preview -->
+      <!-- Project column -->
       <section class="hero-main">
+        <!-- Title split so we can format desktop vs mobile cleanly -->
         <h1 class="hero-main__title">
-          <span class="project-label">{{ site.project_label }}</span>
-          <span class="divider">|</span>
-          <span class="project-title">{{ site.project_title }}</span>
+          <span class="title-left">Project 2</span>
+          <span class="title-divider"> | </span>
+          <span class="title-right">Human Resource Dashboard</span>
         </h1>
+
         {% if site.description %}
           <p class="hero-main__tagline">{{ site.description }}</p>
         {% endif %}
@@ -77,28 +83,29 @@
       </section>
     </header>
 
-    <!-- A second copy of the author card we can move under the story section on mobile -->
-    <aside class="author-card author-card--mobile" aria-label="About the Author (mobile)">
-      <div class="author-card__heading">About the Author</div>
-      <a href="{{ site.author_photo }}" target="_blank" rel="noopener">
-        <img class="author-card__photo" src="{{ site.author_photo }}" alt="{{ site.author }}">
-      </a>
-      <div class="author-card__name">{{ site.author }}</div>
-      {% if site.author_title %}
-        <div class="author-card__title">{{ site.author_title }}</div>
-      {% endif %}
-      <div class="author-card__links">
-        {% for l in site.author_links %}
-          <a class="author-card__btn" href="{{ l.url | escape }}" target="_blank" rel="noopener noreferrer">
-            {{ l.icon }} {{ l.label }}
-          </a>
-        {% endfor %}
-      </div>
-    </aside>
-
     <!-- ===== Main Content ===== -->
     <main id="content" class="main-content" role="main">
       {{ content }}
+
+      <!-- (Optional) Mobile: show the author card again AFTER the story section.
+           Add class toggle so it only appears on small screens. -->
+      <aside class="author-card author-card--mobile">
+        <div class="author-card__heading">About the Author</div>
+        <a href="{{ site.author_photo }}" target="_blank" rel="noopener">
+          <img class="author-card__photo" src="{{ site.author_photo }}" alt="{{ site.author }}">
+        </a>
+        <div class="author-card__name">{{ site.author }}</div>
+        {% if site.author_title %}
+          <div class="author-card__title">{{ site.author_title }}</div>
+        {% endif %}
+        <div class="author-card__links">
+          {% for l in site.author_links %}
+            <a class="author-card__btn" href="{{ l.url | escape }}" target="_blank" rel="noopener noreferrer">
+              {{ l.icon }} {{ l.label }}
+            </a>
+          {% endfor %}
+        </div>
+      </aside>
 
       <footer class="site-footer">
         {% if site.github.is_project_page %}
@@ -108,23 +115,5 @@
         {% endif %}
       </footer>
     </main>
-
-    <!-- Top-on-load + move mobile author card under the story grid -->
-    <script>
-      // Always land at the top
-      window.addEventListener('pageshow', function(){ window.scrollTo(0,0); });
-
-      // On small screens, place the author card after the story grid section
-      document.addEventListener('DOMContentLoaded', function(){
-        if (window.matchMedia('(max-width: 820px)').matches) {
-          const mobileCard = document.querySelector('.author-card--mobile');
-          const storyGrid   = document.querySelector('.story-grid');
-          if (mobileCard && storyGrid) {
-            storyGrid.after(mobileCard);
-            mobileCard.style.display = 'block';
-          }
-        }
-      });
-    </script>
   </body>
 </html>
