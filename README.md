@@ -10,16 +10,52 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
 
 ---
 
-## Summary
+<div class="summary-two-col">
+  <div class="summary-copy">
+    <p class="kicker">Context</p>
+    <p>
+      I was brought in as the product manager to turn fragmented HR reporting into a single,
+      governed product. HR Operations and Talent Acquisition were burning hours stitching
+      spreadsheets from HRIS and ATS; executives wanted a trusted, self-serve view; Legal/InfoSec
+      required strict privacy and auditability. The goals collided: speed and flexibility for
+      stakeholders vs. standardized KPIs and PII controls for the business.
+    </p>
 
-<div class="summary-split">
-  <div class="summary-col">
-    <p><strong>Context.</strong> I was brought in as the product manager to turn fragmented HR reporting into a single, governed product. HR Operations and Talent Acquisition were burning hours stitching spreadsheets from HRIS and ATS; executives wanted a trusted, self-serve view; Legal/InfoSec required strict privacy and auditability. The goals collided: speed and flexibility for stakeholders vs. standardized KPIs and PII controls for the business.</p>
+    <p class="kicker">Action</p>
+    <p>
+      I ran structured discovery across HR Ops, TA, Compensation, DEI, Finance, and Execs to map
+      decisions—not just metrics. We aligned needs into a shared KPI glossary—<em>Attrition
+      (voluntary/involuntary), Time-to-Hire, Stage Conversion, Offer Acceptance, Representation %,
+      Compensation Band Delta</em>—and set a North Star: <strong>time-to-decision ≤ 72 hours</strong>.
+      From there I led delivery: data contracts and pipelines, a modeled semantic layer,
+      row-level security with small-n suppression, and an explainable Tableau UI with daily
+      self-serve views plus a certified month-end snapshot.
+    </p>
 
-    <p><strong>Action.</strong> I ran structured discovery across HR Ops, TA, Compensation, DEI, Finance, and Execs to map decisions, not just metrics. We aligned needs into a shared KPI glossary—<em>Attrition (voluntary/involuntary), Time-to-Hire, Stage Conversion, Offer Acceptance, Representation %, Compensation Band Delta</em>—and set a North Star: <em>time-to-decision ≤ 72 hours</em>. From there I led delivery: data contracts and pipelines, a modeled semantic layer, row-level security with small-n suppression, and an explainable Tableau UI with daily self-serve views plus a certified month-end snapshot.</p>
+    <div class="chip-row">
+      <span class="chip">≤ 24h refresh</span>
+      <span class="chip">≤ 72h time-to-decision</span>
+      <span class="chip">Small-n suppression</span>
+      <span class="chip">Certified month-end snapshot</span>
+    </div>
 
-    <p><strong>Result.</strong> The dashboard now saves 3–5 hours per user per week, surfaces early attrition and hiring bottlenecks, and meets governance without slowing the business. The rest of this page walks the PM path—discovery → alignment → KPI definition → design → build → testing → positioning & pricing → delivery.</p>
+    <p class="kicker">Result</p>
+    <p>
+      The dashboard now saves 3–5 hours per user per week, surfaces early attrition and hiring
+      bottlenecks, and meets governance without slowing the business. The rest of this page walks
+      the PM path—discovery → alignment → KPI definition → design → build → testing →
+      positioning & pricing → delivery.
+    </p>
   </div>
+
+  <figure class="summary-figure">
+    <a href="/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png" target="_blank" rel="noopener">
+      <img src="/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png" alt="Final Dashboard (preview)">
+    </a>
+    <figcaption>Final Dashboard (preview)</figcaption>
+  </figure>
+</div>
+
 
   <div class="summary-col">
     <figure>
