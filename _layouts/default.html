@@ -11,8 +11,8 @@
     <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#0b2e1a">
 
     <!-- Cayman first, then our overrides -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle7">
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle7">
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle8">
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle8">
 
     <script>
       // Always land visitors at the very top on initial load
@@ -21,13 +21,13 @@
   </head>
   <body>
 
-    <!-- ===== Frosted top menu (not sticky to keep hero spacing under control) ===== -->
+    <!-- ===== Sticky Frosted Top Menu ===== -->
     <div class="topbar">
       <div class="topbar__label">✨ Main Menu ✨</div>
       <nav class="topbar__nav">
-        <a class="btn btn--sm btn--pill" href="{{ site.menu.last_project_url }}">Last Project</a>
-        <a class="btn btn--sm btn--pill" href="{{ site.menu.home_portfolio_url }}">Return to Home Portfolio</a>
-        <a class="btn btn--sm btn--pill" href="{{ site.menu.next_project_url }}">Next Project</a>
+        <a class="btn btn--sm btn--seg" href="{{ site.menu.last_project_url }}">Last Project</a>
+        <a class="btn btn--sm btn--seg" href="{{ site.menu.home_portfolio_url }}">Return to Home Portfolio</a>
+        <a class="btn btn--sm btn--seg" href="{{ site.menu.next_project_url }}">Next Project</a>
       </nav>
     </div>
 
@@ -54,7 +54,6 @@
 
       <!-- Project column -->
       <section class="hero-main">
-        <!-- Title split so we can format desktop vs mobile cleanly -->
         <h1 class="hero-main__title">
           <span class="title-left">Project 2</span>
           <span class="title-divider"> | </span>
@@ -87,8 +86,7 @@
     <main id="content" class="main-content" role="main">
       {{ content }}
 
-      <!-- (Optional) Mobile: show the author card again AFTER the story section.
-           Add class toggle so it only appears on small screens. -->
+      <!-- Mobile-only author card after the story section -->
       <aside class="author-card author-card--mobile">
         <div class="author-card__heading">About the Author</div>
         <a href="{{ site.author_photo }}" target="_blank" rel="noopener">
