@@ -1,38 +1,70 @@
+<!-- _layouts/default.html -->
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page.title | default: site.title }}</title>
 
-    <title>{{ site.title }}</title>
-    <meta name="description" content="{{ site.description | escape }}">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#0f3b22">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#0b2e1a">
 
-    <!-- One stylesheet, same as Project #1 (but green palette) -->
-    <link rel="stylesheet" href="{{ '/assets/css/theme-overrides.css' | relative_url }}">
+    <!-- Cache-busted CSS (same structure as Project #1) -->
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=jungle1">
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=jungle1">
+
+    <!-- FORCE pale-sage contact tiles on all devices (matches #1 behavior) -->
+    <style>
+      .author-card .author-card__links a.author-card__btn{
+        background: #d8efe0 !important;
+        border-color: #c2e3d0 !important;
+        color: #122016 !important;
+        -webkit-appearance: none;
+      }
+      .author-card .author-card__links a.author-card__btn:hover{
+        background: #cde9d8 !important;
+      }
+      @media (prefers-color-scheme: dark){
+        .author-card .author-card__links a.author-card__btn{
+          background: #d8efe0 !important;
+          border-color: #c2e3d0 !important;
+          color: #122016 !important;
+        }
+        .author-card .author-card__links a.author-card__btn:hover{
+          background: #cde9d8 !important;
+        }
+      }
+    </style>
   </head>
   <body>
-
-    <!-- ===== Header / Split Hero (identical structure to Project #1) ===== -->
+    <!-- ===== Split Banner ===== -->
     <header class="hero-split">
-
-      <!-- Left: Author card -->
+      <!-- Author Card -->
       <aside class="author-card">
-        <div class="author-card__heading">Author</div>
-        <img class="author-card__photo" src="{{ site.author_photo }}" alt="Author photo">
-        <div class="author-card__name">{{ site.author }}</div>
-        <div class="author-card__title">{{ site.author_title }}</div>
+        <div class="author-card__heading">About the Author</div>
 
+        <!-- Clickable profile photo -->
+        <a href="{{ site.author_photo }}" target="_blank" rel="noopener">
+          <img class="author-card__photo"
+               src="{{ site.author_photo }}"
+               alt="{{ site.author }}">
+        </a>
+
+        <div class="author-card__name">{{ site.author }}</div>
+        {% if site.author_title %}
+          <div class="author-card__title">{{ site.author_title }}</div>
+        {% endif %}
         <div class="author-card__links">
           {% for l in site.author_links %}
-            <a class="author-card__btn" href="{{ l.url }}">
+            <a class="author-card__btn" href="{{ l.url | escape }}" target="_blank" rel="noopener noreferrer">
               {{ l.icon }} {{ l.label }}
             </a>
           {% endfor %}
         </div>
       </aside>
 
-      <!-- Right: Title, tagline, CTAs -->
+      <!-- Project Title + Tagline -->
       <section class="hero-main">
         <h1 class="hero-main__title">{{ site.title }}</h1>
         {% if site.description %}
@@ -49,7 +81,7 @@
       </section>
     </header>
 
-    <!-- ===== Main Content (README from “## Summary”) ===== -->
+    <!-- ===== Main Content ===== -->
     <main id="content" class="main-content" role="main">
       {{ content }}
 

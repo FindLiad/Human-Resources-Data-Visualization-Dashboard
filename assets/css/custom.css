@@ -1,23 +1,24 @@
-/* ===============  Mocha Palette (Light)  =============== */
+/* ===============  Jungle Palette (Light) — identical sizing as Project #1  =============== */
 :root{
-  --bg:              #f7f2ef;  /* cream */
-  --text:            #2b211d;  /* dark coffee */
-  --muted:           #6b5b53;  /* warm gray-brown */
-  --card-bg:         #f1e9e4;  /* paper */
-  --card-border:     #e2d6cf;  /* parchment edge */
-  --accent:          #8b5e34;  /* mocha */
-  --accent-2:        #a47148;  /* caramel */
-  --accent-3:        #c08a5b;  /* latte */
-  --link:            #7a4e2d;  /* espresso link */
-  --link-hover:      #5c3a22;
+  --bg:              #eaf3ea;  /* misty sage */
+  --text:            #122016;  /* deep evergreen */
+  --muted:           #5b6f61;  /* cool gray-green */
+  --card-bg:         #e6f1eb;  /* pale leaf */
+  --card-border:     #cfe0d6;  /* soft sage edge */
+  --accent:          #1b5e20;  /* jungle button */
+  --accent-2:        #2e7d32;  /* forest */
+  --accent-3:        #66bb6a;  /* leaf */
+  --link:            #1f7a2e;  /* link */
+  --link-hover:      #145722;
 
   /* header gradient */
-  --hero-grad-1:     #5d4037;  /* rich cocoa */
-  --hero-grad-2:     #a1887f;  /* taupe */
+  --hero-grad-1:     #0b2e1a;  /* deep jungle */
+  --hero-grad-2:     #1f6a3a;  /* canopy */
 }
 
 /* ===============  Global  =============== */
 html, body {
+  margin: 0; /* remove browser default gap; ensures full-bleed hero */
   background: var(--bg);
   color: var(--text);
 }
@@ -30,7 +31,7 @@ a:hover { color: var(--link-hover); text-decoration: underline; }
 }
 
 pre, code {
-  background: #efe6df;
+  background: #e5f0e8;
   border: 1px solid var(--card-border);
   border-radius: 8px;
 }
@@ -90,8 +91,8 @@ pre, code {
 /* ===============  Author Card  =============== */
 .author-card{
   background:
-    linear-gradient(135deg, #f8f3f0 0%, #efe5df 100%),
-    repeating-linear-gradient(45deg, rgba(139,94,52,.035) 0 10px, rgba(255,255,255,.035) 10px 20px);
+    linear-gradient(135deg, #edf6f0 0%, #e6f1eb 100%),
+    repeating-linear-gradient(45deg, rgba(31,122,46,.035) 0 10px, rgba(255,255,255,.035) 10px 20px);
   color: var(--text);
   border-radius: 14px;
   padding: 16px;
@@ -198,23 +199,23 @@ pre, code {
 }
 
 /* =========================================================
-   Dark Mode — automatic via OS preference
+   Dark Mode — automatic via OS preference (green hues)
    ========================================================= */
 @media (prefers-color-scheme: dark){
   :root{
-    --bg:          #1b1614;  /* espresso */
-    --text:        #f3ebe7;  /* cream text */
-    --muted:       #c8b9b1;  /* soft latte */
-    --card-bg:     #241d1a;  /* mocha card */
-    --card-border: #3a2f2a;  /* warm edge */
-    --accent:      #d6a072;  /* caramel highlight */
-    --accent-2:    #bf8a61;
-    --accent-3:    #996848;
-    --link:        #f0c395;
-    --link-hover:  #ffd9b0;
+    --bg:          #0f1a14;  /* deep jungle night */
+    --text:        #eaf3ea;  /* mist text */
+    --muted:       #cfe0d6;  /* soft sage */
+    --card-bg:     #132219;  /* dark leaf card */
+    --card-border: #1f3528;  /* deep edge */
+    --accent:      #66bb6a;  /* leaf highlight */
+    --accent-2:    #2e7d32;
+    --accent-3:    #1b5e20;
+    --link:        #8ee6a0;
+    --link-hover:  #b8f7c4;
 
-    --hero-grad-1: #2b201c;  /* deep roast */
-    --hero-grad-2: #5a4339;  /* cocoa */
+    --hero-grad-1: #0b2e1a;  /* deep */
+    --hero-grad-2: #0f3b22;  /* dark green */
   }
 
   html, body { background: var(--bg); color: var(--text); }
@@ -222,14 +223,14 @@ pre, code {
   a:hover { color: var(--link-hover); }
 
   pre, code {
-    background: #2a221f;
+    background: #0f251a;
     border-color: var(--card-border);
   }
 
   .author-card{
     background:
-      linear-gradient(135deg, #2a221f 0%, #241d1a 100%),
-      repeating-linear-gradient(45deg, rgba(214,160,114,.04) 0 10px, rgba(0,0,0,.04) 10px 20px);
+      linear-gradient(135deg, #16281e 0%, #132219 100%),
+      repeating-linear-gradient(45deg, rgba(102,187,106,.04) 0 10px, rgba(0,0,0,.04) 10px 20px);
     border-color: var(--card-border);
     box-shadow: 0 10px 28px rgba(0,0,0,.35);
   }
@@ -247,7 +248,7 @@ pre, code {
   .author-card__btn:hover{ box-shadow: 0 8px 22px rgba(0,0,0,.35); }
 
   .centered-figure img{
-    background: #211a17;
+    background: #0f1f16;
     border-color: var(--card-border);
     box-shadow: 0 10px 28px rgba(0,0,0,.4);
   }
@@ -258,11 +259,11 @@ pre, code {
   }
 }
 
-/* === Contact tiles: slightly dark beige (light + dark mode) === */
+/* === Contact tiles: pale sage (light + dark mode) === */
 :root{
-  --tile-bg:        #e5d2c3;  /* slightly dark beige */
-  --tile-bg-hover:  #dec9b8;  /* hover shade */
-  --tile-border:    #d8c2b4;  /* warm border */
+  --tile-bg:        #d8efe0;
+  --tile-bg-hover:  #cde9d8;
+  --tile-border:    #c2e3d0;
 }
 
 /* Light mode tiles */
@@ -278,9 +279,9 @@ pre, code {
 /* Dark mode equivalents for good contrast */
 @media (prefers-color-scheme: dark){
   :root{
-    --tile-bg:       #3a2f2a;  /* warm deep beige-brown */
-    --tile-bg-hover: #473a34;  /* slightly brighter on hover */
-    --tile-border:   #2c241f;
+    --tile-bg:       #d8efe0;
+    --tile-bg-hover: #cde9d8;
+    --tile-border:   #c2e3d0;
   }
   .author-card__btn{
     background: var(--tile-bg);
@@ -292,24 +293,24 @@ pre, code {
   }
 }
 
-/* === Force beige contact tiles on all devices (light + dark) === */
+/* === Force pale-sage contact tiles on all devices (match #1 behavior) === */
 .author-card__btn{
-  background-color: #e5d2c3 !important;  /* slightly dark beige */
-  border-color: #d8c2b4 !important;
-  color: #2b211d !important;              /* dark coffee text for contrast */
+  background-color: #d8efe0 !important;
+  border-color: #c2e3d0 !important;
+  color: #122016 !important;
 }
 .author-card__btn:hover{
-  background-color: #dec9b8 !important;   /* hover shade */
+  background-color: #cde9d8 !important;
 }
 
-/* Keep the same beige in dark mode (override dark scheme) */
+/* Keep the same tiles in dark mode (override dark scheme) */
 @media (prefers-color-scheme: dark){
   .author-card__btn{
-    background-color: #e5d2c3 !important;
-    border-color: #d8c2b4 !important;
-    color: #2b211d !important;
+    background-color: #d8efe0 !important;
+    border-color: #c2e3d0 !important;
+    color: #122016 !important;
   }
   .author-card__btn:hover{
-    background-color: #dec9b8 !important;
+    background-color: #cde9d8 !important;
   }
 }
