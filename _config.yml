@@ -1,17 +1,5 @@
 title: "Human Resources Data Visualization Dashboard"
-description: >-
-  As product manager, I was asked to turn fragmented HR reporting into a single,
-  governed product. I started with stakeholder interviews across HR Ops, TA,
-  Compensation, DEI, Finance, and Execs to map needs and points of friction.
-  We aligned on a shared KPI glossary—Attrition (vol/invol), Time-to-Hire,
-  Stage Conversion, Offer Acceptance, Representation %, and Compensation Band
-  Delta—and a North Star of “time-to-decision under 72 hours.” With alignment
-  in place, I led delivery: data contracts with HRIS/ATS, a modeled semantic
-  layer, row-level security and small-n suppression, and a Tableau interface
-  designed for self-serve plus a certified month-end snapshot. The result is an
-  automated workflow that saves hours per week for HRBPs, surfaces early risk,
-  and satisfies governance—an example of PM craft from discovery → alignment →
-  KPI definition → build → launch → adoption.
+description: "Leadership-facing HR analytics: Attrition, Hiring Funnel, Diversity, and Compensation."
 author: "Liad Mizrachi"
 
 # MUST match repo name (case-sensitive)

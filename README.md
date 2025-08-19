@@ -11,8 +11,26 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
 ---
 
 ## Summary
-A productized analytics workflow that lets HR leaders **monitor, diagnose, and act** on key people metrics.  
-The dashboard visualizes **Attrition Trends, Hiring Funnel Conversion, Diversity Mix, and Compensation Bands** to enable **data-driven workforce planning**.
+
+<div class="summary-split">
+  <div class="summary-col">
+    <p><strong>Context.</strong> I was brought in as the product manager to turn fragmented HR reporting into a single, governed product. HR Operations and Talent Acquisition were burning hours stitching spreadsheets from HRIS and ATS; executives wanted a trusted, self-serve view; Legal/InfoSec required strict privacy and auditability. The goals collided: speed and flexibility for stakeholders vs. standardized KPIs and PII controls for the business.</p>
+
+    <p><strong>Action.</strong> I ran structured discovery across HR Ops, TA, Compensation, DEI, Finance, and Execs to map decisions, not just metrics. We aligned needs into a shared KPI glossary—<em>Attrition (voluntary/involuntary), Time-to-Hire, Stage Conversion, Offer Acceptance, Representation %, Compensation Band Delta</em>—and set a North Star: <em>time-to-decision ≤ 72 hours</em>. From there I led delivery: data contracts and pipelines, a modeled semantic layer, row-level security with small-n suppression, and an explainable Tableau UI with daily self-serve views plus a certified month-end snapshot.</p>
+
+    <p><strong>Result.</strong> The dashboard now saves 3–5 hours per user per week, surfaces early attrition and hiring bottlenecks, and meets governance without slowing the business. The rest of this page walks the PM path—discovery → alignment → KPI definition → design → build → testing → positioning & pricing → delivery.</p>
+  </div>
+
+  <div class="summary-col">
+    <figure>
+      <a href="/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png" target="_blank" rel="noopener">
+        <img class="summary-thumb" src="/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png" alt="HR Dashboard (final) — preview">
+      </a>
+      <figcaption>Final Dashboard (preview)</figcaption>
+    </figure>
+  </div>
+</div>
+
 
 <div align="right"><a href="#table-of-contents">↑ Back to top</a></div>
 

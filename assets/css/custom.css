@@ -311,3 +311,35 @@ pre, code {
     background-color: #cde9d8 !important;
   }
 }
+/* ===== Summary split layout (two columns) ===== */
+.summary-split{
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px; /* left grows; right fixed-ish */
+  gap: 18px;
+  align-items: start;
+}
+
+.summary-col{ min-width: 0; } /* prevent overflow on narrow screens */
+
+/* Preview image styling (match your figures) */
+.summary-thumb{
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  box-shadow: 0 8px 24px rgba(0,0,0,.12);
+}
+
+/* Caption styling consistent with theme */
+.summary-split figcaption{
+  margin-top: .35rem;
+  text-align: center;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+/* Mobile: stack columns */
+@media (max-width: 900px){
+  .summary-split{ grid-template-columns: 1fr; }
+}
