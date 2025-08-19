@@ -18,7 +18,7 @@
 }
 
 /* ========== Base ========== */
-html { overflow-anchor: none; }  /* prevent mid-page jumps on mobile */
+/* Removed overflow-anchor:none to let browser keep top on first render */
 html, body { margin:0; padding:0; background:var(--bg); color:var(--text);
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; line-height:1.55; }
 a { color:var(--link); text-decoration:none; }
@@ -116,7 +116,7 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
 .story-grid{ margin-top:.25rem; }
 .story-row{
   display:grid;
-  grid-template-columns: 44% 56%;   /* more room for the image; no vertical borders */
+  grid-template-columns: 44% 56%;   /* more room for the image */
   column-gap: 0;
   background: var(--card-bg);
   border: 1px solid var(--card-border);
@@ -141,7 +141,7 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
 }
 .story-img{
   width: 100%; height: 100%;
-  object-fit: contain; /* show full image, no crop, no top/bottom borders */
+  object-fit: contain; /* full image, no crop */
   display:block; border:0; box-shadow:none;
 }
 

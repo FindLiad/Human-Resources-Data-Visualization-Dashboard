@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
 
     <title>{{ page.title | default: site.title }}</title>
 
@@ -11,27 +14,32 @@
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#0f3b22" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#0b2e1a" />
 
-    <!-- Cayman first, then our overrides (cache-busted) -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle16" />
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle16" />
-  </head>
-  <body>
+    <!-- Preload hero image to reduce layout shift (helps avoid mid-page starts) -->
+    {% if site.hero_screenshot_url %}
+      <link rel="preload" as="image" href="{{ site.hero_screenshot_url }}">
+    {% endif %}
 
-    <!-- EARLY scroll control: run before layout grows -->
+    <!-- Cayman first, then our overrides (cache-busted) -->
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle18" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle18" />
+
+    <!-- Ultra-early scroll control (runs before content expands) -->
     <script>
       (function () {
-        // Respect deep links like #table-of-contents
+        // Respect deep links; only force top on plain loads
         if (location.hash) return;
 
-        // Disable browser's auto-restoration
-        if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+        // Stop browsers from restoring previous scroll positions
+        try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch(e){}
 
-        // Force top immediately
+        // Snap to top immediately
         window.scrollTo(0, 0);
         document.documentElement.scrollTop = 0;
         document.body.scrollTop = 0;
       })();
     </script>
+  </head>
+  <body>
 
     <!-- ===== Sticky Top Nav ===== -->
     <nav class="top-nav">
@@ -50,7 +58,7 @@
     </nav>
 
     <!-- ===== HERO ===== -->
-    <header class="hero-split">
+    <header class="hero-split" id="top">
       <!-- Column 1: Author (desktop/wide screens only) -->
       <aside class="author-card author-card--desktop">
         <div class="author-card__heading">About the Author</div>
@@ -115,17 +123,28 @@
       </footer>
     </main>
 
-    <!-- LATE scroll control: after images/fonts finish, plus bfcache restores -->
+    <!-- Late scroll control (handles images/fonts and bfcache restores on mobile/desktop) -->
     <script>
       (function () {
         if (location.hash) return;
-        function toTop() { window.scrollTo(0, 0); }
+
+        function toTop() {
+          window.scrollTo(0, 0);
+          document.documentElement.scrollTop = 0;
+          document.body.scrollTop = 0;
+        }
+
+        // On full load
         window.addEventListener('load', function() {
           requestAnimationFrame(toTop);
           setTimeout(toTop, 0);
+          setTimeout(toTop, 60);
+          setTimeout(toTop, 180);
         });
+
+        // On bfcache restore (Safari/Firefox mobile)
         window.addEventListener('pageshow', function(e){
-          if (e.persisted) toTop(); // Safari/Firefox bfcache
+          if (e.persisted) toTop();
         });
       })();
     </script>
