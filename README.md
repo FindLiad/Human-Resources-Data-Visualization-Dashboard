@@ -14,7 +14,7 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
 
 <div class="story-grid">
 
-  <!-- Row 1: CONTEXT (copy left, image right) -->
+  <!-- CONTEXT -->
   <div class="story-row">
     <div class="story-copy">
       <h3>Context</h3>
@@ -23,42 +23,35 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
       </p>
     </div>
     <figure class="story-img-wrap">
-      <img class="story-img"
-           src="/Human-Resources-Data-Visualization-Dashboard/assets/images/story-context.png"
-           alt="Context scene: conflicting stakeholder asks and governance needs">
+      <img class="story-img" src="/Human-Resources-Data-Visualization-Dashboard/assets/images/story-context.png" alt="Context scene: stakeholders and governance tension" />
     </figure>
   </div>
 
-  <!-- Row 2: ACTION (image left, copy right) -->
+  <!-- ACTION -->
   <div class="story-row rev">
     <figure class="story-img-wrap">
-      <img class="story-img"
-           src="/Human-Resources-Data-Visualization-Dashboard/assets/images/story-action.png"
-           alt="Action scene: prioritization, data contracts, semantic layer, secure UI">
+      <img class="story-img" src="/Human-Resources-Data-Visualization-Dashboard/assets/images/story-action.png" alt="Action scene: prioritization, pipelines, semantic layer, secure access" />
     </figure>
     <div class="story-copy">
       <h3>Action</h3>
       <p>
-        I set the product strategy around three pillars: <em>compliance-ready reporting, role-based usability, and scalable integrations</em>. Initial alignment came quickly across executives and finance, but a senior HR leader pushed back, demanding immediate, highly granular demographic filters. This created a fork in the roadmap: accelerate HR’s feature at risk of data exposure, or delay and risk adoption resistance. To break the deadlock, I applied a prioritization matrix—<strong>regulatory risk, business impact, and implementation effort</strong>—then repositioned the HR leader’s concern as a phased deliverable. I secured alignment by rescoping their feature as a compliance-safe release in iteration two.
+        I set the product strategy around three pillars: <em>compliance-ready reporting</em>, <em>role-based usability</em>, and <em>scalable integrations</em>. Initial alignment came quickly across executives and finance, but a senior HR leader pushed back, demanding immediate, highly granular demographic filters. This created a fork in the roadmap: accelerate HR’s feature at risk of data exposure, or delay and risk adoption resistance. To break the deadlock, I applied a prioritization matrix—<strong>regulatory risk, business impact, and implementation effort</strong>—then repositioned the HR leader’s concern as a phased deliverable. I secured alignment by rescoping their feature as a compliance-safe release in iteration two.
       </p>
     </div>
   </div>
 
-  <!-- Row 3: RESULT (copy left, image right) -->
+  <!-- RESULT -->
   <div class="story-row">
     <div class="story-copy">
       <h3>Result</h3>
       <p>
-        I executed delivery in two phases: first, a core dashboard unifying demographics, salary, tenure, and performance with strict role-based access; second, extended DEI filters released once governance rules were hardened. This approach unlocked immediate adoption while addressing long-term needs. HR leaders gained compliant DEI visibility, finance received real-time workforce cost trends, and executives modeled headcount scenarios with confidence. The tool reduced manual reporting hours by ~40%, informed board-level workforce planning, and turned the initially resistant HR leader into a key champion who showcased the dashboard across the enterprise.
+        I executed delivery in two phases: first, a core dashboard unifying demographics, salary, tenure, and performance with strict role-based access; second, extended DEI filters released once governance rules were hardened. This approach unlocked immediate adoption while addressing long-term needs. HR leaders gained compliant DEI visibility, finance received real-time workforce cost trends, and executives modeled headcount scenarios with confidence. The tool reduced manual reporting hours by <strong>~40%</strong>, informed board-level workforce planning, and turned the previously resistant HR leader into a key champion who showcased the dashboard across the enterprise.
       </p>
     </div>
     <figure class="story-img-wrap">
-      <img class="story-img"
-           src="/Human-Resources-Data-Visualization-Dashboard/assets/images/story-result.png"
-           alt="Result scene: leadership making faster, confident decisions">
+      <img class="story-img" src="/Human-Resources-Data-Visualization-Dashboard/assets/images/story-result.png" alt="Result scene: trusted single source of truth and adoption" />
     </figure>
   </div>
-
 </div>
 
 <div align="right"><a href="#table-of-contents">↑ Back to top</a></div>
@@ -183,14 +176,7 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
 - **Tableau workbook:**  
   [/assets/visualizations/HR Project.twbx](/Human-Resources-Data-Visualization-Dashboard/assets/visualizations/HR%20Project.twbx)  
 - **Documentation:**  
-  <a id="product-requirements-document"></a>
   [/assets/docs/Product_Requirements_Document.pdf](/Human-Resources-Data-Visualization-Dashboard/assets/docs/Product_Requirements_Document.pdf)  
-- **Screenshots:**  
-  - Mockup → `/assets/images/mockup-dashboard.png`  
-  - Container Design → `/assets/images/tableu-container-design.png`  
-  - Final Dashboard → `/assets/images/finished-dashboard.png`  
-
-<div align="right"><a href="#table-of-contents">↑ Back to top</a></div>
 
 ---
 
@@ -201,8 +187,6 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
 4. Explore the dashboard; publish to Tableau Public if desired.  
 5. To refresh later: rerun the script → re-open workbook (data updates automatically).
 
-<div align="right"><a href="#table-of-contents">↑ Back to top</a></div>
-
 ---
 
 ## Limitations & Next Steps
@@ -212,13 +196,9 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
 - Next: connect to live HRIS export for scheduled refresh.  
 - Add predictive attrition risk modeling.
 
-<div align="right"><a href="#table-of-contents">↑ Back to top</a></div>
-
 ---
 
 ## Credits
 Adapted from the open-source HR Analytics tutorial by [Data With Baraa](https://www.datawithbaraa.com/tableau/tableau-hr-project-thank-you/).  
 This version re-implements the workflow with my own repo, structure, and documentation.  
 © Liad Mizrachi.
-
-<div align="right"><a href="#table-of-contents">↑ Back to top</a></div>
