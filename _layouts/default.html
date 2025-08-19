@@ -11,16 +11,9 @@
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#0f3b22" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#0b2e1a" />
 
-    <!-- IMPORTANT: disable browser scroll restoration ASAP -->
-    <script>
-      try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
-      // If there is no in-page hash, pin to the very top before paint.
-      if (!location.hash) { window.scrollTo(0, 0); }
-    </script>
-
-    <!-- Cayman first, then our overrides -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle11" />
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle11" />
+    <!-- Cayman first, then our overrides (bump cache-buster versions here) -->
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle12" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle12" />
   </head>
   <body>
 
@@ -106,24 +99,29 @@
       </footer>
     </main>
 
-    <!-- Final guards: keep top on initial load & BFCache restores if no hash -->
+    <!-- Force top-of-page on initial load (desktop + mobile), but respect hash links -->
     <script>
-      (function () {
-        function jumpTopIfNeeded() {
-          if (location.hash) return;               // respect in-page anchors
-          var el = document.scrollingElement || document.documentElement;
-          var prev = el.style.scrollBehavior;
-          el.style.scrollBehavior = 'auto';
-          window.scrollTo(0, 0);
-          el.style.scrollBehavior = prev || '';
+      (function() {
+        // If there is a fragment like #table-of-contents, don't override.
+        if (location.hash) return;
+
+        // Disable browser's automatic scroll restoration.
+        if ('scrollRestoration' in history) {
+          history.scrollRestoration = 'manual';
         }
 
-        document.addEventListener('DOMContentLoaded', jumpTopIfNeeded, { once: true });
-        window.addEventListener('load', jumpTopIfNeeded, { once: true });
-        window.addEventListener('pageshow', function (e) {
-          if (e.persisted) jumpTopIfNeeded();      // Safari/iOS BFCache
-          setTimeout(jumpTopIfNeeded, 0);          // settle after late layout
-        }, { once: true });
+        // Do it early…
+        window.scrollTo(0, 0);
+
+        // …and after load (handles late content shifts / images).
+        window.addEventListener('load', function() {
+          requestAnimationFrame(function() { window.scrollTo(0, 0); });
+        });
+
+        // Handle bfcache restores (Safari/Firefox).
+        window.addEventListener('pageshow', function(e) {
+          if (e.persisted) window.scrollTo(0, 0);
+        });
       })();
     </script>
   </body>
