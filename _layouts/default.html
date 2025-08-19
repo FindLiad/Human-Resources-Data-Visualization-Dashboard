@@ -11,11 +11,27 @@
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#0f3b22" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#0b2e1a" />
 
-    <!-- Cayman first, then our overrides (bump cache-buster versions here) -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle12" />
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle12" />
+    <!-- Cayman first, then our overrides (cache-busted) -->
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle16" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle16" />
   </head>
   <body>
+
+    <!-- EARLY scroll control: run before layout grows -->
+    <script>
+      (function () {
+        // Respect deep links like #table-of-contents
+        if (location.hash) return;
+
+        // Disable browser's auto-restoration
+        if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+        // Force top immediately
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      })();
+    </script>
 
     <!-- ===== Sticky Top Nav ===== -->
     <nav class="top-nav">
@@ -99,31 +115,21 @@
       </footer>
     </main>
 
-    <!-- Force top-of-page on initial load (desktop + mobile), but respect hash links -->
+    <!-- LATE scroll control: after images/fonts finish, plus bfcache restores -->
     <script>
-      (function() {
-        // If there is a fragment like #table-of-contents, don't override.
+      (function () {
         if (location.hash) return;
-
-        // Disable browser's automatic scroll restoration.
-        if ('scrollRestoration' in history) {
-          history.scrollRestoration = 'manual';
-        }
-
-        // Do it early…
-        window.scrollTo(0, 0);
-
-        // …and after load (handles late content shifts / images).
+        function toTop() { window.scrollTo(0, 0); }
         window.addEventListener('load', function() {
-          requestAnimationFrame(function() { window.scrollTo(0, 0); });
+          requestAnimationFrame(toTop);
+          setTimeout(toTop, 0);
         });
-
-        // Handle bfcache restores (Safari/Firefox).
-        window.addEventListener('pageshow', function(e) {
-          if (e.persisted) window.scrollTo(0, 0);
+        window.addEventListener('pageshow', function(e){
+          if (e.persisted) toTop(); // Safari/Firefox bfcache
         });
       })();
     </script>
   </body>
 </html>
+
 
