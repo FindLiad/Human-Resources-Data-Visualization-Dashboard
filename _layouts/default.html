@@ -99,37 +99,35 @@
       </footer>
     </main>
 
-    <!-- Robust “start at top on mobile” logic (iOS/Safari/BFCache safe) -->
+    <!-- Always open at top (desktop + mobile), but don't override #hash anchors -->
     <script>
       (function () {
         try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
 
-        function atTopMobile() {
-          if (!window.matchMedia('(max-width: 820px)').matches) return;
+        function jumpTopIfNeeded() {
+          // Respect in-page anchors like #table-of-contents
+          if (window.location.hash) return;
 
-          // Temporarily disable smooth scroll to avoid animated jumps
-          var html = document.documentElement;
-          var prev = html.style.scrollBehavior;
-          html.style.scrollBehavior = 'auto';
-
-          // Clear any implicit focus/anchor jumps then snap to top
+          var el = document.scrollingElement || document.documentElement;
+          var prev = el.style.scrollBehavior;            // avoid smooth scroll fighting our jump
+          el.style.scrollBehavior = 'auto';
           window.scrollTo(0, 0);
-
-          // Restore previous behavior
-          html.style.scrollBehavior = prev || '';
+          el.style.scrollBehavior = prev || '';
         }
 
-        // First paint, after load, and on bfcache restore (Safari)
-        document.addEventListener('DOMContentLoaded', atTopMobile, { once: true });
-        window.addEventListener('load', atTopMobile, { once: true });
+        // New loads
+        document.addEventListener('DOMContentLoaded', jumpTopIfNeeded, { once: true });
+        window.addEventListener('load', jumpTopIfNeeded, { once: true });
+
+        // BFCache restores (Safari/iOS) + hedges against late layout shifts
         window.addEventListener('pageshow', function (e) {
-          if (e.persisted) atTopMobile();
-          // Hedge against late layout shifts
-          setTimeout(atTopMobile, 0);
-          setTimeout(atTopMobile, 250);
-          requestAnimationFrame(atTopMobile);
+          if (e.persisted) jumpTopIfNeeded();
+          setTimeout(jumpTopIfNeeded, 0);
+          setTimeout(jumpTopIfNeeded, 250);
+          requestAnimationFrame(jumpTopIfNeeded);
         });
       })();
     </script>
   </body>
 </html>
+
