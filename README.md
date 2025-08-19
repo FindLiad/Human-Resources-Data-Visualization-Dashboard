@@ -19,17 +19,16 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
     <div class="story-copy">
       <h3>Context</h3>
       <p>
-      I was brought in as the product manager to turn fragmented HR reporting into a single, governed product. HR Operations
-      and Talent Acquisition were burning hours stitching spreadsheets from HRIS and ATS; executives wanted a trusted, self-serve view;
-      Legal/InfoSec required strict privacy and auditability. The goals collided: stakeholder speed & flexibility
-      vs. standardized KPIs and PII controls for the business.
+        I was brought in as the product manager to turn fragmented HR reporting into a single, governed product. HR Operations
+        and Talent Acquisition were burning hours stitching spreadsheets from HRIS and ATS; executives wanted a trusted, self-serve view;
+        Legal/InfoSec required strict privacy and auditability. The goals collided: stakeholder speed & flexibility
+        vs. standardized KPIs and PII controls for the business.
       </p>
     </div>
     <figure class="story-img-wrap">
       <img class="story-img"
-           src="{{ site.baseurl }}/assets/images/story-context.png"
-           alt="Context: cross-functional stakeholders sharing fragmented HR spreadsheets">
-      <figcaption class="story-caption">Discovery across HR Ops, TA, Compensation, DEI, Finance, Execs.</figcaption>
+           src="/Human-Resources-Data-Visualization-Dashboard/assets/images/story-context.png"
+           alt="Context scene: conflicting stakeholder asks and governance needs">
     </figure>
   </div>
 
@@ -37,18 +36,16 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
   <div class="story-row rev">
     <figure class="story-img-wrap">
       <img class="story-img"
-           src="{{ site.baseurl }}/assets/images/story-action.png"
-           alt="Action: pipeline → semantic layer → governed Tableau with RLS">
-      <figcaption class="story-caption">Pipelines → semantic layer → secure, explainable Tableau UI.</figcaption>
+           src="/Human-Resources-Data-Visualization-Dashboard/assets/images/story-action.png"
+           alt="Action scene: pipelines → semantic layer → secure Tableau UI">
     </figure>
     <div class="story-copy">
       <h3>Action</h3>
       <p>
-      I ran structured discovery to map <em>decisions</em>, not just metrics, and aligned everyone to a shared KPI glossary —
-      <strong>Attrition (voluntary/involuntary), Time-to-Hire, Stage Conversion, Offer Acceptance,
-      Representation %, Compensation Band Delta</strong>. We set a North Star: <strong>time-to-decision ≤ 72 hours</strong>.
-      I led delivery: data contracts and pipelines, a modeled semantic layer, row-level security with small-n suppression, and an
-      explainable Tableau UI with daily self-serve views plus a certified month-end snapshot.
+        I ran structured discovery to map <em>decisions</em>, not just metrics, and aligned everyone to a shared KPI glossary —
+        <strong>Attrition (voluntary/involuntary), Time-to-Hire, Stage Conversion, Offer Acceptance, Representation %, Compensation Band Delta</strong>.
+        We set a North Star: <strong>time-to-decision ≤ 72 hours</strong>. I led delivery: data contracts and pipelines, a modeled semantic layer,
+        row-level security with small-n suppression, and an explainable Tableau UI with daily self-serve views plus a certified month-end snapshot.
       </p>
     </div>
   </div>
@@ -58,16 +55,15 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
     <div class="story-copy">
       <h3>Result</h3>
       <p>
-      The dashboard now saves 3–5 hours per user per week, surfaces early attrition and hiring bottlenecks,
-      and meets governance without slowing the business. The rest of this page walks the PM path —
-      <strong>discovery → alignment → KPI definition → design → build → testing → positioning & pricing → delivery</strong>.
+        The dashboard now saves 3–5 hours per user per week, surfaces early attrition and hiring bottlenecks,
+        and meets governance without slowing the business. The rest of this page walks the PM path —
+        <strong>discovery → alignment → KPI definition → design → build → testing → positioning & pricing → delivery</strong>.
       </p>
     </div>
     <figure class="story-img-wrap">
       <img class="story-img"
-           src="{{ site.baseurl }}/assets/images/story-result.png"
-           alt="Result: leaders reviewing unified HR dashboard and taking action">
-      <figcaption class="story-caption">Leaders act faster with a single, trusted source of truth.</figcaption>
+           src="/Human-Resources-Data-Visualization-Dashboard/assets/images/story-result.png"
+           alt="Result scene: leadership making faster, confident decisions">
     </figure>
   </div>
 
@@ -163,22 +159,22 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
 ## Results (Screenshots)
 
 <figure class="centered-figure">
-  <a href="{{ site.baseurl }}/assets/images/mockup-dashboard.png" target="_blank" rel="noopener">
-    <img src="{{ site.baseurl }}/assets/images/mockup-dashboard.png" alt="Mock Up">
+  <a href="/Human-Resources-Data-Visualization-Dashboard/assets/images/mockup-dashboard.png" target="_blank" rel="noopener">
+    <img src="/Human-Resources-Data-Visualization-Dashboard/assets/images/mockup-dashboard.png" alt="Mock Up">
   </a>
   <figcaption>Mock Up</figcaption>
 </figure>
 
 <figure class="centered-figure">
-  <a href="{{ site.baseurl }}/assets/images/tableu-container-design.png" target="_blank" rel="noopener">
-    <img src="{{ site.baseurl }}/assets/images/tableu-container-design.png" alt="Tableau Container Design">
+  <a href="/Human-Resources-Data-Visualization-Dashboard/assets/images/tableu-container-design.png" target="_blank" rel="noopener">
+    <img src="/Human-Resources-Data-Visualization-Dashboard/assets/images/tableu-container-design.png" alt="Tableau Container Design">
   </a>
   <figcaption>Tableau Container Design</figcaption>
 </figure>
 
 <figure class="centered-figure">
-  <a href="{{ site.baseurl }}/assets/images/finished-dashboard.png" target="_blank" rel="noopener">
-    <img src="{{ site.baseurl }}/assets/images/finished-dashboard.png" alt="Final Interface">
+  <a href="/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png" target="_blank" rel="noopener">
+    <img src="/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png" alt="Final Interface">
   </a>
   <figcaption>Final Interface</figcaption>
 </figure>
@@ -189,16 +185,16 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
 
 ## Files & Folders
 - **Dataset (final):**  
-  [/assets/data/dataset.csv]({{ site.baseurl }}/assets/data/dataset.csv)  
+  [/assets/data/dataset.csv](/Human-Resources-Data-Visualization-Dashboard/assets/data/dataset.csv)  
 - **Dataset Generator Script:**  
-  [/assets/scripts/generate_hr_dataset.py]({{ site.baseurl }}/assets/scripts/generate_hr_dataset.py)  
+  [/assets/scripts/generate_hr_dataset.py](/Human-Resources-Data-Visualization-Dashboard/assets/scripts/generate_hr_dataset.py)  
 - **Tableau workbook:**  
-  [/assets/visualizations/HR Project.twbx]({{ site.baseurl }}/assets/visualizations/HR%20Project.twbx)  
+  [/assets/visualizations/HR Project.twbx](/Human-Resources-Data-Visualization-Dashboard/assets/visualizations/HR%20Project.twbx)  
 - **Documentation:**  
-  [/assets/docs/Product_Requirements_Document.pdf]({{ site.baseurl }}/assets/docs/Product_Requirements_Document.pdf)  
+  [/assets/docs/Product_Requirements_Document.pdf](/Human-Resources-Data-Visualization-Dashboard/assets/docs/Product_Requirements_Document.pdf)  
 - **Screenshots:**  
   - Mockup → `/assets/images/mockup-dashboard.png`  
-  - Container Design → `/assets/images/tableu-container-design.png`  
+  - Container Design → `/assets/images/tableu-container-design.png`
   - Final Dashboard → `/assets/images/finished-dashboard.png`  
 
 <div align="right"><a href="#table-of-contents">↑ Back to top</a></div>
