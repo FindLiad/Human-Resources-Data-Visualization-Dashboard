@@ -99,11 +99,37 @@
       </footer>
     </main>
 
-    <!-- Scroll to top on mobile / narrow screens -->
+    <!-- Robust “start at top on mobile” logic (iOS/Safari/BFCache safe) -->
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        if (window.innerWidth <= 820) { window.scrollTo(0, 0); }
-      });
+      (function () {
+        try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+
+        function atTopMobile() {
+          if (!window.matchMedia('(max-width: 820px)').matches) return;
+
+          // Temporarily disable smooth scroll to avoid animated jumps
+          var html = document.documentElement;
+          var prev = html.style.scrollBehavior;
+          html.style.scrollBehavior = 'auto';
+
+          // Clear any implicit focus/anchor jumps then snap to top
+          window.scrollTo(0, 0);
+
+          // Restore previous behavior
+          html.style.scrollBehavior = prev || '';
+        }
+
+        // First paint, after load, and on bfcache restore (Safari)
+        document.addEventListener('DOMContentLoaded', atTopMobile, { once: true });
+        window.addEventListener('load', atTopMobile, { once: true });
+        window.addEventListener('pageshow', function (e) {
+          if (e.persisted) atTopMobile();
+          // Hedge against late layout shifts
+          setTimeout(atTopMobile, 0);
+          setTimeout(atTopMobile, 250);
+          requestAnimationFrame(atTopMobile);
+        });
+      })();
     </script>
   </body>
 </html>
