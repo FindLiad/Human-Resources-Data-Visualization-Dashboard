@@ -70,41 +70,53 @@ pre, code { background: #e5f0e8; border: 1px solid #cfe0d6; border-radius: 8px; 
 .author-card__btn:active{ transform:translateY(1px); }
 
 /* ---------- “Story grid” (Context / Action / Result) ---------- */
-.story-grid{
-  margin: 0 0 2rem;
-}
+.story-grid{ margin: 0 0 2rem; }
+
+/* 65% / 35%, columns TOUCH (no gutter) */
 .story-row{
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
+  grid-template-columns: 65% 35%;
+  gap: 0;                      /* no gap so cards touch */
   padding:18px 0;
 }
 .story-row + .story-row{
-  border-top:2px solid rgba(0,0,0,.08);
+  border-top:2px solid rgba(0,0,0,.08); /* horizontal divider between rows */
 }
-.story-copy, .story-img-card{
+
+/* Shared card styles */
+.story-copy,
+.story-img-wrap{
   background: #f3f8f4;
   border:1px solid #ddebe2;
-  border-radius:12px;
   padding:18px;
   box-shadow: 0 6px 14px rgba(0,0,0,.06);
 }
+
+/* Make the two touching cards behave like one:
+   remove middle border + inner radii so they touch cleanly */
+.story-row > *:first-child{
+  border-top-left-radius:12px; border-bottom-left-radius:12px;
+  border-right-width:0;                 /* remove center seam */
+  border-top-right-radius:0; border-bottom-right-radius:0;
+}
+.story-row > *:last-child{
+  border-top-right-radius:12px; border-bottom-right-radius:12px;
+  border-left-width:0;                  /* remove center seam */
+  border-top-left-radius:0; border-bottom-left-radius:0;
+}
+
+/* Text block */
 .story-copy h3{ margin:0 0 .5rem; }
 .story-copy p{ margin:0; }
 
-.story-img-wrap{
-  margin:0; padding:0;
-  background:#f3f8f4; border:1px solid #ddebe2; border-radius:12px;
-  box-shadow:0 6px 14px rgba(0,0,0,.06);
+/* Image block — FIT image perfectly, never crop */
+.story-img{ 
+  display:block; 
+  width:100%; 
+  height:auto;      /* keep natural aspect ratio */
+  border-radius:8px;
 }
-.story-img{
-  display:block; width:100%; aspect-ratio: 16 / 12;
-  object-fit: cover; /* your 1024x1024 will crop nicely without squish */
-  border-radius:12px;
-}
-.story-caption{
-  text-align:center; font-weight:600; color:#5b6f61; padding:6px 8px 10px;
-}
+.story-caption{ display:none; }  /* remove bottom text under images */
 
 /* Reverse row: image left, text right */
 .story-row.rev .story-copy{ order:2; }
@@ -118,17 +130,28 @@ pre, code { background: #e5f0e8; border: 1px solid #cfe0d6; border-radius: 8px; 
 
   .main-content { padding: 1.25rem 1rem; }
 
-  .story-row{ grid-template-columns:1fr; }
-  .story-row.rev .story-copy{ order:2; }
-  .story-row.rev .story-img-wrap{ order:1; }
+  .story-row{
+    grid-template-columns:1fr;
+  }
+  /* restore rounded corners when stacked */
+  .story-row > *:first-child{
+    border-right-width:1px;
+    border-top-right-radius:12px;
+    border-bottom-right-radius:12px;
+  }
+  .story-row > *:last-child{
+    border-left-width:1px;
+    border-top-left-radius:12px;
+    border-bottom-left-radius:12px;
+    margin-top: 10px;
+  }
 }
 
-/* ---------- Dark mode (green hues) ---------- */
+/* ---------- Dark mode ---------- */
 @media (prefers-color-scheme: dark){
   html, body { background:#0f1a14; color:#eaf3ea; }
   .main-content { max-width:64rem; padding:2rem 6rem; margin:0 auto; }
   pre, code { background:#0f251a; border-color:#1f3528; }
 
   .story-copy, .story-img-wrap { background:#13231a; border-color:#1f3528; box-shadow:0 10px 22px rgba(0,0,0,.35); }
-  .story-caption { color:#cfe0d6; }
 }
