@@ -88,72 +88,73 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
 .author-card__btn:hover{ background:#cde9d8; box-shadow:0 6px 18px rgba(0,0,0,.08); }
 .author-card__btn:active{ transform:translateY(1px); }
 
-/* ===================  Story / Summary Grid  =================== */
-/* Section title already comes from README; this styles the rows/cards */
+/* ===================  Story / Summary Grid (revert to preferred layout)  =================== */
+
 .story-grid{
-  display:grid; gap:22px; margin:8px 0 30px;
+  display: grid;
+  gap: 22px;
+  margin: 8px 0 30px;
 }
 
-/* Each row is one card containing both text + image with NO internal gap */
+/* Two columns per row: text card + image card (with a small gap) */
 .story-row{
-  display:grid;
-  grid-template-columns: minmax(0,65%) minmax(0,35%);
-  background:var(--card-bg);
-  border:1px solid var(--card-border);
-  border-radius:14px;
-  overflow:hidden;
-  box-shadow:0 8px 22px rgba(0,0,0,.08);
+  display: grid;
+  grid-template-columns: 60% 40%;
+  gap: 18px;
+  align-items: stretch;
+}
+.story-row.rev{
+  grid-template-columns: 40% 60%;
 }
 
-/* Reverse layout for middle row on desktop only (mobile stacks text first) */
-.story-row.rev{ grid-template-columns: minmax(0,35%) minmax(0,65%); }
-
-/* Text column */
-.story-text{
-  padding:18px 20px;
+/* Text card */
+.story-copy{
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(0,0,0,.08);
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
 }
-.story-subtitle{
-  margin:0 0 8px;            /* top-left, tight */
-  font-size:1.2rem;          /* slightly larger */
-  font-weight:800;
-}
-
-/* Image column — image fits fully (no cropping), scales responsively */
-.story-media{
-  display:flex; align-items:center; justify-content:center;
-  padding:14px;               /* slight breathing room */
-  background:transparent;
-}
-.story-media img{
-  display:block;
-  max-width:100%;
-  max-height:100%;
-  width:auto; height:auto;    /* keep full image, no cut */
-  object-fit:contain;
-  border:none; box-shadow:none;
+.story-copy > h3{
+  /* Top-left subtitle: tighter and a touch larger */
+  margin: 2px 0 10px;
+  font-size: 1.2rem;
+  font-weight: 800;
 }
 
-/* Ensure rows feel consistent even if one column is longer */
-.story-row{ min-height: 320px; }
+/* Image card (no borders on the image itself) */
+.story-img-wrap{
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(0,0,0,.08);
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.story-img-wrap img.story-img{
+  display: block;
+  max-width: 100%;
+  height: auto;            /* never crop */
+  object-fit: contain;     /* preserve full image */
+  border: none;
+  box-shadow: none;
+  border-radius: 10px;
+}
+/* Hide any old captions if present */
+.story-img-wrap figcaption{ display: none; }
 
-/* ===================  Footer  =================== */
-.site-footer{ border-top:1px solid var(--card-border); color:var(--muted); background:transparent; }
-
-/* ===================  Mobile  =================== */
+/* Mobile: always stack text first, then image */
 @media (max-width: 860px){
-  .hero-split{ grid-template-columns:1fr; padding:16px; }
-  .author-card{ order:2 }             /* Author after title/buttons on mobile */
-  .hero-main{ order:1; padding:8px 8px 16px; }
-  .hero-screenshot{ width:clamp(240px, 88vw, 520px); }
-
-  .main-content{ padding:1.2rem 1rem; }
-
   .story-row,
   .story-row.rev{
-    grid-template-columns:1fr;        /* stack */
+    grid-template-columns: 1fr;
   }
-  .story-text{ order:1; }
-  .story-media{ order:2; }
+  .story-copy{ order: 1; }
+  .story-img-wrap{ order: 2; }
 }
 
 /* ===================  Dark Mode  =================== */
