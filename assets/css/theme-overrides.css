@@ -1,282 +1,113 @@
-/* ===============  Jungle Palette (Light)  =============== */
-:root{
-  --bg:              #eaf3ea;  /* misty sage */
-  --text:            #122016;  /* deep evergreen */
-  --muted:           #5b6f61;  /* moss gray-green */
-  --card-bg:         #e2efe6;  /* pale leaf panel */
-  --card-border:     #cfe0d6;  /* soft sage edge */
-  --accent:          #1b5e20;  /* jungle */
-  --accent-2:        #2e7d32;  /* forest */
-  --accent-3:        #66bb6a;  /* leaf */
-  --link:            #1f7a2e;  /* vine link */
-  --link-hover:      #145722;
+/* ================= Jungle Green (match Project #1 exactly) ================= */
 
-  /* header gradient */
-  --hero-grad-1:     #0f3b22;  /* deep canopy */
-  --hero-grad-2:     #1f6a3a;  /* lush green */
-}
-
-/* ===============  Global  =============== */
+/* ---------- Base + reset (removes the side gaps) ---------- */
 html, body {
-  background: var(--bg);
-  color: var(--text);
+  margin: 0;                 /* <— removes default browser margin */
+  padding: 0;
+  background: #eaf3ea;       /* misty sage */
+  color: #122016;            /* deep evergreen */
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   line-height: 1.55;
 }
-a { color: var(--link); text-decoration: none; }
-a:hover { color: var(--link-hover); text-decoration: underline; }
 
-.main-content h1, .main-content h2, .main-content h3,
-.main-content h4, .main-content h5, .main-content h6 {
-  color: var(--text);
+/* Cayman content width/padding (keeps identical gutters to Project #1) */
+.main-content {
+  max-width: 64rem;
+  padding: 2rem 6rem;        /* same as your first site */
+  margin: 0 auto;
 }
 
-pre, code {
-  background: #e5f0e8;
-  border: 1px solid var(--card-border);
-  border-radius: 8px;
-}
+/* Links + code blocks */
+a { color: #1f7a2e; text-decoration: none; }
+a:hover { color: #145722; text-decoration: underline; }
+pre, code { background: #e5f0e8; border: 1px solid #cfe0d6; border-radius: 8px; }
 
-/* ===============  Split Hero Layout (same classes as Project #1)  =============== */
+/* ---------- Split Hero (identical classes/structure) ---------- */
 .hero-split {
   display: grid;
   grid-template-columns: 300px 1fr;
   gap: 16px;
   padding: 24px;
   border-bottom: 1px solid rgba(0, 0, 0, .06);
-  background: linear-gradient(120deg, var(--hero-grad-1), var(--hero-grad-2));
-  color: #fff; /* header text white for contrast */
+
+  /* Stronger full-bleed gradient (no flat color) */
+  background: linear-gradient(120deg, #0b2e1a 0%, #0f3b22 45%, #1f6a3a 100%);
+  color: #fff;
 }
 
 /* Right side (title/tagline) */
 .hero-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 24px;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  text-align: center; padding: 24px;
 }
-.hero-main__title {
-  font-size: 2.2rem;
-  margin: 0 0 .25rem;
-  font-weight: 800;
-  letter-spacing: .2px;
-}
-.hero-main__tagline {
-  opacity: .95;
-  max-width: 720px;
-  margin: .25rem 0 1rem;
-}
+.hero-main__title { font-size: 2.2rem; margin: 0 0 .25rem; font-weight: 800; letter-spacing: .2px; }
+.hero-main__tagline { opacity: .95; max-width: 720px; margin: .25rem 0 1rem; }
 
 /* Buttons (hero + anywhere) */
 .btn {
-  display: inline-block;
-  padding: .6rem 1rem;
-  border-radius: 10px;
-  background: var(--accent);
-  color: #fff;
-  text-decoration: none;
-  border: 1px solid rgba(0,0,0,.05);
-  font-weight: 700;
-  transition: transform .04s ease, filter .15s ease, box-shadow .15s ease;
+  display: inline-block; padding: .6rem 1rem; border-radius: 10px;
+  background: #1b5e20; color: #fff; text-decoration: none; border: 1px solid rgba(0,0,0,.05);
+  font-weight: 700; transition: transform .04s ease, filter .15s ease, box-shadow .15s ease;
   box-shadow: 0 6px 16px rgba(0,0,0,.15);
 }
-.btn:hover {
-  filter: brightness(1.06);
-  box-shadow: 0 8px 22px rgba(0,0,0,.18);
-}
+.btn:hover { filter: brightness(1.06); box-shadow: 0 8px 22px rgba(0,0,0,.18); }
 .btn:active { transform: translateY(1px); }
 .hero-actions{ display:flex; gap:12px; flex-wrap:wrap; justify-content:center; }
 
-/* ===============  Author Card  =============== */
+/* ---------- Author Card (same layout, green palette) ---------- */
 .author-card{
   background:
     linear-gradient(135deg, #edf6f0 0%, #e6f1eb 100%),
     repeating-linear-gradient(45deg, rgba(31,122,46,.035) 0 10px, rgba(255,255,255,.035) 10px 20px);
-  color: var(--text);
-  border-radius: 14px;
-  padding: 16px;
-  width: 100%;
-  align-self: start;
-  box-shadow: 0 8px 24px rgba(0,0,0,.12);
-  border: 1px solid var(--card-border);
+  color: #122016;
+  border-radius: 14px; padding: 16px; width: 100%; align-self: start;
+  box-shadow: 0 8px 24px rgba(0,0,0,.12); border: 1px solid #cfe0d6;
 }
-.author-card__heading{
-  text-align:center;
-  font-weight:900;
-  font-size:1.35rem;
-  letter-spacing:.3px;
-  margin-bottom:.6rem;
-  color: var(--text);
-}
-.author-card__photo{
-  width:100%;
-  border-radius:12px;
-  display:block;
-  border: 1px solid var(--card-border);
-  box-shadow: 0 6px 18px rgba(0,0,0,.08);
-}
-.author-card__name{
-  font-weight:800;
-  font-size:1rem;
-  margin-top:.6rem;
-  text-align:center;
-  color: var(--text);
-}
-.author-card__title{
-  font-size:.9rem;
-  color: var(--muted);
-  line-height:1.2;
-  margin-top:.1rem;
-  text-align:center;
-}
+.author-card__heading{ text-align:center; font-weight:900; font-size:1.35rem; letter-spacing:.3px; margin-bottom:.6rem; }
+.author-card__photo{ width:100%; border-radius:12px; display:block; border:1px solid #cfe0d6; box-shadow: 0 6px 18px rgba(0,0,0,.08); }
+.author-card__name{ font-weight:800; font-size:1rem; margin-top:.6rem; text-align:center; }
+.author-card__title{ font-size:.9rem; color: #5b6f61; line-height:1.2; margin-top:.1rem; text-align:center; }
 
-/* Contact buttons grid */
-.author-card__links{
-  display:grid;
-  grid-template-columns:1fr 1fr; /* 2 per row */
-  gap:8px;
-  margin-top:.8rem;
-}
-
-/* Uniform tiles, centered text */
+/* Contact buttons grid + tiles (pale sage like first site’s beige) */
+.author-card__links{ display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:.8rem; }
 .author-card__btn{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:48px;
-  width:100%;
-  padding:0 12px;
-  border-radius:10px;
-  background: var(--card-bg);
-  color: var(--text);
-  text-decoration:none;
-  border:1px solid var(--card-border);
-  font-size:.93rem;
-  font-weight:600;
-  box-sizing:border-box;
+  display:flex; justify-content:center; align-items:center; height:48px; width:100%; padding:0 12px;
+  border-radius:10px; background:#d8efe0; color:#122016; text-decoration:none;
+  border:1px solid #c2e3d0; font-size:.93rem; font-weight:600;
   transition: filter .15s ease, box-shadow .15s ease, transform .04s ease;
 }
-.author-card__btn:hover{
-  filter: brightness(1.02);
-  box-shadow: 0 6px 18px rgba(0,0,0,.08);
-}
+.author-card__btn:hover{ background:#cde9d8; box-shadow: 0 6px 18px rgba(0,0,0,.08); }
 .author-card__btn:active { transform: translateY(1px); }
 
-/* ===============  Centered Figures for Screenshots  =============== */
-.centered-figure {
-  margin: 0 auto 28px;
-  text-align: center;
-  max-width: 980px;
-}
-.centered-figure img {
-  display: inline-block;
-  max-width: 100%;
-  height: auto;
-  border-radius: 12px;
-  border: 1px solid var(--card-border);
-  box-shadow: 0 8px 24px rgba(0,0,0,.12);
-  background: #fff;
-}
-.centered-figure figcaption {
-  margin-top: 8px;
-  font-weight: 600;
-  color: var(--muted);
-}
+/* ---------- Figures / tables / footer (unchanged behavior, green hues) ---------- */
+.centered-figure { margin: 0 auto 28px; text-align: center; max-width: 980px; }
+.centered-figure img { display: inline-block; max-width: 100%; height: auto; border-radius: 12px; border: 1px solid #cfe0d6; box-shadow: 0 8px 24px rgba(0,0,0,.12); background: #fff; }
+.centered-figure figcaption { margin-top: 8px; font-weight: 600; color: #5b6f61; }
 
-/* ===============  Footer  =============== */
-.site-footer{
-  border-top: 1px solid var(--card-border);
-  color: var(--muted);
-  background: transparent;
-}
+.site-footer{ border-top: 1px solid #cfe0d6; color: #5b6f61; background: transparent; }
 
-/* ===============  Mobile  =============== */
+/* ---------- Mobile (same as first site) ---------- */
 @media (max-width: 820px){
   .hero-split{ grid-template-columns:1fr; padding:16px; }
   .author-card{ order:1 }
   .hero-main{ order:2; padding:8px 8px 16px }
 }
 
-/* =========================================================
-   Dark Mode — automatic via OS preference (green hues)
-   ========================================================= */
+/* ---------- Dark mode (green hues) ---------- */
 @media (prefers-color-scheme: dark){
-  :root{
-    --bg:          #0f1a14;  /* deep forest */
-    --text:        #eaf3ea;  /* mist text */
-    --muted:       #cfe0d6;  /* soft sage */
-    --card-bg:     #14241b;  /* canopy card */
-    --card-border: #1f3528;  /* dark edge */
-    --accent:      #66bb6a;  /* leaf highlight */
-    --accent-2:    #4caf50;
-    --accent-3:    #81c784;
-    --link:        #8ee2a0;
-    --link-hover:  #b5f1c2;
-
-    --hero-grad-1: #0f3b22;  /* deep canopy */
-    --hero-grad-2: #1f6a3a;  /* lush green */
-  }
-
-  html, body { background: var(--bg); color: var(--text); }
-  a { color: var(--link); }
-  a:hover { color: var(--link-hover); }
-
-  pre, code {
-    background: #0f251a;
-    border-color: var(--card-border);
-  }
-
+  html, body { background: #0f1a14; color: #eaf3ea; }
+  .main-content { max-width: 64rem; padding: 2rem 6rem; margin: 0 auto; }
+  .hero-split{ background: linear-gradient(120deg, #0b2e1a 0%, #0f3b22 45%, #1f6a3a 100%); }
+  pre, code { background: #0f251a; border-color: #1f3528; }
   .author-card{
     background:
       linear-gradient(135deg, #16281e 0%, #132219 100%),
       repeating-linear-gradient(45deg, rgba(102,187,106,.04) 0 10px, rgba(0,0,0,.04) 10px 20px);
-    border-color: var(--card-border);
-    box-shadow: 0 10px 28px rgba(0,0,0,.35);
+    border-color: #1f3528; box-shadow: 0 10px 28px rgba(0,0,0,.35);
   }
-  .author-card__photo{
-    border-color: var(--card-border);
-    box-shadow: 0 6px 18px rgba(0,0,0,.4);
-  }
-  .author-card__title{ color: var(--muted); }
-
-  .author-card__btn{
-    background: var(--card-bg);
-    border-color: var(--card-border);
-    color: var(--text);
-  }
-  .author-card__btn:hover{ box-shadow: 0 8px 22px rgba(0,0,0,.35); }
-
-  .centered-figure img{
-    background: #0f1f16;
-    border-color: var(--card-border);
-    box-shadow: 0 10px 28px rgba(0,0,0,.4);
-  }
-
-  .site-footer{
-    border-top-color: var(--card-border);
-    color: var(--muted);
-  }
-}
-
-/* === Optional: keep contact tiles a consistent pale-sage on all devices === */
-:root{
-  --tile-bg:        #d8efe0;  /* pale sage */
-  --tile-bg-hover:  #cde9d8;
-  --tile-border:    #c2e3d0;
-}
-.author-card__btn{
-  background: var(--tile-bg);
-  border-color: var(--tile-border);
-  color: var(--text);
-}
-.author-card__btn:hover{ background: var(--tile-bg-hover); }
-
-@media (prefers-color-scheme: dark){
-  .author-card__btn{
-    background: var(--tile-bg);
-    border-color: var(--tile-border);
-    color: #10301f;
-  }
+  .author-card__photo{ border-color: #1f3528; box-shadow: 0 6px 18px rgba(0,0,0,.4); }
+  .author-card__title{ color: #cfe0d6; }
+  .author-card__btn{ background: #d8efe0; border-color: #c2e3d0; color: #10301f; }
+  .centered-figure img{ background: #0f1f16; border-color: #1f3528; box-shadow: 0 10px 28px rgba(0,0,0,.4); }
+  .site-footer{ border-top-color: #1f3528; color: #cfe0d6; }
 }
