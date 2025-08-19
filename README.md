@@ -10,7 +10,7 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
 
 ---
 
-## Summary
+## Business Requirements vs. Customer Needs
 
 <div class="story-grid">
 
@@ -27,8 +27,8 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
     </div>
     <figure class="story-img-wrap">
       <img class="story-img"
-           src="{{ site.cartoon_context | default: '/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png' }}"
-           alt="Cartoon Liad gathering stakeholder requirements">
+           src="{{ site.baseurl }}/assets/images/story-context.png"
+           alt="Context: cross-functional stakeholders sharing fragmented HR spreadsheets">
       <figcaption class="story-caption">Discovery across HR Ops, TA, Compensation, DEI, Finance, Execs.</figcaption>
     </figure>
   </div>
@@ -37,8 +37,8 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
   <div class="story-row rev">
     <figure class="story-img-wrap">
       <img class="story-img"
-           src="{{ site.cartoon_action | default: '/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png' }}"
-           alt="Cartoon Liad building data pipelines and a dashboard">
+           src="{{ site.baseurl }}/assets/images/story-action.png"
+           alt="Action: pipeline → semantic layer → governed Tableau with RLS">
       <figcaption class="story-caption">Pipelines → semantic layer → secure, explainable Tableau UI.</figcaption>
     </figure>
     <div class="story-copy">
@@ -59,13 +59,14 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
       <h3>Result</h3>
       <p>
       The dashboard now saves 3–5 hours per user per week, surfaces early attrition and hiring bottlenecks,
-      and meets governance without slowing the business. The rest of this page walks the PM path — <strong>discovery → alignment → KPI definition → design → build → testing → positioning & pricing → delivery</strong>.
+      and meets governance without slowing the business. The rest of this page walks the PM path —
+      <strong>discovery → alignment → KPI definition → design → build → testing → positioning & pricing → delivery</strong>.
       </p>
     </div>
     <figure class="story-img-wrap">
       <img class="story-img"
-           src="{{ site.cartoon_result | default: '/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png' }}"
-           alt="Cartoon Liad presenting results to leadership">
+           src="{{ site.baseurl }}/assets/images/story-result.png"
+           alt="Result: leaders reviewing unified HR dashboard and taking action">
       <figcaption class="story-caption">Leaders act faster with a single, trusted source of truth.</figcaption>
     </figure>
   </div>
@@ -162,22 +163,22 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
 ## Results (Screenshots)
 
 <figure class="centered-figure">
-  <a href="/Human-Resources-Data-Visualization-Dashboard/assets/images/mockup-dashboard.png" target="_blank" rel="noopener">
-    <img src="/Human-Resources-Data-Visualization-Dashboard/assets/images/mockup-dashboard.png" alt="Mock Up">
+  <a href="{{ site.baseurl }}/assets/images/mockup-dashboard.png" target="_blank" rel="noopener">
+    <img src="{{ site.baseurl }}/assets/images/mockup-dashboard.png" alt="Mock Up">
   </a>
   <figcaption>Mock Up</figcaption>
 </figure>
 
 <figure class="centered-figure">
-  <a href="/Human-Resources-Data-Visualization-Dashboard/assets/images/tableu-container-design.png" target="_blank" rel="noopener">
-    <img src="/Human-Resources-Data-Visualization-Dashboard/assets/images/tableu-container-design.png" alt="Tableau Container Design">
+  <a href="{{ site.baseurl }}/assets/images/tableu-container-design.png" target="_blank" rel="noopener">
+    <img src="{{ site.baseurl }}/assets/images/tableu-container-design.png" alt="Tableau Container Design">
   </a>
   <figcaption>Tableau Container Design</figcaption>
 </figure>
 
 <figure class="centered-figure">
-  <a href="/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png" target="_blank" rel="noopener">
-    <img src="/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png" alt="Final Interface">
+  <a href="{{ site.baseurl }}/assets/images/finished-dashboard.png" target="_blank" rel="noopener">
+    <img src="{{ site.baseurl }}/assets/images/finished-dashboard.png" alt="Final Interface">
   </a>
   <figcaption>Final Interface</figcaption>
 </figure>
@@ -188,16 +189,16 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
 
 ## Files & Folders
 - **Dataset (final):**  
-  [/assets/data/dataset.csv](/Human-Resources-Data-Visualization-Dashboard/assets/data/dataset.csv)  
+  [/assets/data/dataset.csv]({{ site.baseurl }}/assets/data/dataset.csv)  
 - **Dataset Generator Script:**  
-  [/assets/scripts/generate_hr_dataset.py](/Human-Resources-Data-Visualization-Dashboard/assets/scripts/generate_hr_dataset.py)  
+  [/assets/scripts/generate_hr_dataset.py]({{ site.baseurl }}/assets/scripts/generate_hr_dataset.py)  
 - **Tableau workbook:**  
-  [/assets/visualizations/HR Project.twbx](/Human-Resources-Data-Visualization-Dashboard/assets/visualizations/HR%20Project.twbx)  
+  [/assets/visualizations/HR Project.twbx]({{ site.baseurl }}/assets/visualizations/HR%20Project.twbx)  
 - **Documentation:**  
-  [/assets/docs/Product_Requirements_Document.pdf](/Human-Resources-Data-Visualization-Dashboard/assets/docs/Product_Requirements_Document.pdf)  
+  [/assets/docs/Product_Requirements_Document.pdf]({{ site.baseurl }}/assets/docs/Product_Requirements_Document.pdf)  
 - **Screenshots:**  
   - Mockup → `/assets/images/mockup-dashboard.png`  
-  - Container Design → `/assets/images/tableu-container-design.png`
+  - Container Design → `/assets/images/tableu-container-design.png`  
   - Final Dashboard → `/assets/images/finished-dashboard.png`  
 
 <div align="right"><a href="#table-of-contents">↑ Back to top</a></div>
