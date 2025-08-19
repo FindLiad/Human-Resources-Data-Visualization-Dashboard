@@ -22,17 +22,29 @@ author_links:
     url: "mailto:Liad%20Mizrachi%20<FindLiad@gmail.com>"
     icon: "✉️"
 
-# Hero screenshot shown inside the banner
+# ===== HERO content =====
+# Heading shown in the banner; falls back to site.title if blank
+project_heading: "Project 2 | Human Resource Dashboard"
+
+# Screenshot inside the banner
 hero_preview: "/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png"
 hero_screenshot_url: "/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png"
 
-# Comic-strip images for Summary (upload your cartoons to these paths)
+# Comic-strip images for Summary (you already uploaded these)
 cartoon_context: "/Human-Resources-Data-Visualization-Dashboard/assets/images/story-context.png"
 cartoon_action:  "/Human-Resources-Data-Visualization-Dashboard/assets/images/story-action.png"
 cartoon_result:  "/Human-Resources-Data-Visualization-Dashboard/assets/images/story-result.png"
 
-# Links used by the hero buttons
+# Buttons (hero)
 live_dashboard_url: "https://public.tableau.com/app/profile/liad.mizrachi/viz/HRProject_17554488176360/hr_dashboard?publish=yes"
+prd_url: "/Human-Resources-Data-Visualization-Dashboard/assets/docs/Product_Requirements_Document.pdf"
+
+# Top menu links
+menu_home_label: "✨Main Menu✨"
+menu_home_url: "https://findliad.github.io/"
+prev_project_url: "https://findliad.github.io"   # <- update if you have a real previous project
+next_project_url: "https://findliad.github.io"   # <- update if you have a real next project
+return_portfolio_url: "https://findliad.github.io/"
 
 remote_theme: "pages-themes/cayman@v0.2.0"
 plugins:

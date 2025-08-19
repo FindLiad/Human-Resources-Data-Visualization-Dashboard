@@ -4,25 +4,37 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{{ page.title | default: site.title }}</title>
+    <title>{{ site.project_heading | default: site.title }}</title>
 
-    <!-- Match palette + theme color -->
     <meta name="color-scheme" content="light dark">
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#0f3b22">
     <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#0b2e1a">
 
     <!-- Cayman first, then our overrides -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle6">
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle6">
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle9">
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle9">
   </head>
   <body>
+
+    <!-- ===== Top Menu ===== -->
+    <nav class="top-nav">
+      <div class="top-nav__inner">
+        <a class="top-nav__brand" href="{{ site.menu_home_url | default: '/' }}">{{ site.menu_home_label | default: "Menu" }}</a>
+        <div class="top-nav__spacer"></div>
+        <div class="top-nav__buttons">
+          <a class="top-nav__btn" href="{{ site.prev_project_url | default: '#' }}">Last Project</a>
+          <a class="top-nav__btn" href="{{ site.return_portfolio_url | default: '/' }}">Return to Home Portfolio</a>
+          <a class="top-nav__btn" href="{{ site.next_project_url | default: '#' }}">Next Project</a>
+        </div>
+      </div>
+    </nav>
+
     <!-- ===== Split Banner ===== -->
     <header class="hero-split">
       <!-- Author Card -->
       <aside class="author-card">
         <div class="author-card__heading">About the Author</div>
 
-        <!-- Clickable profile photo -->
         <a href="{{ site.author_photo }}" target="_blank" rel="noopener">
           <img class="author-card__photo"
                src="{{ site.author_photo }}"
@@ -42,9 +54,9 @@
         </div>
       </aside>
 
-      <!-- Project Title + Tagline + (optional) preview image -->
+      <!-- Project Title + Tagline + preview image -->
       <section class="hero-main">
-        <h1 class="hero-main__title">{{ site.title }}</h1>
+        <h1 class="hero-main__title">{{ site.project_heading | default: site.title }}</h1>
         {% if site.description %}
           <p class="hero-main__tagline">{{ site.description }}</p>
         {% endif %}
@@ -62,6 +74,9 @@
           {% if site.github.repository_url %}
             <a class="btn" href="{{ site.github.repository_url }}" target="_blank" rel="noopener">View on GitHub</a>
           {% endif %}
+          {% if site.prd_url %}
+            <a class="btn btn--ghost" href="{{ site.prd_url }}" target="_blank" rel="noopener">View Product Requirements Document</a>
+          {% endif %}
         </div>
       </section>
     </header>
@@ -78,5 +93,14 @@
         {% endif %}
       </footer>
     </main>
+
+    <!-- Ensure mobile visitors land at the top -->
+    <script>
+      (function () {
+        if (typeof window !== 'undefined' && window.innerWidth < 820) {
+          window.scrollTo({top: 0, left: 0, behavior: 'instant'});
+        }
+      })();
+    </script>
   </body>
 </html>
