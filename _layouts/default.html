@@ -11,6 +11,13 @@
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#0f3b22" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#0b2e1a" />
 
+    <!-- IMPORTANT: disable browser scroll restoration ASAP -->
+    <script>
+      try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+      // If there is no in-page hash, pin to the very top before paint.
+      if (!location.hash) { window.scrollTo(0, 0); }
+    </script>
+
     <!-- Cayman first, then our overrides -->
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle11" />
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle11" />
@@ -99,33 +106,24 @@
       </footer>
     </main>
 
-    <!-- Always open at top (desktop + mobile), but don't override #hash anchors -->
+    <!-- Final guards: keep top on initial load & BFCache restores if no hash -->
     <script>
       (function () {
-        try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
-
         function jumpTopIfNeeded() {
-          // Respect in-page anchors like #table-of-contents
-          if (window.location.hash) return;
-
+          if (location.hash) return;               // respect in-page anchors
           var el = document.scrollingElement || document.documentElement;
-          var prev = el.style.scrollBehavior;            // avoid smooth scroll fighting our jump
+          var prev = el.style.scrollBehavior;
           el.style.scrollBehavior = 'auto';
           window.scrollTo(0, 0);
           el.style.scrollBehavior = prev || '';
         }
 
-        // New loads
         document.addEventListener('DOMContentLoaded', jumpTopIfNeeded, { once: true });
         window.addEventListener('load', jumpTopIfNeeded, { once: true });
-
-        // BFCache restores (Safari/iOS) + hedges against late layout shifts
         window.addEventListener('pageshow', function (e) {
-          if (e.persisted) jumpTopIfNeeded();
-          setTimeout(jumpTopIfNeeded, 0);
-          setTimeout(jumpTopIfNeeded, 250);
-          requestAnimationFrame(jumpTopIfNeeded);
-        });
+          if (e.persisted) jumpTopIfNeeded();      // Safari/iOS BFCache
+          setTimeout(jumpTopIfNeeded, 0);          // settle after late layout
+        }, { once: true });
       })();
     </script>
   </body>
