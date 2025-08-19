@@ -10,63 +10,28 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
 
 ---
 
-<div class="summary-two-col">
-  <div class="summary-copy">
-    <p class="kicker">Context</p>
-    <p>
-      I was brought in as the product manager to turn fragmented HR reporting into a single,
-      governed product. HR Operations and Talent Acquisition were burning hours stitching
-      spreadsheets from HRIS and ATS; executives wanted a trusted, self-serve view; Legal/InfoSec
-      required strict privacy and auditability. The goals collided: speed and flexibility for
-      stakeholders vs. standardized KPIs and PII controls for the business.
-    </p>
+## Summary
 
-    <p class="kicker">Action</p>
-    <p>
-      I ran structured discovery across HR Ops, TA, Compensation, DEI, Finance, and Execs to map
-      decisions—not just metrics. We aligned needs into a shared KPI glossary—<em>Attrition
-      (voluntary/involuntary), Time-to-Hire, Stage Conversion, Offer Acceptance, Representation %,
-      Compensation Band Delta</em>—and set a North Star: <strong>time-to-decision ≤ 72 hours</strong>.
-      From there I led delivery: data contracts and pipelines, a modeled semantic layer,
-      row-level security with small-n suppression, and an explainable Tableau UI with daily
-      self-serve views plus a certified month-end snapshot.
-    </p>
+<div class="summary-split">
 
-    <div class="chip-row">
-      <span class="chip">≤ 24h refresh</span>
-      <span class="chip">≤ 72h time-to-decision</span>
-      <span class="chip">Small-n suppression</span>
-      <span class="chip">Certified month-end snapshot</span>
-    </div>
+  <div class="summary-card">
+    <div class="summary-kicker">Product Management case study (CAR)</div>
 
-    <p class="kicker">Result</p>
-    <p>
-      The dashboard now saves 3–5 hours per user per week, surfaces early attrition and hiring
-      bottlenecks, and meets governance without slowing the business. The rest of this page walks
-      the PM path—discovery → alignment → KPI definition → design → build → testing →
-      positioning & pricing → delivery.
-    </p>
+    **Context.** I was brought in as the product manager to turn fragmented HR reporting into a single, governed product. HR Operations and Talent Acquisition were burning hours stitching spreadsheets from HRIS and ATS; executives wanted a trusted, self-serve view; Legal/InfoSec required strict privacy and auditability. The goals collided: speed and flexibility for stakeholders **vs.** standardized KPIs and PII controls for the business.
+
+    **Action.** I ran structured discovery across HR Ops, TA, Compensation, DEI, Finance, and Execs to map *decisions*, not just metrics. We aligned needs into a shared KPI glossary—**Attrition (voluntary/involuntary), Time-to-Hire, Stage Conversion, Offer Acceptance, Representation %, Compensation Band Delta**—and set a North Star: **time-to-decision ≤ 72 hours**. From there I led delivery: data contracts and pipelines, a modeled semantic layer, row-level security with small-n suppression, and an explainable Tableau UI with daily self-serve views **plus** a certified month-end snapshot.
+
+    **Result.** The dashboard now saves 3–5 hours per user per week, surfaces early attrition and hiring bottlenecks, and meets governance without slowing the business. The rest of this page walks the PM path—**discovery → alignment → KPI definition → design → build → testing → positioning & pricing → delivery**.
   </div>
 
-  <figure class="summary-figure">
+  <figure class="summary-thumb">
     <a href="/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png" target="_blank" rel="noopener">
-      <img src="/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png" alt="Final Dashboard (preview)">
+      <img src="/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png" alt="Final Dashboard preview">
     </a>
     <figcaption>Final Dashboard (preview)</figcaption>
   </figure>
+
 </div>
-
-
-  <div class="summary-col">
-    <figure>
-      <a href="/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png" target="_blank" rel="noopener">
-        <img class="summary-thumb" src="/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png" alt="HR Dashboard (final) — preview">
-      </a>
-      <figcaption>Final Dashboard (preview)</figcaption>
-    </figure>
-  </div>
-</div>
-
 
 <div align="right"><a href="#table-of-contents">↑ Back to top</a></div>
 
@@ -186,7 +151,6 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
   </a>
   <figcaption>Final Interface</figcaption>
 </figure>
-
 
 <div align="right"><a href="#table-of-contents">↑ Back to top</a></div>
 
