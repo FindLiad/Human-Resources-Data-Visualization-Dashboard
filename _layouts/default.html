@@ -1,53 +1,38 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>{{ page.title | default: site.title }}</title>
 
-    <!-- Theme -->
-    <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#0f3b22" />
-    <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#0b2e1a" />
+    <!-- Match palette + theme color -->
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#0f3b22">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#0b2e1a">
 
     <!-- Cayman first, then our overrides -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle11" />
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle11" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle6">
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle6">
   </head>
   <body>
-
-    <!-- ===== Sticky Top Nav ===== -->
-    <nav class="top-nav">
-      <div class="brand">✨ Main Menu ✨</div>
-      <div class="top-nav__right">
-        <a class="nav-btn" href="https://findliad.github.io/Data-Backed-Decision-Making-for-Youtube-Campaigns/">Last Project</a>
-
-        <!-- Home label swaps on mobile -->
-        <a class="nav-btn nav-home" href="https://findliad.github.io/">
-          <span class="label-desktop">Return to Home Portfolio</span>
-          <span class="label-mobile">Home Portfolio</span>
-        </a>
-
-        <a class="nav-btn" href="{{ site.next_project_url | default: '#' }}">Next Project</a>
-      </div>
-    </nav>
-
-    <!-- ===== HERO ===== -->
+    <!-- ===== Split Banner ===== -->
     <header class="hero-split">
-      <!-- Column 1: Author (desktop/wide screens only) -->
-      <aside class="author-card author-card--desktop">
+      <!-- Author Card -->
+      <aside class="author-card">
         <div class="author-card__heading">About the Author</div>
 
+        <!-- Clickable profile photo -->
         <a href="{{ site.author_photo }}" target="_blank" rel="noopener">
-          <img class="author-card__photo" src="{{ site.author_photo }}" alt="{{ site.author }}" />
+          <img class="author-card__photo"
+               src="{{ site.author_photo }}"
+               alt="{{ site.author }}">
         </a>
 
         <div class="author-card__name">{{ site.author }}</div>
         {% if site.author_title %}
           <div class="author-card__title">{{ site.author_title }}</div>
         {% endif %}
-
         <div class="author-card__links">
           {% for l in site.author_links %}
             <a class="author-card__btn" href="{{ l.url | escape }}" target="_blank" rel="noopener noreferrer">
@@ -57,21 +42,19 @@
         </div>
       </aside>
 
-      <!-- Center divider — equal margins both sides -->
-      <div class="hero-divider" aria-hidden="true"></div>
-
-      <!-- Column 2: Project -->
+      <!-- Project Title + Tagline + (optional) preview image -->
       <section class="hero-main">
-        <h1 class="hero-main__title">Project 2 | Human Resource Dashboard</h1>
+        <h1 class="hero-main__title">{{ site.title }}</h1>
         {% if site.description %}
           <p class="hero-main__tagline">{{ site.description }}</p>
         {% endif %}
 
         {% if site.hero_screenshot_url %}
-          <img class="hero-screenshot" src="{{ site.hero_screenshot_url }}" alt="Dashboard preview" />
+          <img class="hero-screenshot"
+               src="{{ site.hero_screenshot_url }}"
+               alt="Dashboard preview">
         {% endif %}
 
-        <!-- Row layout; when wrapping there is no vertical gap between rows -->
         <div class="hero-actions">
           {% if site.live_dashboard_url %}
             <a class="btn" href="{{ site.live_dashboard_url }}" target="_blank" rel="noopener">View Live Dashboard</a>
@@ -79,14 +62,12 @@
           {% if site.github.repository_url %}
             <a class="btn" href="{{ site.github.repository_url }}" target="_blank" rel="noopener">View on GitHub</a>
           {% endif %}
-          <a class="btn" href="{{ site.baseurl }}/assets/docs/Product_Requirements_Document.pdf" target="_blank" rel="noopener">
-            View Product Requirements Document
-          </a>
+          <a class="btn" href="{{ site.baseurl }}/assets/docs/Product_Requirements_Document.pdf" target="_blank" rel="noopener">View Product Requirements Document</a>
         </div>
       </section>
     </header>
 
-    <!-- ===== MAIN ===== -->
+    <!-- ===== Main Content ===== -->
     <main id="content" class="main-content" role="main">
       {{ content }}
 
@@ -99,11 +80,27 @@
       </footer>
     </main>
 
-    <!-- Scroll to top on mobile / narrow screens -->
+    <!-- Force page to open at top on mobile (prevents scroll restoration) -->
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        if (window.innerWidth <= 820) { window.scrollTo(0, 0); }
-      });
+      (function () {
+        if ('scrollRestoration' in history) {
+          history.scrollRestoration = 'manual';
+        }
+
+        function toTop() {
+          if (window.matchMedia('(max-width: 820px)').matches) {
+            window.scrollTo(0, 0);
+          }
+        }
+
+        document.addEventListener('DOMContentLoaded', toTop, { once: true });
+        window.addEventListener('load', function () {
+          toTop();
+          setTimeout(toTop, 0);
+          setTimeout(toTop, 300);
+        }, { once: true });
+        window.addEventListener('pageshow', toTop);
+      })();
     </script>
   </body>
 </html>
