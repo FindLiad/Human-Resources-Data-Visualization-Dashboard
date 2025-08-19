@@ -1,44 +1,22 @@
-<!-- _layouts/default.html -->
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>{{ page.title | default: site.title }}</title>
 
+    <!-- Match Project #1 meta + theme color (green) -->
     <meta name="color-scheme" content="light dark">
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#0f3b22">
     <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#0b2e1a">
 
-    <!-- Cache-busted CSS (same structure as Project #1) -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=jungle1">
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=jungle1">
-
-    <!-- FORCE pale-sage contact tiles on all devices (matches #1 behavior) -->
-    <style>
-      .author-card .author-card__links a.author-card__btn{
-        background: #d8efe0 !important;
-        border-color: #c2e3d0 !important;
-        color: #122016 !important;
-        -webkit-appearance: none;
-      }
-      .author-card .author-card__links a.author-card__btn:hover{
-        background: #cde9d8 !important;
-      }
-      @media (prefers-color-scheme: dark){
-        .author-card .author-card__links a.author-card__btn{
-          background: #d8efe0 !important;
-          border-color: #c2e3d0 !important;
-          color: #122016 !important;
-        }
-        .author-card .author-card__links a.author-card__btn:hover{
-          background: #cde9d8 !important;
-        }
-      }
-    </style>
+    <!-- EXACTLY like Project #1: Cayman CSS first, then our custom CSS -->
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle3">
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle3">
   </head>
   <body>
-    <!-- ===== Split Banner ===== -->
+    <!-- ===== Split Banner (identical structure to Project #1) ===== -->
     <header class="hero-split">
       <!-- Author Card -->
       <aside class="author-card">

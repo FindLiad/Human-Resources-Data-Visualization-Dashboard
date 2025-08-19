@@ -1,24 +1,23 @@
-/* ===============  Jungle Palette (Light) — identical sizing as Project #1  =============== */
+/* ===============  Jungle Palette (Light)  =============== */
 :root{
   --bg:              #eaf3ea;  /* misty sage */
   --text:            #122016;  /* deep evergreen */
-  --muted:           #5b6f61;  /* cool gray-green */
+  --muted:           #5b6f61;  /* cool moss */
   --card-bg:         #e6f1eb;  /* pale leaf */
-  --card-border:     #cfe0d6;  /* soft sage edge */
-  --accent:          #1b5e20;  /* jungle button */
+  --card-border:     #cfe0d6;  /* soft fern edge */
+  --accent:          #1b5e20;  /* jungle green */
   --accent-2:        #2e7d32;  /* forest */
-  --accent-3:        #66bb6a;  /* leaf */
-  --link:            #1f7a2e;  /* link */
+  --accent-3:        #66bb6a;  /* fresh leaf */
+  --link:            #1f7a2e;  /* link green */
   --link-hover:      #145722;
 
   /* header gradient */
-  --hero-grad-1:     #0b2e1a;  /* deep jungle */
-  --hero-grad-2:     #1f6a3a;  /* canopy */
+  --hero-grad-1:     #0b2e1a;  /* deep canopy */
+  --hero-grad-2:     #0f3b22;  /* dense forest */
 }
 
 /* ===============  Global  =============== */
 html, body {
-  margin: 0; /* remove browser default gap; ensures full-bleed hero */
   background: var(--bg);
   color: var(--text);
 }
@@ -148,17 +147,17 @@ pre, code {
   width:100%;
   padding:0 12px;
   border-radius:10px;
-  background: var(--card-bg);
+  background: #d8efe0;           /* pale sage tiles */
   color: var(--text);
   text-decoration:none;
-  border:1px solid var(--card-border);
+  border:1px solid #c2e3d0;
   font-size:.93rem;
   font-weight:600;
   box-sizing:border-box;
   transition: filter .15s ease, box-shadow .15s ease, transform .04s ease;
 }
 .author-card__btn:hover{
-  filter: brightness(1.02);
+  background: #cde9d8;
   box-shadow: 0 6px 18px rgba(0,0,0,.08);
 }
 .author-card__btn:active { transform: translateY(1px); }
@@ -199,23 +198,23 @@ pre, code {
 }
 
 /* =========================================================
-   Dark Mode — automatic via OS preference (green hues)
+   Dark Mode — automatic via OS preference
    ========================================================= */
 @media (prefers-color-scheme: dark){
   :root{
-    --bg:          #0f1a14;  /* deep jungle night */
-    --text:        #eaf3ea;  /* mist text */
-    --muted:       #cfe0d6;  /* soft sage */
-    --card-bg:     #132219;  /* dark leaf card */
-    --card-border: #1f3528;  /* deep edge */
-    --accent:      #66bb6a;  /* leaf highlight */
-    --accent-2:    #2e7d32;
-    --accent-3:    #1b5e20;
-    --link:        #8ee6a0;
-    --link-hover:  #b8f7c4;
+    --bg:          #0f1a14;   /* deep jungle */
+    --text:        #eaf3ea;   /* mist text */
+    --muted:       #cfe0d6;   /* soft fern */
+    --card-bg:     #16281e;   /* dark leaf */
+    --card-border: #1f3528;   /* fern edge */
+    --accent:      #66bb6a;   /* leaf highlight */
+    --accent-2:    #4caf50;
+    --accent-3:    #2e7d32;
+    --link:        #9ce3a9;
+    --link-hover:  #c4f1cd;
 
-    --hero-grad-1: #0b2e1a;  /* deep */
-    --hero-grad-2: #0f3b22;  /* dark green */
+    --hero-grad-1: #0b2e1a;   /* canopy */
+    --hero-grad-2: #1f6a3a;   /* emerald */
   }
 
   html, body { background: var(--bg); color: var(--text); }
@@ -241,9 +240,9 @@ pre, code {
   .author-card__title{ color: var(--muted); }
 
   .author-card__btn{
-    background: var(--card-bg);
-    border-color: var(--card-border);
-    color: var(--text);
+    background: #d8efe0;
+    border-color: #c2e3d0;
+    color: #10301f;
   }
   .author-card__btn:hover{ box-shadow: 0 8px 22px rgba(0,0,0,.35); }
 
@@ -259,14 +258,14 @@ pre, code {
   }
 }
 
-/* === Contact tiles: pale sage (light + dark mode) === */
+/* === Contact tiles palette variables (kept for parity with Project #1) === */
 :root{
   --tile-bg:        #d8efe0;
   --tile-bg-hover:  #cde9d8;
   --tile-border:    #c2e3d0;
 }
 
-/* Light mode tiles */
+/* Apply tiles in light mode */
 .author-card__btn{
   background: var(--tile-bg);
   border-color: var(--tile-border);
@@ -276,24 +275,24 @@ pre, code {
   background: var(--tile-bg-hover);
 }
 
-/* Dark mode equivalents for good contrast */
+/* Dark mode equivalents */
 @media (prefers-color-scheme: dark){
   :root{
-    --tile-bg:       #d8efe0;
-    --tile-bg-hover: #cde9d8;
-    --tile-border:   #c2e3d0;
+    --tile-bg:       #1c2e24;
+    --tile-bg-hover: #21372a;
+    --tile-border:   #1a2a21;
   }
   .author-card__btn{
-    background: var(--tile-bg);
-    border-color: var(--tile-border);
-    color: var(--text);
+    background: #d8efe0;    /* keep the same pale sage for consistency */
+    border-color: #c2e3d0;
+    color: #10301f;
   }
   .author-card__btn:hover{
-    background: var(--tile-bg-hover);
+    background: #cde9d8;
   }
 }
 
-/* === Force pale-sage contact tiles on all devices (match #1 behavior) === */
+/* === Force pale-sage contact tiles on all devices (wins over any dark styles) === */
 .author-card__btn{
   background-color: #d8efe0 !important;
   border-color: #c2e3d0 !important;
@@ -302,13 +301,11 @@ pre, code {
 .author-card__btn:hover{
   background-color: #cde9d8 !important;
 }
-
-/* Keep the same tiles in dark mode (override dark scheme) */
 @media (prefers-color-scheme: dark){
   .author-card__btn{
     background-color: #d8efe0 !important;
     border-color: #c2e3d0 !important;
-    color: #122016 !important;
+    color: #10301f !important;
   }
   .author-card__btn:hover{
     background-color: #cde9d8 !important;

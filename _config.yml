@@ -24,9 +24,7 @@ author_links:
     url: "mailto:Liad%20Mizrachi%20<FindLiad@gmail.com>"
     icon: "✉️"
 
-# HR dashboard (Tableau) + repo link for the hero CTAs
 live_dashboard_url: "https://public.tableau.com/app/profile/liad.mizrachi/viz/HRProject_17554488176360/hr_dashboard?publish=yes"
-repo_url: "https://github.com/FindLiad/Human-Resources-Data-Visualization-Dashboard"
 
 remote_theme: "pages-themes/cayman@v0.2.0"
 plugins:
