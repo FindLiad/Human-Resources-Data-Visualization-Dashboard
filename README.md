@@ -19,10 +19,12 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
     <div class="story-copy">
       <h3>Context</h3>
       <p>
-        I was brought in as the product manager to turn fragmented HR reporting into a single, governed product. HR Operations
-        and Talent Acquisition were burning hours stitching spreadsheets from HRIS and ATS; executives wanted a trusted, self-serve view;
-        Legal/InfoSec required strict privacy and auditability. The goals collided: stakeholder speed & flexibility
-        vs. standardized KPIs and PII controls for the business.
+        A global client was struggling to unify HR data scattered across multiple systems—talent acquisition, payroll,
+        performance, and compliance—making workforce planning reactive and error-prone. Leadership wanted to use data
+        to inform DEI, hiring, and layoff decisions, but the lack of a single source of truth introduced high regulatory
+        and financial risk. I was brought in to design and deliver an enterprise HR analytics dashboard. My task was to
+        balance customer expectations for flexibility with my company’s requirement to deliver a secure, scalable tool
+        that could standardize decision-making across stakeholders.
       </p>
     </div>
     <figure class="story-img-wrap">
@@ -42,10 +44,13 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
     <div class="story-copy">
       <h3>Action</h3>
       <p>
-        I ran structured discovery to map <em>decisions</em>, not just metrics, and aligned everyone to a shared KPI glossary —
-        <strong>Attrition (voluntary/involuntary), Time-to-Hire, Stage Conversion, Offer Acceptance, Representation %, Compensation Band Delta</strong>.
-        We set a North Star: <strong>time-to-decision ≤ 72 hours</strong>. I led delivery: data contracts and pipelines, a modeled semantic layer,
-        row-level security with small-n suppression, and an explainable Tableau UI with daily self-serve views plus a certified month-end snapshot.
+        I set the product strategy around three pillars: <em>compliance-ready reporting</em>, <em>role-based usability</em>,
+        and <em>scalable integrations</em>. Initial alignment came quickly across executives and finance, but a senior HR
+        leader pushed back, demanding immediate, highly granular demographic filters. This created a fork in the roadmap:
+        accelerate HR’s feature at risk of data exposure, or delay and risk adoption resistance. To break the deadlock,
+        I applied a prioritization matrix—<strong>regulatory risk</strong>, <strong>business impact</strong>, and
+        <strong>implementation effort</strong>—then repositioned the HR leader’s concern as a phased deliverable.
+        I secured alignment by rescoping their feature as a compliance-safe release in iteration two.
       </p>
     </div>
   </div>
@@ -55,9 +60,12 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
     <div class="story-copy">
       <h3>Result</h3>
       <p>
-        The dashboard now saves 3–5 hours per user per week, surfaces early attrition and hiring bottlenecks,
-        and meets governance without slowing the business. The rest of this page walks the PM path —
-        <strong>discovery → alignment → KPI definition → design → build → testing → positioning & pricing → delivery</strong>.
+        I executed delivery in two phases: first, a core dashboard unifying demographics, salary, tenure, and performance
+        with strict role-based access; second, extended DEI filters released once governance rules were hardened.
+        This approach unlocked immediate adoption while addressing long-term needs. HR leaders gained compliant DEI visibility,
+        finance received real-time workforce cost trends, and executives modeled headcount scenarios with confidence.
+        The tool reduced manual reporting hours by <strong>40%</strong>, informed board-level workforce planning, and turned the
+        previously resistant HR leader into a key champion who showcased the dashboard across the enterprise.
       </p>
     </div>
     <figure class="story-img-wrap">
@@ -229,4 +237,5 @@ This version re-implements the workflow with my own repo, structure, and documen
 © Liad Mizrachi.
 
 <div align="right"><a href="#table-of-contents">↑ Back to top</a></div>
+
 
