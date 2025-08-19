@@ -6,14 +6,14 @@
 
     <title>{{ page.title | default: site.title }}</title>
 
-    <!-- Match meta + theme color -->
+    <!-- Match palette + theme color -->
     <meta name="color-scheme" content="light dark">
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#0f3b22">
     <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#0b2e1a">
 
     <!-- Cayman first, then our overrides -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle4">
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle5">
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle6">
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle6">
   </head>
   <body>
     <!-- ===== Split Banner ===== -->
@@ -42,18 +42,19 @@
         </div>
       </aside>
 
-      <!-- Project Title + Tagline + Preview -->
+      <!-- Project Title + Tagline + (optional) preview image -->
       <section class="hero-main">
         <h1 class="hero-main__title">{{ site.title }}</h1>
-
-        <figure class="hero-preview">
-          <img src="{{ site.baseurl }}/assets/images/finished-dashboard.png"
-               alt="Final HR Dashboard preview">
-        </figure>
-
         {% if site.description %}
           <p class="hero-main__tagline">{{ site.description }}</p>
         {% endif %}
+
+        {% if site.hero_screenshot_url %}
+          <img class="hero-screenshot"
+               src="{{ site.hero_screenshot_url }}"
+               alt="Dashboard preview">
+        {% endif %}
+
         <div class="hero-actions">
           {% if site.live_dashboard_url %}
             <a class="btn" href="{{ site.live_dashboard_url }}" target="_blank" rel="noopener">View Live Dashboard</a>
