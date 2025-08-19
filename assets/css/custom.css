@@ -18,9 +18,13 @@
 }
 
 /* ========== Base ========== */
-/* Removed overflow-anchor:none to let browser keep top on first render */
-html, body { margin:0; padding:0; background:var(--bg); color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; line-height:1.55; }
+/* IMPORTANT: allow scroll anchoring except where we explicitly disable it */
+html, body {
+  margin:0; padding:0; background:var(--bg); color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  line-height:1.55;
+  scroll-behavior: auto; /* no smooth scroll on load */
+}
 a { color:var(--link); text-decoration:none; }
 a:hover { color:var(--link-hover); text-decoration:underline; }
 pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius:8px; }
@@ -35,6 +39,7 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
   background: var(--nav-glass);
   border-bottom: 1px solid rgba(255,255,255,.18);
   color: #fff;
+  overflow-anchor: none; /* prevent nav expansion from shifting scroll */
 }
 .top-nav .brand{
   font-weight: 800;
@@ -63,6 +68,7 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
   border-bottom: 1px solid rgba(0,0,0,.06);
   background: linear-gradient(120deg,var(--hero-grad-1) 0%,var(--hero-grad-2) 45%,var(--hero-grad-3) 100%);
   color:#fff;
+  overflow-anchor: none; /* freeze top while hero settles */
 }
 .hero-divider{
   background: rgba(255,255,255,.18);
@@ -75,8 +81,12 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
 }
 .hero-main__title{ font-size: 1.9rem; margin:.2rem 0 .35rem; font-weight:900; letter-spacing:.2px; }
 .hero-main__tagline{ opacity:.95; max-width:760px; margin:.1rem 0 1.0rem; }
+
+/* Reserve aspect ratio to avoid reflow while image downloads */
 .hero-screenshot{
-  width: 560px; max-width: 92%; height:auto;
+  width: 560px; max-width: 92%;
+  aspect-ratio: 16 / 10; /* reserve height; adjust if your hero image is different */
+  height:auto;
   border-radius:10px; border:1px solid rgba(255,255,255,.20); box-shadow:0 10px 24px rgba(0,0,0,.35);
   margin-bottom: 12px;
 }
@@ -124,7 +134,8 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
   box-shadow: 0 8px 20px rgba(0,0,0,.08);
   overflow: hidden;
   margin: 18px 0;
-  align-items: stretch;
+  align-items: start;  /* let image set the row height (prevents top/bottom borders) */
+  overflow-anchor: none; /* avoid anchoring jumps as images load */
 }
 .story-row.rev{ grid-template-columns: 56% 44%; }
 
@@ -140,7 +151,9 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
   margin:0; padding:0; display:flex; align-items:center; justify-content:center; background:var(--card-bg);
 }
 .story-img{
-  width: 100%; height: 100%;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2; /* your 1200x800 images */
   object-fit: contain; /* full image, no crop */
   display:block; border:0; box-shadow:none;
 }
@@ -195,3 +208,4 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
   /* Mobile author card appears under story grid */
   .author-card--mobile{ display:block; }
 }
+
