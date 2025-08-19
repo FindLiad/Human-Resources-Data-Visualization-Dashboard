@@ -12,24 +12,30 @@
     <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#0b2e1a" />
 
     <!-- Cayman first, then our overrides -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle9" />
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle9" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle11" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle11" />
   </head>
   <body>
 
-    <!-- ===== Sticky Top Nav (travels with scroll) ===== -->
+    <!-- ===== Sticky Top Nav ===== -->
     <nav class="top-nav">
       <div class="brand">✨ Main Menu ✨</div>
       <div class="top-nav__right">
         <a class="nav-btn" href="https://findliad.github.io/Data-Backed-Decision-Making-for-Youtube-Campaigns/">Last Project</a>
-        <a class="nav-btn" href="https://findliad.github.io/">Return to Home Portfolio</a>
+
+        <!-- Home label swaps on mobile -->
+        <a class="nav-btn nav-home" href="https://findliad.github.io/">
+          <span class="label-desktop">Return to Home Portfolio</span>
+          <span class="label-mobile">Home Portfolio</span>
+        </a>
+
         <a class="nav-btn" href="{{ site.next_project_url | default: '#' }}">Next Project</a>
       </div>
     </nav>
 
     <!-- ===== HERO ===== -->
     <header class="hero-split">
-      <!-- Column 1: Author (desktop only) -->
+      <!-- Column 1: Author (desktop/wide screens only) -->
       <aside class="author-card author-card--desktop">
         <div class="author-card__heading">About the Author</div>
 
@@ -51,10 +57,10 @@
         </div>
       </aside>
 
-      <!-- Column 2: vertical divider -->
+      <!-- Center divider — equal margins both sides -->
       <div class="hero-divider" aria-hidden="true"></div>
 
-      <!-- Column 3: Project title + screenshot + buttons -->
+      <!-- Column 2: Project -->
       <section class="hero-main">
         <h1 class="hero-main__title">Project 2 | Human Resource Dashboard</h1>
         {% if site.description %}
@@ -65,6 +71,7 @@
           <img class="hero-screenshot" src="{{ site.hero_screenshot_url }}" alt="Dashboard preview" />
         {% endif %}
 
+        <!-- Row layout; when wrapping there is no vertical gap between rows -->
         <div class="hero-actions">
           {% if site.live_dashboard_url %}
             <a class="btn" href="{{ site.live_dashboard_url }}" target="_blank" rel="noopener">View Live Dashboard</a>
@@ -82,6 +89,7 @@
     <!-- ===== MAIN ===== -->
     <main id="content" class="main-content" role="main">
       {{ content }}
+
       <footer class="site-footer">
         {% if site.github.is_project_page %}
           <span class="site-footer-owner">
