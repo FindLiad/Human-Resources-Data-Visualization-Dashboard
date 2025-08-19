@@ -6,8 +6,6 @@ author: "Liad Mizrachi"
 baseurl: "/Human-Resources-Data-Visualization-Dashboard"
 
 author_title: "Senior Product Manager • AI Data-Driven Solutions"
-
-# photo path must include baseurl (to work on GitHub Pages)
 author_photo: "/Human-Resources-Data-Visualization-Dashboard/assets/images/liad-mizrachi.jpg"
 
 author_links:
@@ -24,6 +22,15 @@ author_links:
     url: "mailto:Liad%20Mizrachi%20<FindLiad@gmail.com>"
     icon: "✉️"
 
+# Hero screenshot shown inside the banner
+hero_preview: "/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png"
+
+# Comic-strip images for Summary (upload your cartoons to these paths)
+cartoon_context: "/Human-Resources-Data-Visualization-Dashboard/assets/images/story-context.png"
+cartoon_action:  "/Human-Resources-Data-Visualization-Dashboard/assets/images/story-action.png"
+cartoon_result:  "/Human-Resources-Data-Visualization-Dashboard/assets/images/story-result.png"
+
+# Links used by the hero buttons
 live_dashboard_url: "https://public.tableau.com/app/profile/liad.mizrachi/viz/HRProject_17554488176360/hr_dashboard?publish=yes"
 
 remote_theme: "pages-themes/cayman@v0.2.0"

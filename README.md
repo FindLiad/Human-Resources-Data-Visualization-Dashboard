@@ -12,24 +12,63 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
 
 ## Summary
 
-<div class="summary-split">
+<div class="story-grid">
 
-  <div class="summary-card">
-    <div class="summary-kicker">Product Management case study (CAR)</div>
-
-    **Context.** I was brought in as the product manager to turn fragmented HR reporting into a single, governed product. HR Operations and Talent Acquisition were burning hours stitching spreadsheets from HRIS and ATS; executives wanted a trusted, self-serve view; Legal/InfoSec required strict privacy and auditability. The goals collided: speed and flexibility for stakeholders **vs.** standardized KPIs and PII controls for the business.
-
-    **Action.** I ran structured discovery across HR Ops, TA, Compensation, DEI, Finance, and Execs to map *decisions*, not just metrics. We aligned needs into a shared KPI glossary—**Attrition (voluntary/involuntary), Time-to-Hire, Stage Conversion, Offer Acceptance, Representation %, Compensation Band Delta**—and set a North Star: **time-to-decision ≤ 72 hours**. From there I led delivery: data contracts and pipelines, a modeled semantic layer, row-level security with small-n suppression, and an explainable Tableau UI with daily self-serve views **plus** a certified month-end snapshot.
-
-    **Result.** The dashboard now saves 3–5 hours per user per week, surfaces early attrition and hiring bottlenecks, and meets governance without slowing the business. The rest of this page walks the PM path—**discovery → alignment → KPI definition → design → build → testing → positioning & pricing → delivery**.
+  <!-- Row 1: CONTEXT (copy left, image right) -->
+  <div class="story-row">
+    <div class="story-copy">
+      <h3>Context</h3>
+      <p>
+      I was brought in as the product manager to turn fragmented HR reporting into a single, governed product. HR Operations
+      and Talent Acquisition were burning hours stitching spreadsheets from HRIS and ATS; executives wanted a trusted, self-serve view;
+      Legal/InfoSec required strict privacy and auditability. The goals collided: stakeholder speed & flexibility
+      vs. standardized KPIs and PII controls for the business.
+      </p>
+    </div>
+    <figure class="story-img-wrap">
+      <img class="story-img"
+           src="{{ site.cartoon_context | default: '/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png' }}"
+           alt="Cartoon Liad gathering stakeholder requirements">
+      <figcaption class="story-caption">Discovery across HR Ops, TA, Compensation, DEI, Finance, Execs.</figcaption>
+    </figure>
   </div>
 
-  <figure class="summary-thumb">
-    <a href="/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png" target="_blank" rel="noopener">
-      <img src="/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png" alt="Final Dashboard preview">
-    </a>
-    <figcaption>Final Dashboard (preview)</figcaption>
-  </figure>
+  <!-- Row 2: ACTION (image left, copy right) -->
+  <div class="story-row rev">
+    <figure class="story-img-wrap">
+      <img class="story-img"
+           src="{{ site.cartoon_action | default: '/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png' }}"
+           alt="Cartoon Liad building data pipelines and a dashboard">
+      <figcaption class="story-caption">Pipelines → semantic layer → secure, explainable Tableau UI.</figcaption>
+    </figure>
+    <div class="story-copy">
+      <h3>Action</h3>
+      <p>
+      I ran structured discovery to map <em>decisions</em>, not just metrics, and aligned everyone to a shared KPI glossary —
+      <strong>Attrition (voluntary/involuntary), Time-to-Hire, Stage Conversion, Offer Acceptance,
+      Representation %, Compensation Band Delta</strong>. We set a North Star: <strong>time-to-decision ≤ 72 hours</strong>.
+      I led delivery: data contracts and pipelines, a modeled semantic layer, row-level security with small-n suppression, and an
+      explainable Tableau UI with daily self-serve views plus a certified month-end snapshot.
+      </p>
+    </div>
+  </div>
+
+  <!-- Row 3: RESULT (copy left, image right) -->
+  <div class="story-row">
+    <div class="story-copy">
+      <h3>Result</h3>
+      <p>
+      The dashboard now saves 3–5 hours per user per week, surfaces early attrition and hiring bottlenecks,
+      and meets governance without slowing the business. The rest of this page walks the PM path — <strong>discovery → alignment → KPI definition → design → build → testing → positioning & pricing → delivery</strong>.
+      </p>
+    </div>
+    <figure class="story-img-wrap">
+      <img class="story-img"
+           src="{{ site.cartoon_result | default: '/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png' }}"
+           alt="Cartoon Liad presenting results to leadership">
+      <figcaption class="story-caption">Leaders act faster with a single, trusted source of truth.</figcaption>
+    </figure>
+  </div>
 
 </div>
 
@@ -115,15 +154,6 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
 ### 6) Publish & Share
 - Published to **Tableau Public**, linked at the top of this page.  
 - Repo includes dataset, generator script, workbook, and documentation.
-
-<div align="right"><a href="#table-of-contents">↑ Back to top</a></div>
-
----
-
-## Design Notes
-- **Why synthetic dataset?** Avoids PII, reproducible with generator script.  
-- **Why these KPIs?** They balance *stability* (attrition), *growth* (hiring funnel), *inclusion* (diversity), and *fairness* (comp).  
-- **Why Tableau?** Fast iteration and publishing for non-technical stakeholders.
 
 <div align="right"><a href="#table-of-contents">↑ Back to top</a></div>
 

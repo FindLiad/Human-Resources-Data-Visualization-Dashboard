@@ -11,24 +11,19 @@
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#0f3b22">
     <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#0b2e1a">
 
-    <!-- EXACTLY like Project #1: Cayman CSS first, then our custom CSS -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle4">
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle4">
+    <!-- Cayman (theme) then your custom stylesheet -->
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle5">
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle5">
   </head>
   <body>
-    <!-- ===== Split Banner (identical structure to Project #1) ===== -->
+    <!-- ===== Split Banner ===== -->
     <header class="hero-split">
       <!-- Author Card -->
       <aside class="author-card">
         <div class="author-card__heading">About the Author</div>
-
-        <!-- Clickable profile photo -->
         <a href="{{ site.author_photo }}" target="_blank" rel="noopener">
-          <img class="author-card__photo"
-               src="{{ site.author_photo }}"
-               alt="{{ site.author }}">
+          <img class="author-card__photo" src="{{ site.author_photo }}" alt="{{ site.author }}">
         </a>
-
         <div class="author-card__name">{{ site.author }}</div>
         {% if site.author_title %}
           <div class="author-card__title">{{ site.author_title }}</div>
@@ -42,9 +37,15 @@
         </div>
       </aside>
 
-      <!-- Project Title + Tagline -->
+      <!-- Project Title + Preview + Tagline + CTAs -->
       <section class="hero-main">
         <h1 class="hero-main__title">{{ site.title }}</h1>
+
+        {% assign hero_img = site.hero_preview | default: '/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png' %}
+        <figure class="hero-preview">
+          <img class="hero-preview__img" src="{{ hero_img }}" alt="Dashboard preview">
+        </figure>
+
         {% if site.description %}
           <p class="hero-main__tagline">{{ site.description }}</p>
         {% endif %}
