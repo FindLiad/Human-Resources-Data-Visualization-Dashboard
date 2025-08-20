@@ -10,7 +10,7 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
 
 ---
 
-## Business Requirements vs. Customer Needs
+## How I balanced Business Requirements vs. Customer Needs
 
 <div class="story-grid">
 
