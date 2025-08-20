@@ -2,14 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, viewport-fit=cover"
-    />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>{{ page.title | default: site.title }}</title>
 
-    <!-- Theme -->
+    <!-- Theme colors -->
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#0f3b22" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#0b2e1a" />
@@ -23,30 +19,25 @@
     <meta property="og:description" content="{{ site.description }}" />
     <meta property="og:url" content="{{ abs_base }}/" />
     <meta property="og:image" content="{{ site.url }}{{ share_img }}" />
-    <meta property="og:image:alt" content="Human Resources Dashboard preview" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="{{ page.title | default: site.title }}" />
     <meta name="twitter:description" content="{{ site.description }}" />
     <meta name="twitter:image" content="{{ site.url }}{{ share_img }}" />
-    <link rel="image_src" href="{{ site.url }}{{ share_img }}" />
 
     {% if site.hero_screenshot_url %}
       <link rel="preload" as="image" href="{{ site.hero_screenshot_url }}">
     {% endif %}
 
-    <!-- Cayman first, then our overrides (cache-busted) -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle57" />
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle57" />
+    <!-- Cayman first, then overrides -->
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle58" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle58" />
   </head>
   <body>
 
-    <!-- Absolute top-of-site anchor (sits above the sticky nav) -->
+    <!-- Absolute top anchor -->
     <div id="site-top" style="position:absolute;top:0;left:0;width:1px;height:1px;"></div>
 
-    <!-- ===== Sticky Top Nav ===== -->
+    <!-- Top nav -->
     <nav class="top-nav">
       <div class="brand">✨ Main Menu ✨</div>
       <div class="top-nav__right">
@@ -59,8 +50,9 @@
       </div>
     </nav>
 
-    <!-- ===== HERO (match Project 1 structure) ===== -->
+    <!-- HERO (match Project 1 structure & copy) -->
     <header class="hero-split" id="hero">
+      <!-- Desktop author card -->
       <aside class="author-card author-card--desktop">
         <div class="author-card__heading">About the Author</div>
 
@@ -87,12 +79,17 @@
 
       <div class="hero-divider" aria-hidden="true"></div>
 
+      <!-- Title + Welcome + Tagline + Screenshot + Buttons -->
       <section class="hero-main">
         <h1 class="hero-main__title">Project 2 | Human Resources Dashboard</h1>
 
         <div class="hero-main__welcome">{{ site.hero_welcome | default: 'Welcome!' }}</div>
+
+        {% comment %}
+        The tagline’s width is auto-matched to the H1 below via the tiny script at the bottom.
+        {% endcomment %}
         {% if site.hero_tagline or site.description %}
-          <p class="hero-main__tagline">{{ site.hero_tagline | default: site.description }}</p>
+          <p class="hero-main__tagline" id="heroTagline">{{ site.hero_tagline | default: site.description }}</p>
         {% endif %}
 
         {% if site.hero_screenshot_url %}
@@ -116,7 +113,6 @@
       </section>
     </header>
 
-    <!-- ===== MAIN ===== -->
     <main id="content" class="main-content" role="main">
       {{ content }}
 
@@ -128,7 +124,25 @@
         {% endif %}
       </footer>
     </main>
+
+    <!-- Match Project 1: make the tagline width equal the H1 width, centered -->
+    <script>
+      (function () {
+        function syncTaglineWidth(){
+          var h1 = document.querySelector('.hero-main__title');
+          var tg = document.getElementById('heroTagline');
+          if(!h1 || !tg) return;
+          try{
+            var w = h1.getBoundingClientRect().width;
+            tg.style.maxWidth = w + 'px';
+            tg.style.marginLeft = 'auto';
+            tg.style.marginRight = 'auto';
+          }catch(e){}
+        }
+        document.addEventListener('DOMContentLoaded', syncTaglineWidth, {once:true});
+        window.addEventListener('resize', syncTaglineWidth);
+      })();
+    </script>
   </body>
 </html>
-
 
