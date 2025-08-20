@@ -19,10 +19,10 @@
     {% endif %}
 
     <!-- Cache-busted -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle28" />
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle28" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle30" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle30" />
 
-    <!-- Force top (before layout expands). Honors deep links with hashes -->
+    <!-- Early: keep top, honor deep links -->
     <script>
       (function () {
         if (location.hash) return;
@@ -34,6 +34,7 @@
     </script>
   </head>
   <body>
+    <!-- Real anchor at very top -->
     <div id="top-anchor" class="top-anchor" aria-hidden="true"></div>
 
     <!-- ===== Sticky Top Nav ===== -->
@@ -104,16 +105,22 @@
       </footer>
     </main>
 
-    <!-- Late-stage top snap -->
+    <!-- Late: hard-set to very top on first paint/load/bfcache -->
     <script>
       (function () {
         if (location.hash) return;
+
         function toTop(){
+          // Move to the explicit anchor to defeat mobile anchoring quirks
+          if (location.hash !== '#top-anchor') {
+            try { location.replace('#top-anchor'); } catch(e) { /* fallback below */ }
+          }
           window.scrollTo(0, 0);
           document.documentElement.scrollTop = 0;
           document.body.scrollTop = 0;
         }
-        document.addEventListener('DOMContentLoaded', toTop, {once:true});
+
+        document.addEventListener('DOMContentLoaded', toTop, { once:true });
         window.addEventListener('load', function(){
           requestAnimationFrame(toTop);
           setTimeout(toTop, 0);
