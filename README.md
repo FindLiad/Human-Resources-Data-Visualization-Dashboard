@@ -19,9 +19,9 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
     <div class="story-copy">
       <h3>Context</h3>
       <p>
-        &nbsp;&nbsp;&nbsp;&nbsp;In this real world scenario - My client was a <b>global manufacturer</b> with 15,000+ employees.<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;Labor costs were massive, yet HR data lived in silos—payroll, talent, compliance, performance—all telling conflicting stories. Executives argued over headcount, finance second-guessed numbers, HR pushed for DEI but had no proof. Decisions carried million-dollar risks. I was asked to create clarity for everyone involved.<br> 
-        &nbsp;&nbsp;&nbsp;&nbsp;<b>My task:</b> create one secure dashboard that turned scattered spreadsheets into a single source of truth for workforce planning.
+        In this real world scenario - My client was a <b>global manufacturer</b> with 15,000+ employees.<br><br>
+        Labor costs were massive, yet HR data lived in silos—payroll, talent, compliance, performance—all telling conflicting stories. Executives argued over headcount, finance second-guessed numbers, HR pushed for DEI but had no proof. Decisions carried million-dollar risks. I was asked to create clarity for everyone involved.<br><br> 
+        <b>My task:</b> create one secure dashboard that turned scattered spreadsheets into a single source of truth for workforce planning.
       </p>
     </div>
     <figure class="story-img-wrap">
