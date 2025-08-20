@@ -4,41 +4,44 @@ title: Human Resources Data Visualization Dashboard
 ---
 
 {% comment %}
-Render README from “Business Requirements vs. Customer Needs” (fallback “## Summary”).
-Strip the README’s own mobile About-card block; then inject:
-  Summary → Back to top (mobile-only) → faint divider → About (mobile card) → Back to top (mobile-only) → Table of Contents.
-On desktop/wide, keep only the README’s inline Back to top (classed) and the hero’s desktop About card.
+Render README starting at the CAR section; never show the README intro (title/summary/links).
+We try several possible CAR headings and use the first one found.
+Then we inject:
+  Summary → Back to top (mobile-only) → divider → About (mobile card) → Back to top (mobile-only) → Table of Contents.
 {% endcomment %}
 
 {% capture readme_raw %}{% include_relative README.md %}{% endcapture %}
 
-{% assign token_car = '## Business Requirements vs. Customer Needs' %}
-{% assign token_summary = '## Summary' %}
-{% if readme_raw contains token_car %}{% assign start_token = token_car %}{% else %}{% assign start_token = token_summary %}{% endif %}
+{%- assign token1 = '## How I balanced Business Requirements vs. Customer Needs' -%}
+{%- assign token2 = '## Business Requirements vs. Customer Needs' -%}
+{%- assign token3 = '## A time I went above and beyond to deliver for the customer' -%}
+{%- assign token4 = '## Summary' -%}
 
-{% assign after_start = readme_raw | split: start_token %}
-{% if after_start.size > 1 %}
-  {% capture body_from_start %}{{ start_token }}{{ after_start[1] }}{% endcapture %}
-{% else %}
-  {% assign body_from_start = readme_raw %}
-{% endif %}
+{%- if readme_raw contains token1 -%}{% assign start_token = token1 %}
+{%- elsif readme_raw contains token2 -%}{% assign start_token = token2 %}
+{%- elsif readme_raw contains token3 -%}{% assign start_token = token3 %}
+{%- else -%}{% assign start_token = token4 %}{%- endif -%}
 
-{% assign toc_parts = body_from_start | split: '## Table of Contents' %}
-{% assign pre_toc = toc_parts[0] %}
-{% assign post_toc = toc_parts[1] %}
+{%- assign after_start = readme_raw | split: start_token -%}
+{%- if after_start.size > 1 -%}
+  {%- capture from_car %}{{ start_token }}{{ after_start[1] }}{% endcapture %}
+{%- else -%}
+  {%- assign from_car = readme_raw -%}
+{%- endif -%}
 
-{%- comment -%}
-Remove the README’s own mobile About-card (it starts with this comment in README).
-Everything between that marker and the Table of Contents is dropped; we’ll inject our own.
-{%- endcomment -%}
-{% assign strip_mobile_marker = '<!-- ===== Mobile-only Author Card injected AFTER the story section ===== -->' %}
-{% if pre_toc contains strip_mobile_marker %}
-  {% assign pre_toc = pre_toc | split: strip_mobile_marker | first %}
-{% endif %}
+{%- assign toc_parts = from_car | split: '## Table of Contents' -%}
+{%- assign pre_toc = toc_parts[0] -%}
+{%- assign post_toc = toc_parts[1] -%}
+
+{%- comment -%} strip README’s own mobile author card if present {%- endcomment -%}
+{%- assign strip_marker = '<!-- ===== Mobile-only Author Card injected AFTER the story section ===== -->' -%}
+{%- if pre_toc contains strip_marker -%}
+  {%- assign pre_toc = pre_toc | split: strip_marker | first -%}
+{%- endif -%}
 
 {%- capture back_orig -%}<div align="right"><a href="#site-top">↑ Back to top</a></div>{%- endcapture -%}
 {%- capture back_classed -%}<div class="car-backlink" align="right"><a href="#site-top">↑ Back to top</a></div>{%- endcapture -%}
-{% assign car_html = pre_toc | replace: back_orig, back_classed %}
+{%- assign car_html = pre_toc | replace: back_orig, back_classed -%}
 
 {{ car_html | markdownify }}
 
@@ -55,8 +58,8 @@ Everything between that marker and the Table of Contents is dropped; we’ll inj
   </a>
 
   <div class="author-card__name">{{ site.author }}</div>
-  {% if site.author_title %}<div class="author-card__title">{{ site.author_title }}</div>{% endif %}
-  {% if site.author_subtitle %}<div class="author-card__subtitle">{{ site.author_subtitle }}</div>{% endif %}
+  {% if site.author_title %}<div class="author-card__title"><em>{{ site.author_title }}</em></div>{% endif %}
+  {% if site.author_summary %}<p class="author-card__summary">{{ site.author_summary }}</p>{% endif %}
 
   <div class="author-card__links">
     {% for l in site.author_links %}
@@ -74,5 +77,3 @@ Everything between that marker and the Table of Contents is dropped; we’ll inj
   {% capture rest %}## Table of Contents{{ post_toc }}{% endcapture %}
   {{ rest | markdownify }}
 {% endif %}
-
-
