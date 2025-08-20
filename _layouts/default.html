@@ -14,48 +14,52 @@
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#0f3b22" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#0b2e1a" />
 
-    <!-- Preload hero image to reduce layout shift (prevents mid-page starts) -->
+    <!-- Preload hero image to reduce layout shift -->
     {% if site.hero_screenshot_url %}
       <link rel="preload" as="image" href="{{ site.hero_screenshot_url }}">
     {% endif %}
 
     <!-- Cayman first, then our overrides (cache-busted) -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle37" />
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle37" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle48" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle48" />
 
-    <!-- Ultra-early scroll control (runs before content expands) -->
+    <!-- EARLY mobile guard: add #page-top hash on first load (no deep link) -->
     <script>
       (function () {
-        // Force top-of-page on plain loads. We will not override deep links.
-        if (!location.hash) {
-          try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch(e){}
-          window.scrollTo(0, 0);
-          document.documentElement.scrollTop = 0;
-          document.body.scrollTop = 0;
+        if (location.hash) return; // respect deep links
+        try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch(e){}
+
+        var isMobile =
+          /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+          (window.matchMedia && window.matchMedia('(max-width: 980px)').matches);
+
+        if (isMobile) {
+          var url = location.pathname + location.search + '#page-top';
+          if (!location.href.endsWith('#page-top')) location.replace(url);
         }
       })();
     </script>
   </head>
   <body>
 
+    <!-- Absolute top-of-page anchor used by the mobile start-at-top fix -->
+    <div id="page-top" style="position:absolute;top:0;left:0;width:1px;height:1px;"></div>
+
     <!-- ===== Sticky Top Nav ===== -->
     <nav class="top-nav">
       <div class="brand">✨ Main Menu ✨</div>
       <div class="top-nav__right">
         <a class="nav-btn" href="https://findliad.github.io/Data-Backed-Decision-Making-for-Youtube-Campaigns/">Last Project</a>
-
-        <!-- Home label swaps on mobile -->
         <a class="nav-btn nav-home" href="https://findliad.github.io/">
           <span class="label-desktop">Return to Home Portfolio</span>
           <span class="label-mobile">Home Portfolio</span>
         </a>
-
         <a class="nav-btn" href="{{ site.next_project_url | default: '#' }}">Next Project</a>
       </div>
     </nav>
 
-    <!-- ===== HERO ===== -->
-    <header class="hero-split" id="top">
+    <!-- ===== HERO (this is where Back to top will land) ===== -->
+    <header class="hero-split" id="hero">
       <!-- Column 1: Author (desktop/wide screens only) -->
       <aside class="author-card author-card--desktop">
         <div class="author-card__heading">About the Author</div>
@@ -89,7 +93,6 @@
         {% endif %}
 
         {% if site.hero_screenshot_url %}
-          <!-- Reserve aspect ratio to prevent layout shift -->
           <img class="hero-screenshot"
                src="{{ site.hero_screenshot_url }}"
                alt="Dashboard preview"
@@ -124,39 +127,31 @@
       </footer>
     </main>
 
-    <!-- Late scroll control (handles images/fonts and bfcache restores on mobile/desktop) -->
+    <!-- Late scroll control (extra guards for iOS/Safari/in-app browsers) -->
     <script>
       (function () {
+        function toTop() {
+          if (!location.hash) {
+            var topAnchor = document.getElementById('page-top');
+            if (topAnchor) { try { topAnchor.scrollIntoView({ block:'start' }); } catch(e){} }
+            window.scrollTo(0, 0);
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+          }
+        }
         if (location.hash) return;
 
-        function toTop() {
-          window.scrollTo(0, 0);
-          document.documentElement.scrollTop = 0;
-          document.body.scrollTop = 0;
-        }
-
-        // On DOM ready and load
         document.addEventListener('DOMContentLoaded', toTop, { once:true });
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function(){
           requestAnimationFrame(toTop);
           setTimeout(toTop, 0);
-          setTimeout(toTop, 100);
-          setTimeout(toTop, 250);
+          setTimeout(toTop, 120);
+          setTimeout(toTop, 260);
         });
-
-        // On bfcache restore (Safari/Firefox mobile)
         window.addEventListener('pageshow', function(e){
-          if (e.persisted) toTop();
-        });
-
-        // As a final guard (some in-app browsers), when tab becomes visible
-        document.addEventListener('visibilitychange', function () {
-          if (document.visibilityState === 'visible' && !location.hash) {
-            setTimeout(toTop, 0);
-          }
+          if (e.persisted && !location.hash) toTop();
         });
       })();
     </script>
   </body>
 </html>
-
