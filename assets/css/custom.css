@@ -1,3 +1,5 @@
+/* File: Human-Resources-Data-Visualization-Dashboard/assets/css/custom.css */
+
 /* ================= Theme palette ================= */
 :root{
   --bg:          #eaf3ea;
@@ -79,8 +81,6 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
   display:flex; flex-direction:column; align-items:center; text-align:center; padding: 10px 18px;
 }
 .hero-main__title{ font-size: 1.9rem; margin:.2rem 0 .35rem; font-weight:900; letter-spacing:.2px; }
-
-/* Welcome + tagline (width aligned to H1 via script in layout if present) */
 .hero-main__welcome{ font-size: 1.1rem; font-weight: 900; margin: .15rem 0 .35rem; letter-spacing: .2px; opacity:.98; }
 .hero-main__tagline{
   opacity:.95; margin:.1rem auto 1.0rem; font-style: italic; font-size: calc(1rem - 3px);
@@ -172,7 +172,7 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
 
 .story-copy{
   padding: 20px 22px;
-  display:flex; flex-direction:column; justify-content:flex-start;
+  display:flex; flex-direction:column; justify-content:flex-start; /* top-aligned */
   background: var(--card-bg-2);
 }
 .story-copy h3{ margin: 2px 0 10px; font-size: 1.12rem; color: var(--link-hover); }
@@ -200,36 +200,42 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
   background:var(--card-border); opacity:.9;
 }
 
-/* Mobile About card used in page body (hidden on desktop by default) */
+/* Mobile About card used in page body (hidden on desktop) */
 .author-card--mobile{ display:none; margin: 18px 0 0; }
 
-/* ===== Back-to-top placement & faint divider for mobile/compact ===== */
-.car-backlink{ display:block; }          /* keep README inline Back to top on desktop */
+/* ===== Back-to-top placement & divider hooks ===== */
+.car-backlink{ display:block; }          /* desktop (README inline) */
 .backlink--injected{ display:none; }
 .backlink--after-author{ display:none; }
 .m-divider{ display:none; }
 
 /* ========== Responsive ========== */
 @media (max-width: 1140px){
-  /* Treat "compressed desktop" like mobile for About placement */
+  /* compressed desktop acts like mobile for placement */
   .hero-split{ grid-template-columns: 1fr; padding: 18px 14px 20px; }
   .author-card--desktop{ display:none; }
   .hero-divider{ display:none; }
 
-  /* Show mobile About card after Summary */
+  /* show mobile About card after Summary */
   .author-card--mobile{ display:block; }
 
-  /* Mobile back-to-tops: one between Summary & About, one after About */
+  /* Back-to-top: one between Summary & About, one after About (match P1 spacing) */
   .car-backlink{ display:none; }
-  .backlink--injected{ display:block; }
-  .backlink--after-author{ display:block; }
-
+  .backlink--injected{ display:block; text-align:right; margin: 10px 0 8px; }
   .m-divider{
     display:block;
     border:0;
     border-top:1px solid var(--card-border);
-    margin: 10px 0 6px;
+    margin: 10px 0 8px;
   }
+  .author-card--mobile{ margin: 18px 0 6px; }
+  .backlink--after-author{
+    display:block;
+    text-align:right;
+    margin: 8px 0 16px;
+  }
+  .backlink--injected a,
+  .backlink--after-author a{ color: var(--link); }
 
   .hero-screenshot{ width: 520px; }
 }
@@ -250,6 +256,7 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
   .story-row .story-copy{ order:1; }
   .story-row .story-img-wrap{ order:2; align-self: center; }
 }
+
 
 
 
