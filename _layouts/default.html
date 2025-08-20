@@ -20,8 +20,8 @@
     {% endif %}
 
     <!-- Cayman first, then our overrides (cache-busted) -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle22" />
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle22" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle26" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle26" />
 
     <!-- Ultra-early scroll control (runs before content expands) -->
     <script>
@@ -41,6 +41,9 @@
   </head>
   <body>
 
+    <!-- Absolute top anchor for hash-based jump -->
+    <a id="top" style="position:absolute; top:0; left:0; width:0; height:0; overflow:hidden;"></a>
+
     <!-- ===== Sticky Top Nav ===== -->
     <nav class="top-nav">
       <div class="brand">✨ Main Menu ✨</div>
@@ -58,7 +61,7 @@
     </nav>
 
     <!-- ===== HERO ===== -->
-    <header class="hero-split" id="top">
+    <header class="hero-split">
       <!-- Column 1: Author (desktop/wide screens only) -->
       <aside class="author-card author-card--desktop">
         <div class="author-card__heading">About the Author</div>
@@ -130,6 +133,7 @@
     <!-- Late scroll control (handles images/fonts and bfcache restores on mobile/desktop) -->
     <script>
       (function () {
+        // Respect deep links; only force top on plain loads
         if (location.hash) return;
 
         function toTop() {
@@ -145,16 +149,22 @@
           setTimeout(toTop, 0);
           setTimeout(toTop, 100);
           setTimeout(toTop, 250);
+
+          // Mobile-only hard fallback: set hash to #top once on fresh loads
+          try {
+            var isMobile = /Mobi|Android/i.test(navigator.userAgent);
+            if (isMobile && !location.hash) {
+              // Use replace so we don't add a history entry
+              location.replace('#top');
+            }
+          } catch(e){}
         });
 
         // On bfcache restore (Safari/Firefox mobile)
         window.addEventListener('pageshow', function(e){
-          if (e.persisted) toTop();
+          if (e.persisted && !location.hash) toTop();
         });
       })();
     </script>
   </body>
 </html>
-
-
-
