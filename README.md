@@ -41,10 +41,10 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
     <div class="story-copy">
       <h3>Action</h3>
       <p>
-        &nbsp;&nbsp;&nbsp;&nbsp;First I delivered the foundation—secure, role-based dashboards with unified KPIs, cutting manual reporting by 40%.<br> 
-        &nbsp;&nbsp;&nbsp;&nbsp;Then, once governance rules were hardened, we released advanced DEI filters and forecasting. The impact was immediate: executives finally trusted their models, finance tracked costs in real time, HR advanced DEI with confidence.<br> 
-        &nbsp;&nbsp;&nbsp;&nbsp;<i>In a labor-heavy industry, that clarity was game-changing. The HR leader who once resisted?</i><br> 
-        &nbsp;&nbsp;&nbsp;&nbsp;They became our <b>biggest champion—showcasing the dashboard as the new standard across the enterprise.</b>
+        First I delivered the foundation—secure, role-based dashboards with unified KPIs, cutting manual reporting by 40%.<br><br> 
+        Then, once governance rules were hardened, we released advanced DEI filters and forecasting. <b>The impact was immediate: executives finally trusted their models, finance tracked costs in real time, HR advanced DEI with confidence.</b><br><br> 
+        <i>In a labor-heavy industry, that clarity was game-changing. The HR leader who once resisted?</i><br><br> 
+        They became our <b>biggest champion—showcasing the dashboard as the new standard across the enterprise.</b>
       </p>
     </div>
   </div>
@@ -54,10 +54,8 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
     <div class="story-copy">
       <h3>Result</h3>
       <p>
-       Phase one delivered a secure, role-based dashboard with demographics, salary, tenure, and performance, reducing manual reporting 40%. 
-       
-       Phase two unlocked DEI filters, released safely once governance rules hardened. Executives gained confidence modeling headcount scenarios, finance tracked workforce costs in real time, and HR leaders advanced DEI with trust. 
-       
+       Phase one delivered a secure, role-based dashboard with demographics, salary, tenure, and performance, reducing manual reporting 40%.<br><br>
+       Phase two unlocked DEI filters, released safely once governance rules hardened. Executives gained confidence modeling headcount scenarios, finance tracked workforce costs in real time, and HR leaders advanced DEI with trust.<br><br> 
        What began as fractured, error-prone reporting became an enterprise-wide decision engine. Most importantly, the once-skeptical HR leader became its loudest advocate, championing the tool to peers as a new standard for data-driven workforce planning..
       </p>
     </div>
