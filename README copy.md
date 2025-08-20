@@ -80,9 +80,6 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
   {% if site.author_title %}
     <div class="author-card__title">{{ site.author_title }}</div>
   {% endif %}
-  {% if site.author_subtitle %}
-    <div class="author-card__subtitle">{{ site.author_subtitle }}</div>
-  {% endif %}
   <div class="author-card__links">
     {% for l in site.author_links %}
       <a class="author-card__btn" href="{{ l.url | escape }}" target="_blank" rel="noopener noreferrer">
@@ -91,7 +88,6 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
     {% endfor %}
   </div>
 </div>
-
 
 <div align="right"><a href="#site-top">↑ Back to top</a></div>
 

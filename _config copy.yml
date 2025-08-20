@@ -8,7 +8,6 @@ url: "https://findliad.github.io"          # << absolute site URL for Open Graph
 
 author_title: "Senior Product Manager • AI Data-Driven Solutions"
 author_photo: "/Human-Resources-Data-Visualization-Dashboard/assets/images/liad-mizrachi.jpg"
-author_subtitle: "I’m an independent critical thinker pursuing projects that deepen my technical fluency and showcase product sense in real-world scenarios."
 
 author_links:
   - label: "Portfolio"
@@ -35,10 +34,6 @@ og_image: "/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-
 cartoon_context: "/Human-Resources-Data-Visualization-Dashboard/assets/images/story-context.png"
 cartoon_action:  "/Human-Resources-Data-Visualization-Dashboard/assets/images/story-action.png"
 cartoon_result:  "/Human-Resources-Data-Visualization-Dashboard/assets/images/story-result.png"
-
-# === Match Project 1 hero copy/style ===
-hero_welcome: "Welcome!"
-hero_tagline: "This project site is a reimagined real-world business case I faced.\nFeatured is a 1:1 practical walk-through of my thinking in the scenario, trade-offs, and execution as I did in my professional setting—shared without the sensitive business details!"
 
 # Links used by the hero buttons
 live_dashboard_url: "https://public.tableau.com/app/profile/liad.mizrachi/viz/HRProject_17554488176360/hr_dashboard?publish=yes"
