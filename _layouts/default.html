@@ -20,8 +20,8 @@
     {% endif %}
 
     <!-- Cayman first, then our overrides (cache-busted) -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle37" />
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle37" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle43" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle43" />
 
     <!-- Ultra-early scroll control (runs before content expands) -->
     <script>
@@ -127,9 +127,13 @@
     <!-- Late scroll control (handles images/fonts and bfcache restores on mobile/desktop) -->
     <script>
       (function () {
+        // Don't override deep links
         if (location.hash) return;
 
         function toTop() {
+          // Prefer the #top anchor if present (works reliably on mobile in-app browsers)
+          var topEl = document.getElementById('top');
+          if (topEl) { try { topEl.scrollIntoView({ block: 'start', inline: 'nearest' }); } catch(e){} }
           window.scrollTo(0, 0);
           document.documentElement.scrollTop = 0;
           document.body.scrollTop = 0;
@@ -149,12 +153,15 @@
           if (e.persisted) toTop();
         });
 
-        // As a final guard (some in-app browsers), when tab becomes visible
-        document.addEventListener('visibilitychange', function () {
-          if (document.visibilityState === 'visible' && !location.hash) {
-            setTimeout(toTop, 0);
+        // Extra-strong guard for mobile & in-app browsers: add #top once
+        try {
+          var isMobile = window.matchMedia && window.matchMedia('(max-width: 980px)').matches;
+          if (isMobile && !location.hash && !sessionStorage.getItem('forcedTopOnce')) {
+            sessionStorage.setItem('forcedTopOnce', '1');
+            // Using replace avoids an extra history entry
+            location.replace(location.pathname + location.search + '#top');
           }
-        });
+        } catch(e){}
       })();
     </script>
   </body>
