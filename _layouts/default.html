@@ -20,30 +20,28 @@
     {% endif %}
 
     <!-- Cayman first, then our overrides (cache-busted) -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle48" />
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle48" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle53" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle53" />
 
-    <!-- EARLY mobile guard: add #page-top hash on first load (no deep link) -->
+    <!-- EARLY guard: for first loads with no hash, force #site-top so all browsers start at absolute top -->
     <script>
       (function () {
-        if (location.hash) return; // respect deep links
+        if (location.hash) return; // respect deep links and back/forward navigations
         try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch(e){}
 
-        var isMobile =
-          /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
-          (window.matchMedia && window.matchMedia('(max-width: 980px)').matches);
-
-        if (isMobile) {
-          var url = location.pathname + location.search + '#page-top';
-          if (!location.href.endsWith('#page-top')) location.replace(url);
+        var isNarrow = (window.matchMedia && window.matchMedia('(max-width: 980px)').matches);
+        var isMobileUA = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        if (isNarrow || isMobileUA) {
+          var url = location.pathname + location.search + '#site-top';
+          if (!location.href.endsWith('#site-top')) location.replace(url);
         }
       })();
     </script>
   </head>
   <body>
 
-    <!-- Absolute top-of-page anchor used by the mobile start-at-top fix -->
-    <div id="page-top" style="position:absolute;top:0;left:0;width:1px;height:1px;"></div>
+    <!-- ABSOLUTE TOP OF SITE (above the nav). All "Back to top" links and the mobile load guard land here. -->
+    <div id="site-top" style="position:absolute;top:0;left:0;width:1px;height:1px;"></div>
 
     <!-- ===== Sticky Top Nav ===== -->
     <nav class="top-nav">
@@ -58,7 +56,7 @@
       </div>
     </nav>
 
-    <!-- ===== HERO (this is where Back to top will land) ===== -->
+    <!-- ===== HERO (kept for layout; no longer the back-to-top anchor) ===== -->
     <header class="hero-split" id="hero">
       <!-- Column 1: Author (desktop/wide screens only) -->
       <aside class="author-card author-card--desktop">
@@ -130,10 +128,12 @@
     <!-- Late scroll control (extra guards for iOS/Safari/in-app browsers) -->
     <script>
       (function () {
-        function toTop() {
+        function toAbsoluteTop() {
           if (!location.hash) {
-            var topAnchor = document.getElementById('page-top');
-            if (topAnchor) { try { topAnchor.scrollIntoView({ block:'start' }); } catch(e){} }
+            var topAnchor = document.getElementById('site-top');
+            if (topAnchor && topAnchor.scrollIntoView) {
+              try { topAnchor.scrollIntoView({ block:'start' }); } catch(e){}
+            }
             window.scrollTo(0, 0);
             document.documentElement.scrollTop = 0;
             document.body.scrollTop = 0;
@@ -141,15 +141,15 @@
         }
         if (location.hash) return;
 
-        document.addEventListener('DOMContentLoaded', toTop, { once:true });
+        document.addEventListener('DOMContentLoaded', toAbsoluteTop, { once:true });
         window.addEventListener('load', function(){
-          requestAnimationFrame(toTop);
-          setTimeout(toTop, 0);
-          setTimeout(toTop, 120);
-          setTimeout(toTop, 260);
+          requestAnimationFrame(toAbsoluteTop);
+          setTimeout(toAbsoluteTop, 0);
+          setTimeout(toAbsoluteTop, 120);
+          setTimeout(toAbsoluteTop, 260);
         });
         window.addEventListener('pageshow', function(e){
-          if (e.persisted && !location.hash) toTop();
+          if (e.persisted && !location.hash) toAbsoluteTop();
         });
       })();
     </script>

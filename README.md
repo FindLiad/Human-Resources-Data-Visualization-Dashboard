@@ -100,7 +100,7 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
   </div>
 </div>
 
-<div align="right"><a href="#hero">↑ Back to top</a></div>
+<div align="right"><a href="#site-top">↑ Back to top</a></div>
 
 ---
 
@@ -132,7 +132,7 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
 2. Explain *why* a trend is occurring (transparent inputs).  
 3. Refresh quickly when new HR data arrives.  
 
-<div align="right"><a href="#hero">↑ Back to top</a></div>
+<div align="right"><a href="#site-top">↑ Back to top</a></div>
 
 ---
 
@@ -144,7 +144,7 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
 
 **Why this approach?** It’s **fast, portable, and auditable**—teams can open the script, CSVs, and workbook to understand exactly how metrics are produced.
 
-<div align="right"><a href="#hero">↑ Back to top</a></div>
+<div align="right"><a href="#site-top">↑ Back to top</a></div>
 
 ---
 
@@ -169,17 +169,7 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
 - **Diversity Mix** = representation across gender/state/education.  
 - **Comp Band Fit** = midpoint variance vs. performance rating.
 
-### 5) Visualize in Tableau
-- Workbook: `assets/visualizations/HR Project.twbx`  
-- Data source: `assets/data/dataset.csv`  
-
-**Dashboard Components**
-- KPI tiles for Attrition, Avg Salary, Hiring Funnel metrics.  
-- Breakdown by Department, Job Role, Gender.  
-- Funnel view for recruitment stages.  
-- Salary distribution plots.
-
-<div align="right"><a href="#hero">↑ Back to top</a></div>
+<div align="right"><a href="#site-top">↑ Back to top</a></div>
 
 ---
 
@@ -206,7 +196,7 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
   <figcaption>Final Interface</figcaption>
 </figure>
 
-<div align="right"><a href="#hero">↑ Back to top</a></div>
+<div align="right"><a href="#site-top">↑ Back to top</a></div>
 
 ---
 
@@ -224,7 +214,7 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
   - Container Design → `/assets/images/tableu-container-design.png`  
   - Final Dashboard → `/assets/images/finished-dashboard.png`  
 
-<div align="right"><a href="#hero">↑ Back to top</a></div>
+<div align="right"><a href="#site-top">↑ Back to top</a></div>
 
 ---
 
@@ -235,7 +225,7 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
 4. Explore the dashboard; publish to Tableau Public if desired.  
 5. To refresh later: rerun the script → re-open workbook (data updates automatically).
 
-<div align="right"><a href="#hero">↑ Back to top</a></div>
+<div align="right"><a href="#site-top">↑ Back to top</a></div>
 
 ---
 
@@ -246,7 +236,7 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
 - Next: connect to live HRIS export for scheduled refresh.  
 - Add predictive attrition risk modeling.
 
-<div align="right"><a href="#hero">↑ Back to top</a></div>
+<div align="right"><a href="#site-top">↑ Back to top</a></div>
 
 ---
 
@@ -255,4 +245,4 @@ Adapted from the open-source HR Analytics tutorial by [Data With Baraa](https://
 This version re-implements the workflow with my own repo, structure, and documentation.  
 © Liad Mizrachi.
 
-<div align="right"><a href="#hero">↑ Back to top</a></div>
+<div align="right"><a href="#site-top">↑ Back to top</a></div>
