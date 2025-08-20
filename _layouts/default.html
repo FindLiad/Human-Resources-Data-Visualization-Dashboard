@@ -14,54 +14,61 @@
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#0f3b22" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#0b2e1a" />
 
+    <!-- Preload hero image to reduce layout shift (prevents mid-page starts) -->
     {% if site.hero_screenshot_url %}
-      <!-- Preload hero image to reduce layout shift -->
       <link rel="preload" as="image" href="{{ site.hero_screenshot_url }}">
     {% endif %}
 
-    <!-- Cache-busted styles -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle31" />
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle31" />
+    <!-- Cayman first, then our overrides (cache-busted) -->
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle37" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle37" />
 
-    <!-- Early: keep at top (respect deep links) -->
+    <!-- Ultra-early scroll control (runs before content expands) -->
     <script>
       (function () {
-        if (location.hash) return;
-        try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch(e){}
-        window.scrollTo(0, 0);
-        document.documentElement.scrollTop = 0;
-        document.body.scrollTop = 0;
+        // Force top-of-page on plain loads. We will not override deep links.
+        if (!location.hash) {
+          try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch(e){}
+          window.scrollTo(0, 0);
+          document.documentElement.scrollTop = 0;
+          document.body.scrollTop = 0;
+        }
       })();
     </script>
   </head>
   <body>
-    <!-- True top anchor -->
-    <div id="top-anchor" class="top-anchor" aria-hidden="true"></div>
 
     <!-- ===== Sticky Top Nav ===== -->
     <nav class="top-nav">
       <div class="brand">✨ Main Menu ✨</div>
       <div class="top-nav__right">
         <a class="nav-btn" href="https://findliad.github.io/Data-Backed-Decision-Making-for-Youtube-Campaigns/">Last Project</a>
+
+        <!-- Home label swaps on mobile -->
         <a class="nav-btn nav-home" href="https://findliad.github.io/">
           <span class="label-desktop">Return to Home Portfolio</span>
           <span class="label-mobile">Home Portfolio</span>
         </a>
+
         <a class="nav-btn" href="{{ site.next_project_url | default: '#' }}">Next Project</a>
       </div>
     </nav>
 
     <!-- ===== HERO ===== -->
     <header class="hero-split" id="top">
+      <!-- Column 1: Author (desktop/wide screens only) -->
       <aside class="author-card author-card--desktop">
         <div class="author-card__heading">About the Author</div>
+
         <a href="{{ site.author_photo }}" target="_blank" rel="noopener">
           <img class="author-card__photo" src="{{ site.author_photo }}" alt="{{ site.author }}" />
         </a>
+
         <div class="author-card__name">{{ site.author }}</div>
         {% if site.author_title %}
           <div class="author-card__title">{{ site.author_title }}</div>
         {% endif %}
+
         <div class="author-card__links">
           {% for l in site.author_links %}
             <a class="author-card__btn" href="{{ l.url | escape }}" target="_blank" rel="noopener noreferrer">
@@ -71,8 +78,10 @@
         </div>
       </aside>
 
+      <!-- Center divider — equal margins both sides -->
       <div class="hero-divider" aria-hidden="true"></div>
 
+      <!-- Column 2: Project -->
       <section class="hero-main">
         <h1 class="hero-main__title">Project 2 | Human Resource Dashboard</h1>
         {% if site.description %}
@@ -80,12 +89,14 @@
         {% endif %}
 
         {% if site.hero_screenshot_url %}
+          <!-- Reserve aspect ratio to prevent layout shift -->
           <img class="hero-screenshot"
                src="{{ site.hero_screenshot_url }}"
                alt="Dashboard preview"
                decoding="async" fetchpriority="high" />
         {% endif %}
 
+        <!-- Row layout; when wrapping there is no vertical gap between rows -->
         <div class="hero-actions">
           {% if site.live_dashboard_url %}
             <a class="btn" href="{{ site.live_dashboard_url }}" target="_blank" rel="noopener">View Live Dashboard</a>
@@ -113,29 +124,37 @@
       </footer>
     </main>
 
-    <!-- Late: aggressively pin to top on first view / image settle / bfcache restore -->
+    <!-- Late scroll control (handles images/fonts and bfcache restores on mobile/desktop) -->
     <script>
       (function () {
         if (location.hash) return;
 
-        function forceTopFrames(frames){
-          let n = 0;
-          function tick(){
-            window.scrollTo(0, 0);
-            document.documentElement.scrollTop = 0;
-            document.body.scrollTop = 0;
-            if (++n < frames) requestAnimationFrame(tick);
-          }
-          requestAnimationFrame(tick);
+        function toTop() {
+          window.scrollTo(0, 0);
+          document.documentElement.scrollTop = 0;
+          document.body.scrollTop = 0;
         }
 
-        document.addEventListener('DOMContentLoaded', () => forceTopFrames(8), {once:true});
-        window.addEventListener('load', () => {
-          forceTopFrames(12);
-          setTimeout(() => forceTopFrames(12), 150);
-          setTimeout(() => forceTopFrames(12), 450);
-        }, {once:true});
-        window.addEventListener('pageshow', e => { if (e.persisted) forceTopFrames(12); });
+        // On DOM ready and load
+        document.addEventListener('DOMContentLoaded', toTop, { once:true });
+        window.addEventListener('load', function() {
+          requestAnimationFrame(toTop);
+          setTimeout(toTop, 0);
+          setTimeout(toTop, 100);
+          setTimeout(toTop, 250);
+        });
+
+        // On bfcache restore (Safari/Firefox mobile)
+        window.addEventListener('pageshow', function(e){
+          if (e.persisted) toTop();
+        });
+
+        // As a final guard (some in-app browsers), when tab becomes visible
+        document.addEventListener('visibilitychange', function () {
+          if (document.visibilityState === 'visible' && !location.hash) {
+            setTimeout(toTop, 0);
+          }
+        });
       })();
     </script>
   </body>
