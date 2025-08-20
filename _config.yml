@@ -1,12 +1,15 @@
+# File: Human-Resources-Data-Visualization-Dashboard/_config.yml
 title: "Human Resources Data Visualization Dashboard"
-description: "Leadership-facing HR analytics: Attrition, Hiring Funnel, Diversity, and Compensation."
+description: |
+  This project site is a reimagined real-world business case I faced.
+  Featured is a 1:1 practical walk-through of my thinking, trade-offs, and execution as I did in my professional setting—shared without the sensitive business details!
 author: "Liad Mizrachi"
 
+# MUST match repo name (case-sensitive)
 baseurl: "/Human-Resources-Data-Visualization-Dashboard"
 url: "https://findliad.github.io"
 
 author_title: "Senior Product Manager"
-author_subtitle: "I’m an independent critical thinker pursuing projects that deepen my technical fluency and showcase product sense in real-world scenarios."
 author_photo: "/Human-Resources-Data-Visualization-Dashboard/assets/images/liad-mizrachi.jpg"
 
 author_links:
@@ -23,15 +26,22 @@ author_links:
     url: "mailto:Liad%20Mizrachi%20<FindLiad@gmail.com>"
     icon: "✉️"
 
+# Hero screenshot shown inside the banner
 hero_preview: "/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png"
 hero_screenshot_url: "/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png"
+
+# Image used for link previews (Open Graph/Twitter)
 og_image: "/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png"
 
+# Comic-strip images for Summary
 cartoon_context: "/Human-Resources-Data-Visualization-Dashboard/assets/images/story-context.png"
 cartoon_action:  "/Human-Resources-Data-Visualization-Dashboard/assets/images/story-action.png"
 cartoon_result:  "/Human-Resources-Data-Visualization-Dashboard/assets/images/story-result.png"
 
+# Links used by the hero buttons
 live_dashboard_url: "https://public.tableau.com/app/profile/liad.mizrachi/viz/HRProject_17554488176360/hr_dashboard?publish=yes"
+
+# Optional: next project link for the main menu (can be replaced later)
 next_project_url: "#"
 
 remote_theme: "pages-themes/cayman@v0.2.0"
@@ -43,4 +53,3 @@ readme_index:
 titles_from_headings:
   enabled: false
 show_downloads: false
-
