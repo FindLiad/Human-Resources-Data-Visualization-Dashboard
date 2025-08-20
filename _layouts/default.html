@@ -14,33 +14,27 @@
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#0f3b22" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#0b2e1a" />
 
-    <!-- Preload hero image to reduce layout shift -->
     {% if site.hero_screenshot_url %}
       <link rel="preload" as="image" href="{{ site.hero_screenshot_url }}">
     {% endif %}
 
     <!-- Cayman first, then our overrides (cache-busted) -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle53" />
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle53" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle54" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle54" />
 
-    <!-- EARLY guard: for first loads with no hash, force #site-top so all browsers start at absolute top -->
+    <!-- EARLY: ensure first load starts at absolute top (above the hero) -->
     <script>
       (function () {
-        if (location.hash) return; // respect deep links and back/forward navigations
+        if (location.hash) return; // respect deep links / section links
         try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch(e){}
-
-        var isNarrow = (window.matchMedia && window.matchMedia('(max-width: 980px)').matches);
-        var isMobileUA = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-        if (isNarrow || isMobileUA) {
-          var url = location.pathname + location.search + '#site-top';
-          if (!location.href.endsWith('#site-top')) location.replace(url);
-        }
+        var target = location.pathname + location.search + '#site-top';
+        if (location.href.indexOf('#site-top') === -1) location.replace(target);
       })();
     </script>
   </head>
   <body>
 
-    <!-- ABSOLUTE TOP OF SITE (above the nav). All "Back to top" links and the mobile load guard land here. -->
+    <!-- Absolute top-of-site anchor (sits above the sticky nav) -->
     <div id="site-top" style="position:absolute;top:0;left:0;width:1px;height:1px;"></div>
 
     <!-- ===== Sticky Top Nav ===== -->
@@ -56,9 +50,8 @@
       </div>
     </nav>
 
-    <!-- ===== HERO (kept for layout; no longer the back-to-top anchor) ===== -->
+    <!-- ===== HERO ===== -->
     <header class="hero-split" id="hero">
-      <!-- Column 1: Author (desktop/wide screens only) -->
       <aside class="author-card author-card--desktop">
         <div class="author-card__heading">About the Author</div>
 
@@ -80,10 +73,8 @@
         </div>
       </aside>
 
-      <!-- Center divider — equal margins both sides -->
       <div class="hero-divider" aria-hidden="true"></div>
 
-      <!-- Column 2: Project -->
       <section class="hero-main">
         <h1 class="hero-main__title">Project 2 | Human Resource Dashboard</h1>
         {% if site.description %}
@@ -97,7 +88,6 @@
                decoding="async" fetchpriority="high" />
         {% endif %}
 
-        <!-- Row layout; when wrapping there is no vertical gap between rows -->
         <div class="hero-actions">
           {% if site.live_dashboard_url %}
             <a class="btn" href="{{ site.live_dashboard_url }}" target="_blank" rel="noopener">View Live Dashboard</a>
@@ -125,33 +115,34 @@
       </footer>
     </main>
 
-    <!-- Late scroll control (extra guards for iOS/Safari/in-app browsers) -->
+    <!-- LATE: reassert top for mobile/iOS/Safari and in-app browsers -->
     <script>
       (function () {
-        function toAbsoluteTop() {
-          if (!location.hash) {
-            var topAnchor = document.getElementById('site-top');
-            if (topAnchor && topAnchor.scrollIntoView) {
-              try { topAnchor.scrollIntoView({ block:'start' }); } catch(e){}
-            }
-            window.scrollTo(0, 0);
-            document.documentElement.scrollTop = 0;
-            document.body.scrollTop = 0;
-          }
-        }
         if (location.hash) return;
-
+        function toAbsoluteTop() {
+          var a = document.getElementById('site-top');
+          if (a && a.scrollIntoView) { try { a.scrollIntoView({block:'start'}); } catch(e){} }
+          window.scrollTo(0, 0);
+          document.documentElement.scrollTop = 0;
+          document.body.scrollTop = 0;
+        }
         document.addEventListener('DOMContentLoaded', toAbsoluteTop, { once:true });
-        window.addEventListener('load', function(){
+        window.addEventListener('load', function () {
           requestAnimationFrame(toAbsoluteTop);
           setTimeout(toAbsoluteTop, 0);
-          setTimeout(toAbsoluteTop, 120);
-          setTimeout(toAbsoluteTop, 260);
+          setTimeout(toAbsoluteTop, 150);
+          setTimeout(toAbsoluteTop, 300);
+          setTimeout(toAbsoluteTop, 600);
+          setTimeout(toAbsoluteTop, 1000);
         });
-        window.addEventListener('pageshow', function(e){
+        window.addEventListener('pageshow', function (e) {
           if (e.persisted && !location.hash) toAbsoluteTop();
+        });
+        window.addEventListener('orientationchange', function () {
+          setTimeout(toAbsoluteTop, 50);
         });
       })();
     </script>
   </body>
 </html>
+

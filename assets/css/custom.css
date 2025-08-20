@@ -14,7 +14,7 @@
   --hero-grad-2: #0f3b22;
   --hero-grad-3: #1f6a3a;
 
-  --nav-glass:   rgba(28, 82, 46, .70);   /* green-tinted frosted */
+  --nav-glass:   rgba(28, 82, 46, .70);
 }
 
 /* ========== Base ========== */
@@ -22,9 +22,8 @@ html, body {
   margin:0; padding:0; background:var(--bg); color:var(--text);
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
   line-height:1.55;
-  scroll-behavior: auto;        /* no smooth scroll on load */
+  scroll-behavior: auto;
 }
-html { overflow-anchor: none; }  /* prevent UA anchoring to mid-page */
 a { color:var(--link); text-decoration:none; }
 a:hover { color:var(--link-hover); text-decoration:underline; }
 pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius:8px; }
@@ -39,12 +38,11 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
   background: var(--nav-glass);
   border-bottom: 1px solid rgba(255,255,255,.18);
   color: #fff;
-  overflow-anchor: none; /* prevent nav expansion from shifting scroll */
+  overflow-anchor: none;
 }
 .top-nav .brand{
-  font-family: "Brush Script MT", "Brush Script Std", cursive;
   font-weight: 800;
-  font-size: 1rem;            /* base size (matches buttons) */
+  font-size: 1rem; /* same as buttons; desktop upscales via media query below */
   white-space: nowrap;
 }
 .top-nav__right{ display:flex; gap:2px; margin-left:auto; }
@@ -55,59 +53,41 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
   box-shadow:0 4px 12px rgba(0,0,0,.15);
 }
 .nav-btn:hover{ filter:brightness(1.06); }
-
-/* mobile-only label swap for home link */
 .label-mobile{ display:none; }
 .label-desktop{ display:inline; }
-
-/* Larger Main Menu title on desktop/wide screens (+12px over buttons) */
-@media (min-width: 981px){
-  .top-nav .brand{ font-size: calc(1rem + 12px); }
-}
 
 /* ========== HERO ========== */
 .hero-split{
   display:grid;
-  grid-template-columns: minmax(260px,320px) 1px 1fr; /* author | divider | main */
+  grid-template-columns: minmax(260px,320px) 1px 1fr;
   gap: 0;
   padding: 22px;
   border-bottom: 1px solid rgba(0,0,0,.06);
   background: linear-gradient(120deg,var(--hero-grad-1) 0%,var(--hero-grad-2) 45%,var(--hero-grad-3) 100%);
   color:#fff;
-  overflow-anchor: none; /* freeze top while hero settles */
+  overflow-anchor: none;
 }
-.hero-divider{
-  background: rgba(255,255,255,.18);
-  width:1px;
-  margin: 0 20px; /* equal horizontal breathing room */
-}
-
-.hero-main{
-  display:flex; flex-direction:column; align-items:center; text-align:center; padding: 10px 18px;
-}
+.hero-divider{ background: rgba(255,255,255,.18); width:1px; margin: 0 20px; }
+.hero-main{ display:flex; flex-direction:column; align-items:center; text-align:center; padding: 10px 18px; }
 .hero-main__title{ font-size: 1.9rem; margin:.2rem 0 .35rem; font-weight:900; letter-spacing:.2px; }
 .hero-main__tagline{ opacity:.95; max-width:760px; margin:.1rem 0 1.0rem; }
-
-/* Reserve aspect ratio to avoid reflow while image downloads */
 .hero-screenshot{
   width: 560px; max-width: 92%;
-  aspect-ratio: 16 / 10; /* reserve height; adjust if your hero image is different */
-  height:auto;
+  aspect-ratio: 16 / 10; height:auto;
   border-radius:10px; border:1px solid rgba(255,255,255,.20); box-shadow:0 10px 24px rgba(0,0,0,.35);
   margin-bottom: 12px;
 }
-/* Row layout with equal space above/below; no vertical gap when it wraps */
 .hero-actions{
   display:flex; flex-wrap:wrap; justify-content:center;
-  gap: 0 6px;        /* tiny horizontal gap; vertical gap = 0 */
-  margin: 14px 0;    /* equal space above and below */
+  gap: 0 6px;
+  margin: 14px 0;
 }
 .btn{
   display:inline-block; padding:.62rem .9rem; border-radius:10px; background:var(--accent);
   color:#fff; border:1px solid rgba(0,0,0,.05); font-weight:800; box-shadow:0 6px 16px rgba(0,0,0,.18);
 }
 
-/* Author card (desktop) */
+/* ===== Author card (desktop) ===== */
 .author-card{
   background: linear-gradient(135deg,#edf6f0 0%,#e6f1eb 100%),
               repeating-linear-gradient(45deg,rgba(31,122,46,.035) 0 10px,rgba(255,255,255,.035) 10px 20px);
@@ -127,12 +107,12 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
   background:#d8efe0; color:#122016; border:1px solid #c2e3d0; font-weight:600; }
 .author-card__btn:hover{ background:#cde9d8; }
 
-/* ========== “Business Requirements vs. Customer Needs” rows ========== */
-
+/* ========== Business Requirements vs Customer Needs ========== */
 .story-grid{ margin-top:.25rem; }
+
 .story-row{
   display:grid;
-  grid-template-columns: 44% 56%;   /* image gets more room; keeps proportions you approved */
+  grid-template-columns: 44% 56%;
   column-gap: 0;
   background: var(--card-bg);
   border: 1px solid var(--card-border);
@@ -140,11 +120,12 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
   box-shadow: 0 8px 20px rgba(0,0,0,.08);
   overflow: hidden;
   margin: 18px 0;
-  align-items: start;      /* let image define row height (prevents top/bottom borders) */
-  overflow-anchor: none;   /* avoid anchoring jumps as images load */
+  align-items: stretch;              /* let columns fill the row area */
+  overflow-anchor: none;
 }
 .story-row.rev{ grid-template-columns: 56% 44%; }
 
+/* text column */
 .story-copy{
   padding: 20px 22px;
   display:flex; flex-direction:column; justify-content:center;
@@ -153,31 +134,31 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
 .story-copy h3{ margin: 2px 0 10px; font-size: 1.12rem; color: var(--link-hover); }
 .story-copy p{ margin:0; }
 
+/* image column */
 .story-img-wrap{
-  margin:0; padding:0; display:flex; align-items:center; justify-content:center; background:var(--card-bg);
+  margin:0; padding:0;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--card-bg);
+  align-self: center;                /* center wrapper within the taller row (equal top/bottom spacing) */
 }
 .story-img{
-  width: 100%;
-  height: auto;
-  aspect-ratio: 3 / 2;     /* your 1200x800 images */
-  object-fit: contain;     /* full image, no crop */
+  width: 100%; height: auto;
+  aspect-ratio: 3 / 2;               /* your 1200x800s */
+  object-fit: contain;               /* never crop */
   display:block; border:0; box-shadow:none;
 }
 
-/* hairline between stacked rows */
+/* hairline between rows */
 .story-row + .story-row{ position:relative; }
 .story-row + .story-row::before{
   content:""; position:absolute; top:-8px; left:12px; right:12px; height:1px;
   background:var(--card-border); opacity:.9;
 }
 
-/* Mobile “About the Author” card that sits AFTER the story section */
-.author-card--mobile{
-  display:none; /* hidden on desktop */
-  margin: 18px 0 0;
-}
+/* Mobile author card appears after story section */
+.author-card--mobile{ display:none; margin:18px 0 0; }
 
-/* “Screenshots” figures later on the page */
+/* Figures later on the page */
 .centered-figure{ margin:0 auto 28px; text-align:center; max-width:980px; }
 .centered-figure img{ display:inline-block; max-width:100%; height:auto; border-radius:12px; border:1px solid var(--card-border); box-shadow:0 8px 24px rgba(0,0,0,.12); background:#fff; }
 .centered-figure figcaption{ margin-top:8px; font-weight:600; color:var(--muted); }
@@ -189,41 +170,26 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
 @media (max-width: 1140px){
   .hero-screenshot{ width: 520px; }
 }
-
 @media (max-width: 980px){
-  /* Top nav: brand centered above buttons */
-  .top-nav{
-    padding: 10px 10px;
-    flex-direction:column;
-    align-items:center;   /* center brand */
-    gap:8px;
-  }
-  .top-nav__right{
-    width:100%;
-    display:flex; gap:2px;
-    justify-content:center;  /* buttons centered as a row */
-    flex-wrap: nowrap;
-  }
+  .top-nav{ padding: 10px 10px; flex-direction:column; align-items:flex-start; gap:8px; }
+  .top-nav__right{ width:100%; display:flex; gap:2px; justify-content:space-between; }
   .label-desktop{ display:none; } .label-mobile{ display:inline; }
 
-  /* Hero becomes single column; divider & desktop author hidden */
   .hero-split{ grid-template-columns: 1fr; padding: 18px 14px 20px; }
   .author-card--desktop{ display:none; }
   .hero-divider{ display:none; }
   .hero-main__title{ font-size: 1.8rem; line-height: 1.15; }
-
-  /* Hero actions keep no vertical gap when wrapping */
   .hero-actions{ gap: 0 8px; margin: 14px 0; }
   .hero-screenshot{ width: 95%; max-width: 690px; }
 
-  /* Story rows: stack; always text first then image */
   .story-row, .story-row.rev{ grid-template-columns: 1fr; }
   .story-row .story-copy{ order:1; }
-  .story-row .story-img-wrap{ order:2; }
+  .story-row .story-img-wrap{ order:2; align-self: center; } /* keep vertical centering on mobile too */
 
-  /* Mobile author card appears under story grid */
   .author-card--mobile{ display:block; }
 }
+
+/* Desktop brand size bump already handled elsewhere; keep as-is */
 
 
 
