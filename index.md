@@ -4,12 +4,8 @@ title: Human Resources Data Visualization Dashboard
 ---
 
 {% comment %}
-Render README starting at “Business Requirements vs. Customer Needs” (fallback to “## Summary”),
-then split at “## Table of Contents”.
-
-- On desktop/wide: keep the README’s inline “Back to top” after the Summary.
-- On mobile/compact: hide that inline one and inject a new Back to top + a faint divider
-  BETWEEN the Summary and the mobile About card (to match Project 1).
+Render README from “Business Requirements vs. Customer Needs” (fallback “## Summary”).
+Inject a mobile/compact-only Back-to-top + faint divider BETWEEN the Summary and the mobile About card.
 {% endcomment %}
 
 {% capture readme_raw %}{% include_relative README.md %}{% endcapture %}
@@ -34,11 +30,11 @@ then split at “## Table of Contents”.
   {% assign car_with_class = toc_split[0] | replace: back_orig, back_classed %}
   {{ car_with_class | markdownify }}
 
-  <!-- Mobile/compact-only Back to top + faint divider injected BEFORE About card -->
+  <!-- mobile-only Back to top + faint divider (sits BEFORE About card) -->
   <div class="backlink--injected" align="right"><a href="#site-top">↑ Back to top</a></div>
   <hr class="m-divider" />
 
-  <!-- Mobile About card (appears only at mobile/compact via CSS) -->
+  <!-- Mobile About card -->
   <div class="author-card author-card--mobile">
     <div class="author-card__heading">About the Author</div>
 
@@ -85,4 +81,5 @@ then split at “## Table of Contents”.
     </div>
   </div>
 {% endif %}
+
 
