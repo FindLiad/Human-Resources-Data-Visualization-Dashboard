@@ -15,14 +15,15 @@
     <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#0b2e1a" />
 
     {% if site.hero_screenshot_url %}
+      <!-- Preload hero image to reduce layout shift -->
       <link rel="preload" as="image" href="{{ site.hero_screenshot_url }}">
     {% endif %}
 
-    <!-- Cache-busted -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle30" />
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle30" />
+    <!-- Cache-busted styles -->
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle31" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle31" />
 
-    <!-- Early: keep top, honor deep links -->
+    <!-- Early: keep at top (respect deep links) -->
     <script>
       (function () {
         if (location.hash) return;
@@ -34,7 +35,7 @@
     </script>
   </head>
   <body>
-    <!-- Real anchor at very top -->
+    <!-- True top anchor -->
     <div id="top-anchor" class="top-anchor" aria-hidden="true"></div>
 
     <!-- ===== Sticky Top Nav ===== -->
@@ -74,10 +75,17 @@
 
       <section class="hero-main">
         <h1 class="hero-main__title">Project 2 | Human Resource Dashboard</h1>
-        {% if site.description %}<p class="hero-main__tagline">{{ site.description }}</p>{% endif %}
-        {% if site.hero_screenshot_url %}
-          <img class="hero-screenshot" src="{{ site.hero_screenshot_url }}" alt="Dashboard preview" decoding="async" fetchpriority="high" />
+        {% if site.description %}
+          <p class="hero-main__tagline">{{ site.description }}</p>
         {% endif %}
+
+        {% if site.hero_screenshot_url %}
+          <img class="hero-screenshot"
+               src="{{ site.hero_screenshot_url }}"
+               alt="Dashboard preview"
+               decoding="async" fetchpriority="high" />
+        {% endif %}
+
         <div class="hero-actions">
           {% if site.live_dashboard_url %}
             <a class="btn" href="{{ site.live_dashboard_url }}" target="_blank" rel="noopener">View Live Dashboard</a>
@@ -105,30 +113,31 @@
       </footer>
     </main>
 
-    <!-- Late: hard-set to very top on first paint/load/bfcache -->
+    <!-- Late: aggressively pin to top on first view / image settle / bfcache restore -->
     <script>
       (function () {
         if (location.hash) return;
 
-        function toTop(){
-          // Move to the explicit anchor to defeat mobile anchoring quirks
-          if (location.hash !== '#top-anchor') {
-            try { location.replace('#top-anchor'); } catch(e) { /* fallback below */ }
+        function forceTopFrames(frames){
+          let n = 0;
+          function tick(){
+            window.scrollTo(0, 0);
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+            if (++n < frames) requestAnimationFrame(tick);
           }
-          window.scrollTo(0, 0);
-          document.documentElement.scrollTop = 0;
-          document.body.scrollTop = 0;
+          requestAnimationFrame(tick);
         }
 
-        document.addEventListener('DOMContentLoaded', toTop, { once:true });
-        window.addEventListener('load', function(){
-          requestAnimationFrame(toTop);
-          setTimeout(toTop, 0);
-          setTimeout(toTop, 120);
-          setTimeout(toTop, 300);
-        });
-        window.addEventListener('pageshow', function(e){ if (e.persisted) toTop(); });
+        document.addEventListener('DOMContentLoaded', () => forceTopFrames(8), {once:true});
+        window.addEventListener('load', () => {
+          forceTopFrames(12);
+          setTimeout(() => forceTopFrames(12), 150);
+          setTimeout(() => forceTopFrames(12), 450);
+        }, {once:true});
+        window.addEventListener('pageshow', e => { if (e.persisted) forceTopFrames(12); });
       })();
     </script>
   </body>
 </html>
+
