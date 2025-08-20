@@ -14,12 +14,12 @@
   --hero-grad-2: #0f3b22;
   --hero-grad-3: #1f6a3a;
 
-  --nav-glass:   rgba(28, 82, 46, .70);   /* green-tinted frosted */
+  --nav-glass:   rgba(28, 82, 46, .70);
 
-  /* Mocha-beige contact tiles (match Project 1) */
-  --tile-bg:        #e5d2c3;
-  --tile-bg-hover:  #dec9b8;
-  --tile-border:    #d8c2b4;
+  /* Jungle contact tiles (light green) */
+  --tile-bg:        #d8efe0;
+  --tile-bg-hover:  #cde9d8;
+  --tile-border:    #c2e3d0;
 }
 
 /* ========== Base ========== */
@@ -80,7 +80,7 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
 }
 .hero-main__title{ font-size: 1.9rem; margin:.2rem 0 .35rem; font-weight:900; letter-spacing:.2px; }
 
-/* Welcome + tagline (tagline width is synced to H1 via script in layout) */
+/* Welcome + tagline (width aligned to H1 via script in layout if present) */
 .hero-main__welcome{ font-size: 1.1rem; font-weight: 900; margin: .15rem 0 .35rem; letter-spacing: .2px; opacity:.98; }
 .hero-main__tagline{
   opacity:.95; margin:.1rem auto 1.0rem; font-style: italic; font-size: calc(1rem - 3px);
@@ -104,7 +104,7 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
   color:#fff; border:1px solid rgba(0,0,0,.05); font-weight:800; box-shadow:0 6px 16px rgba(0,0,0,.18);
 }
 
-/* ========== Author Card (DESKTOP) — match Project 1 structure/buttons ========== */
+/* ========== Author Card (DESKTOP) ========== */
 .author-card{
   background:
     linear-gradient(135deg,#edf6f0 0%,#e6f1eb 100%),
@@ -134,29 +134,23 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
   grid-template-columns:1fr 1fr;
   gap:8px;
   margin-top:16px;
-  margin-bottom:0; /* even bottom spacing */
+  margin-bottom:0;
 }
 
-/* Beige tiles (forced) */
-.author-card__btn{
+/* Jungle (light green) contact tiles */
+.author-card__btn,
+.author-card--mobile .author-card__btn{
   display:flex; justify-content:center; align-items:center;
   height:48px; width:100%; padding:0 12px; border-radius:10px;
   background-color: var(--tile-bg) !important;
   border:1px solid var(--tile-border) !important;
-  color:#2b211d !important;
+  color:#122016 !important;
   font-weight:600; box-sizing:border-box;
   transition: filter .15s ease, box-shadow .15s ease, transform .04s ease;
 }
-.author-card__btn:hover{ background-color: var(--tile-bg-hover) !important; }
-
-/* Keep beige tiles in dark mode too */
-@media (prefers-color-scheme: dark){
-  .author-card__btn{
-    background-color: var(--tile-bg) !important;
-    border-color: var(--tile-border) !important;
-    color:#2b211d !important;
-  }
-  .author-card__btn:hover{ background-color: var(--tile-bg-hover) !important; }
+.author-card__btn:hover,
+.author-card--mobile .author-card__btn:hover{
+  background-color: var(--tile-bg-hover) !important;
 }
 
 /* ========== Story / CAR grid ========== */
@@ -178,7 +172,7 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
 
 .story-copy{
   padding: 20px 22px;
-  display:flex; flex-direction:column; justify-content:flex-start; /* top-aligned text */
+  display:flex; flex-direction:column; justify-content:flex-start;
   background: var(--card-bg-2);
 }
 .story-copy h3{ margin: 2px 0 10px; font-size: 1.12rem; color: var(--link-hover); }
@@ -206,27 +200,38 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
   background:var(--card-border); opacity:.9;
 }
 
-/* Mobile About card used in page body (hidden on desktop) */
+/* Mobile About card used in page body (hidden on desktop by default) */
 .author-card--mobile{ display:none; margin: 18px 0 0; }
 
-/* ========== Back-to-top placement & faint divider for mobile (match Project 1) ========== */
-.car-backlink{ display:block; }          /* keep README inline back-to-top on desktop */
-.backlink--injected{ display:none; }     /* mobile-only version inserted in index.md */
+/* ===== Back-to-top placement & faint divider for mobile/compact ===== */
+.car-backlink{ display:block; }          /* keep README inline Back to top on desktop */
+.backlink--injected{ display:none; }
+.backlink--after-author{ display:none; }
 .m-divider{ display:none; }
 
 /* ========== Responsive ========== */
 @media (max-width: 1140px){
-  .hero-screenshot{ width: 520px; }
+  /* Treat "compressed desktop" like mobile for About placement */
+  .hero-split{ grid-template-columns: 1fr; padding: 18px 14px 20px; }
+  .author-card--desktop{ display:none; }
+  .hero-divider{ display:none; }
 
-  /* mobile back-to-top between Summary and About */
+  /* Show mobile About card after Summary */
+  .author-card--mobile{ display:block; }
+
+  /* Mobile back-to-tops: one between Summary & About, one after About */
   .car-backlink{ display:none; }
   .backlink--injected{ display:block; }
+  .backlink--after-author{ display:block; }
+
   .m-divider{
     display:block;
     border:0;
     border-top:1px solid var(--card-border);
     margin: 10px 0 6px;
   }
+
+  .hero-screenshot{ width: 520px; }
 }
 
 @media (max-width: 980px){
@@ -236,23 +241,15 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
   .top-nav__right{ width:100%; display:flex; gap:2px; justify-content:space-between; }
   .label-desktop{ display:none; } .label-mobile{ display:inline; }
 
-  /* Hero becomes single column; divider & desktop author hidden */
-  .hero-split{ grid-template-columns: 1fr; padding: 18px 14px 20px; }
-  .author-card--desktop{ display:none; }
-  .hero-divider{ display:none; }
   .hero-main__title{ font-size: 1.8rem; line-height: 1.15; }
-
-  /* Hero actions keep no vertical gap when wrapping */
   .hero-actions{ gap: 0 8px; margin: 14px 0; }
   .hero-screenshot{ width: 95%; max-width: 690px; }
 
-  /* Story rows: stack; always text first then image */
+  /* Story rows stack; text first then image */
   .story-row, .story-row.rev{ grid-template-columns: 1fr; }
   .story-row .story-copy{ order:1; }
   .story-row .story-img-wrap{ order:2; align-self: center; }
-
-  /* Mobile author card appears under story grid */
-  .author-card--mobile{ display:block; }
 }
+
 
 

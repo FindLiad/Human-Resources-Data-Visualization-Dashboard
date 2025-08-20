@@ -2,7 +2,6 @@ title: "Human Resources Data Visualization Dashboard"
 description: "Leadership-facing HR analytics: Attrition, Hiring Funnel, Diversity, and Compensation."
 author: "Liad Mizrachi"
 
-# MUST match repo name (case-sensitive)
 baseurl: "/Human-Resources-Data-Visualization-Dashboard"
 url: "https://findliad.github.io"
 

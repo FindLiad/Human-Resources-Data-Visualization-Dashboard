@@ -5,7 +5,9 @@ title: Human Resources Data Visualization Dashboard
 
 {% comment %}
 Render README from “Business Requirements vs. Customer Needs” (fallback “## Summary”).
-Inject a mobile/compact-only Back-to-top + faint divider BETWEEN the Summary and the mobile About card.
+Strip the README’s own mobile About-card block; then inject:
+  Summary → Back to top (mobile-only) → faint divider → About (mobile card) → Back to top (mobile-only) → Table of Contents.
+On desktop/wide, keep only the README’s inline Back to top (classed) and the hero’s desktop About card.
 {% endcomment %}
 
 {% capture readme_raw %}{% include_relative README.md %}{% endcapture %}
@@ -21,65 +23,56 @@ Inject a mobile/compact-only Back-to-top + faint divider BETWEEN the Summary and
   {% assign body_from_start = readme_raw %}
 {% endif %}
 
-{% assign toc_split = body_from_start | split: '## Table of Contents' %}
+{% assign toc_parts = body_from_start | split: '## Table of Contents' %}
+{% assign pre_toc = toc_parts[0] %}
+{% assign post_toc = toc_parts[1] %}
+
+{%- comment -%}
+Remove the README’s own mobile About-card (it starts with this comment in README).
+Everything between that marker and the Table of Contents is dropped; we’ll inject our own.
+{%- endcomment -%}
+{% assign strip_mobile_marker = '<!-- ===== Mobile-only Author Card injected AFTER the story section ===== -->' %}
+{% if pre_toc contains strip_mobile_marker %}
+  {% assign pre_toc = pre_toc | split: strip_mobile_marker | first %}
+{% endif %}
 
 {%- capture back_orig -%}<div align="right"><a href="#site-top">↑ Back to top</a></div>{%- endcapture -%}
 {%- capture back_classed -%}<div class="car-backlink" align="right"><a href="#site-top">↑ Back to top</a></div>{%- endcapture -%}
+{% assign car_html = pre_toc | replace: back_orig, back_classed %}
 
-{% if toc_split.size > 1 %}
-  {% assign car_with_class = toc_split[0] | replace: back_orig, back_classed %}
-  {{ car_with_class | markdownify }}
+{{ car_html | markdownify }}
 
-  <!-- mobile-only Back to top + faint divider (sits BEFORE About card) -->
-  <div class="backlink--injected" align="right"><a href="#site-top">↑ Back to top</a></div>
-  <hr class="m-divider" />
+<!-- Mobile/compact-only: Back to top BETWEEN Summary and About -->
+<div class="backlink--injected" align="right"><a href="#site-top">↑ Back to top</a></div>
+<hr class="m-divider" />
 
-  <!-- Mobile About card -->
-  <div class="author-card author-card--mobile">
-    <div class="author-card__heading">About the Author</div>
+<!-- Mobile/compact-only About the Author -->
+<div class="author-card author-card--mobile">
+  <div class="author-card__heading">About the Author</div>
 
-    <a href="{{ site.author_photo }}" target="_blank" rel="noopener">
-      <img class="author-card__photo" src="{{ site.author_photo }}" alt="{{ site.author }}">
-    </a>
+  <a href="{{ site.author_photo }}" target="_blank" rel="noopener">
+    <img class="author-card__photo" src="{{ site.author_photo }}" alt="{{ site.author }}">
+  </a>
 
-    <div class="author-card__name">{{ site.author }}</div>
-    {% if site.author_title %}<div class="author-card__title">{{ site.author_title }}</div>{% endif %}
-    {% if site.author_subtitle %}<div class="author-card__subtitle">{{ site.author_subtitle }}</div>{% endif %}
+  <div class="author-card__name">{{ site.author }}</div>
+  {% if site.author_title %}<div class="author-card__title">{{ site.author_title }}</div>{% endif %}
+  {% if site.author_subtitle %}<div class="author-card__subtitle">{{ site.author_subtitle }}</div>{% endif %}
 
-    <div class="author-card__links">
-      {% for l in site.author_links %}
-        <a class="author-card__btn" href="{{ l.url | escape }}" target="_blank" rel="noopener noreferrer">
-          {{ l.icon }} {{ l.label }}
-        </a>
-      {% endfor %}
-    </div>
+  <div class="author-card__links">
+    {% for l in site.author_links %}
+      <a class="author-card__btn" href="{{ l.url | escape }}" target="_blank" rel="noopener noreferrer">
+        {{ l.icon }} {{ l.label }}
+      </a>
+    {% endfor %}
   </div>
+</div>
 
-  {% capture rest %}## Table of Contents{{ toc_split[1] }}{% endcapture %}
+<!-- Mobile/compact-only: Back to top AFTER About -->
+<div class="backlink--after-author" align="right"><a href="#site-top">↑ Back to top</a></div>
+
+{% if post_toc %}
+  {% capture rest %}## Table of Contents{{ post_toc }}{% endcapture %}
   {{ rest | markdownify }}
-{% else %}
-  {% assign car_with_class = body_from_start | replace: back_orig, back_classed %}
-  {{ car_with_class | markdownify }}
-
-  <div class="backlink--injected" align="right"><a href="#site-top">↑ Back to top</a></div>
-  <hr class="m-divider" />
-
-  <div class="author-card author-card--mobile">
-    <div class="author-card__heading">About the Author</div>
-    <a href="{{ site.author_photo }}" target="_blank" rel="noopener">
-      <img class="author-card__photo" src="{{ site.author_photo }}" alt="{{ site.author }}">
-    </a>
-    <div class="author-card__name">{{ site.author }}</div>
-    {% if site.author_title %}<div class="author-card__title">{{ site.author_title }}</div>{% endif %}
-    {% if site.author_subtitle %}<div class="author-card__subtitle">{{ site.author_subtitle }}</div>{% endif %}
-    <div class="author-card__links">
-      {% for l in site.author_links %}
-        <a class="author-card__btn" href="{{ l.url | escape }}" target="_blank" rel="noopener noreferrer">
-          {{ l.icon }} {{ l.label }}
-        </a>
-      {% endfor %}
-    </div>
-  </div>
 {% endif %}
 
 
