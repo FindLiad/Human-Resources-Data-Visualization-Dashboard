@@ -19,9 +19,9 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
     <div class="story-copy">
       <h3>Context</h3>
       <p>
-        In this real world scenario - My client was a <b>global manufacturer</b> with 15,000+ employees.<br>
-        Labor costs were massive, yet HR data lived in silos—payroll, talent, compliance, performance—all telling conflicting stories. Executives argued over headcount, finance second-guessed numbers, HR pushed for DEI but had no proof. Decisions carried million-dollar risks. I was asked to create clarity for everyone involved.<br> 
-        <b>My task:</b> create one secure dashboard that turned scattered spreadsheets into a single source of truth for workforce planning.
+        &nbsp;&nbsp;&nbsp;&nbsp;In this real world scenario - My client was a <b>global manufacturer</b> with 15,000+ employees.<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;Labor costs were massive, yet HR data lived in silos—payroll, talent, compliance, performance—all telling conflicting stories. Executives argued over headcount, finance second-guessed numbers, HR pushed for DEI but had no proof. Decisions carried million-dollar risks. I was asked to create clarity for everyone involved.<br> 
+        &nbsp;&nbsp;&nbsp;&nbsp;<b>My task:</b> create one secure dashboard that turned scattered spreadsheets into a single source of truth for workforce planning.
       </p>
     </div>
     <figure class="story-img-wrap">
@@ -41,11 +41,10 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
     <div class="story-copy">
       <h3>Action</h3>
       <p>
-        I delivered in two waves.<br> 
-        First came the foundation—secure, role-based dashboards with unified KPIs, cutting manual reporting by 40%.<br> 
-        Then, once governance rules were hardened, we released advanced DEI filters and forecasting. The impact was immediate: executives finally trusted their models, finance tracked costs in real time, HR advanced DEI with confidence.<br> 
-        <i>In a labor-heavy industry, that clarity was game-changing. The HR leader who once resisted?</i><br> 
-        They became our <b>biggest champion—showcasing the dashboard as the new standard across the enterprise.</b>
+        &nbsp;&nbsp;&nbsp;&nbsp;First I delivered the foundation—secure, role-based dashboards with unified KPIs, cutting manual reporting by 40%.<br> 
+        &nbsp;&nbsp;&nbsp;&nbsp;Then, once governance rules were hardened, we released advanced DEI filters and forecasting. The impact was immediate: executives finally trusted their models, finance tracked costs in real time, HR advanced DEI with confidence.<br> 
+        &nbsp;&nbsp;&nbsp;&nbsp;<i>In a labor-heavy industry, that clarity was game-changing. The HR leader who once resisted?</i><br> 
+        &nbsp;&nbsp;&nbsp;&nbsp;They became our <b>biggest champion—showcasing the dashboard as the new standard across the enterprise.</b>
       </p>
     </div>
   </div>
