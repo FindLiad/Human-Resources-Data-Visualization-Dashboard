@@ -14,13 +14,37 @@
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#0f3b22" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#0b2e1a" />
 
+    {% comment %}
+    ===== Social sharing (Open Graph & Twitter) =====
+    Build absolute URLs so messaging apps can fetch the image.
+    {% endcomment %}
+    {% assign abs_base = site.url | append: site.baseurl %}
+    {% assign share_img = site.og_image | default: site.hero_screenshot_url %}
+    <link rel="canonical" href="{{ abs_base }}/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="{{ site.title }}" />
+    <meta property="og:title" content="{{ page.title | default: site.title }}" />
+    <meta property="og:description" content="{{ site.description }}" />
+    <meta property="og:url" content="{{ abs_base }}/" />
+    <meta property="og:image" content="{{ site.url }}{{ share_img }}" />
+    <meta property="og:image:alt" content="Human Resources Dashboard preview" />
+    <!-- Optional hints (safe defaults if your image is ~1200x630 or similar) -->
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{ page.title | default: site.title }}" />
+    <meta name="twitter:description" content="{{ site.description }}" />
+    <meta name="twitter:image" content="{{ site.url }}{{ share_img }}" />
+    <link rel="image_src" href="{{ site.url }}{{ share_img }}" />
+
     {% if site.hero_screenshot_url %}
       <link rel="preload" as="image" href="{{ site.hero_screenshot_url }}">
     {% endif %}
 
     <!-- Cayman first, then our overrides (cache-busted) -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle55" />
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle55" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle56" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle56" />
 
     <!-- EARLY: ensure first load starts at absolute top (above the hero) -->
     <script>

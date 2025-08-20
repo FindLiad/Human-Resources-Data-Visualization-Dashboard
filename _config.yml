@@ -4,6 +4,7 @@ author: "Liad Mizrachi"
 
 # MUST match repo name (case-sensitive)
 baseurl: "/Human-Resources-Data-Visualization-Dashboard"
+url: "https://findliad.github.io"          # << absolute site URL for Open Graph
 
 author_title: "Senior Product Manager • AI Data-Driven Solutions"
 author_photo: "/Human-Resources-Data-Visualization-Dashboard/assets/images/liad-mizrachi.jpg"
@@ -25,6 +26,9 @@ author_links:
 # Hero screenshot shown inside the banner
 hero_preview: "/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png"
 hero_screenshot_url: "/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png"
+
+# Image used for link previews (Open Graph/Twitter)
+og_image: "/Human-Resources-Data-Visualization-Dashboard/assets/images/finished-dashboard.png"
 
 # Comic-strip images for Summary
 cartoon_context: "/Human-Resources-Data-Visualization-Dashboard/assets/images/story-context.png"
