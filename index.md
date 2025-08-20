@@ -12,7 +12,7 @@ On desktop/wide, keep only the README’s inline Back to top (classed) and the h
 
 {% capture readme_raw %}{% include_relative README.md %}{% endcapture %}
 
-{% assign token_car = '## Business Requirements vs. Customer Needs' %}
+{% assign token_car = '## How I balanced Business Requirements vs. Customer Needs' %}
 {% assign token_summary = '## Summary' %}
 {% if readme_raw contains token_car %}{% assign start_token = token_car %}{% else %}{% assign start_token = token_summary %}{% endif %}
 
