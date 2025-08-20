@@ -19,10 +19,9 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
     <div class="story-copy">
       <h3>Context</h3>
       <p>
-        A global client was steering its workforce blind! 
-        Payroll, talent, compliance, and performance data lived in silos—no single source of truth. Executives wanted clarity for layoffs and hiring, finance needed precision, and HR demanded DEI insights. Without it, every decision carried financial and regulatory risk. 
-        
-        I stepped outside my scope to design an HR analytics dashboard that united fragmented systems into a single, trusted tool—one powerful enough to guide DEI, headcount, and cost planning at scale.
+        In this real world scenario - My client was a <b>global manufacturer</b> with 15,000+ employees.<br>
+        Labor costs were massive, yet HR data lived in silos—payroll, talent, compliance, performance—all telling conflicting stories. Executives argued over headcount, finance second-guessed numbers, HR pushed for DEI but had no proof. Decisions carried million-dollar risks. I was asked to create clarity for everyone involved.<br> 
+        <b>My task:</b> create one secure dashboard that turned scattered spreadsheets into a single source of truth for workforce planning.
       </p>
     </div>
     <figure class="story-img-wrap">
@@ -42,13 +41,11 @@ A leadership-facing dashboard to **track workforce health** using clean, compara
     <div class="story-copy">
       <h3>Action</h3>
       <p>
-        I unified datasets with SQL, cleaning mismatched categories and normalizing salary bands. 
-        
-        In Tableau, I designed: KPIs for hires/terminations, bar charts for departmental attrition, demographic visuals, performance overlays, salary comparisons, and age vs. salary scatterplots. 
-        
-        The goal: simplify complex questions into intuitive answers. Tension spiked when HR demanded granular demographic filters immediately, risking exposure. Using a prioritization matrix—risk, impact, effort—I reframed the request as a phased rollout: compliance-safe now, advanced DEI later. 
-        
-        This pivot broke the deadlock and aligned executives, finance, and HR around one roadmap..
+        I delivered in two waves.<br> 
+        First came the foundation—secure, role-based dashboards with unified KPIs, cutting manual reporting by 40%.<br> 
+        Then, once governance rules were hardened, we released advanced DEI filters and forecasting. The impact was immediate: executives finally trusted their models, finance tracked costs in real time, HR advanced DEI with confidence.<br> 
+        <i>In a labor-heavy industry, that clarity was game-changing. The HR leader who once resisted?</i><br> 
+        They became our <b>biggest champion—showcasing the dashboard as the new standard across the enterprise.</b>
       </p>
     </div>
   </div>
