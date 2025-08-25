@@ -1,5 +1,5 @@
 /* File: Human-Resources-Data-Visualization-Dashboard/assets/css/custom.css
-   Project 2 “Jungle” theme — parity with Project 1, plus 40/60 text:image in Summary */
+   Project 2 “Jungle” theme — 40/60 Summary, zero image side-gaps, and tagline width fix */
 
 /* ================= Theme palette ================= */
 :root{
@@ -40,7 +40,11 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
 .hero-main{ display:flex; flex-direction:column; align-items:center; text-align:center; padding:10px 18px; }
 .hero-main__title{ font-size:1.9rem; margin:.2rem 0 .35rem; font-weight:900; letter-spacing:.2px; }
 .hero-main__welcome{ font-size:1.1rem; font-weight:900; margin:.15rem 0 .35rem; letter-spacing:.2px; opacity:.98; }
-.hero-main__tagline{ opacity:.95; margin:.1rem auto 1rem; font-style:italic; font-size:calc(1rem - 3px); line-height:1.35; white-space:pre-line; }
+/* Remove max-width override so the script can clamp it to the H1 width */
+.hero-main__tagline{
+  opacity:.95; margin:.1rem auto 1rem; font-style:italic; font-size:calc(1rem - 3px);
+  line-height:1.35; white-space:pre-line; display:block;
+}
 .hero-screenshot{ width:560px; max-width:92%; aspect-ratio:16/10; height:auto; border-radius:10px; border:1px solid rgba(255,255,255,.20);
   box-shadow:0 10px 24px rgba(0,0,0,.35); margin-bottom:12px; }
 .hero-actions{ display:flex; flex-wrap:wrap; justify-content:center; gap:0 6px; margin:14px 0; }
@@ -52,8 +56,7 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
   background:linear-gradient(135deg,#edf6f0 0%,#e6f1eb 100%), repeating-linear-gradient(45deg,rgba(31,122,46,.035) 0 10px,rgba(255,255,255,.035) 10px 20px);
   color:var(--text); border-radius:14px; padding:16px; width:100%; box-shadow:0 8px 24px rgba(0,0,0,.12);
   border:1px solid var(--card-border); display:flex; flex-direction:column;
-  /* Vertical centering (equal space above the photo and below the tiles) */
-  justify-content:center; gap:12px;
+  justify-content:center; gap:12px;      /* vertically center contents */
 }
 .author-card__heading{ text-align:center; font-weight:900; font-size:1.05rem; margin:0; }
 .author-card__photo{ width:100%; border-radius:12px; border:1px solid var(--card-border); box-shadow:0 6px 18px rgba(0,0,0,.08); }
@@ -69,7 +72,7 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
 /* ========== Story / CAR grid (base) ========== */
 .story-grid{ margin-top:.25rem; }
 
-/* 40% text | 60% image by default (desktop-ish widths) */
+/* 40% text | 60% image (desktop-ish widths) */
 .story-row{
   display:grid; grid-template-columns:40% 60%; column-gap:0; background:var(--card-bg); border:1px solid var(--card-border);
   border-radius:14px; box-shadow:0 8px 20px rgba(0,0,0,.08); overflow:hidden; margin:18px 0; align-items:stretch; overflow-anchor:none;
@@ -80,14 +83,13 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
 .story-copy h3{ margin:2px 0 10px; font-size:1.12rem; color:var(--link-hover); }
 .story-copy p{ margin:0; }
 
-.story-img-wrap{ margin:0; padding:0; display:flex; align-items:center; justify-content:center; background:var(--card-bg); align-self:center; }
-
-/* Bigger art: fill the cell width, keep aspect ratio */
+/* ZERO side gap around the image cell */
+.story-img-wrap{
+  margin:0; padding:0 !important; display:flex; align-items:stretch; justify-content:stretch;
+  background:var(--card-bg); align-self:stretch;
+}
 .story-img{
-  width:100%;
-  max-width:100%;
-  height:auto;
-  display:block; border:0; box-shadow:none;
+  display:block; width:100% !important; max-width:100% !important; height:auto !important; border:0; box-shadow:none;
 }
 
 .story-row + .story-row{ position:relative; }
@@ -118,7 +120,6 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
 }
 
 /* =================== PARITY BREAKPOINTS (match Project 1) =================== */
-/* ► DESKTOP (>= 841px): keep split hero; enforce 40/60 text:image and large art */
 @media (min-width: 841px){
   .hero-split{ grid-template-columns:minmax(260px,320px) 1px 1fr !important; padding:22px !important; }
   .hero-divider{ display:block !important; }
@@ -128,14 +129,13 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
   .label-desktop{ display:inline !important; }
   .label-mobile{ display:none !important; }
 
+  /* keep 40/60 and remove any side padding in the image cell */
   .story-row{ grid-template-columns:40% 60% !important; }
   .story-row.rev{ grid-template-columns:60% 40% !important; }
-  .story-img-wrap{ align-items:center !important; justify-content:center !important; padding:12px 0; }
+  .story-img-wrap{ align-items:stretch !important; justify-content:stretch !important; padding:0 !important; }
   .story-img,
   .story-img-wrap > img{
-    width:100% !important;
-    max-width:clamp(340px, 92%, 700px) !important;  /* bigger art */
-    height:auto !important;
+    width:100% !important; max-width:100% !important; height:auto !important;
   }
 
   .hero-screenshot{ width:560px; max-width:92%; }
@@ -159,10 +159,9 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
   .hero-actions{ gap:0 8px; margin:14px 0; }
   .hero-screenshot{ width:95%; max-width:690px; }
 
-  /* Story rows stack; center art and clamp size */
   .story-row, .story-row.rev{ grid-template-columns:1fr !important; }
   .story-row .story-copy{ order:1; }
-  .story-row .story-img-wrap{ order:2; align-self:center; padding:10px 0 12px; justify-content:center; }
+  .story-row .story-img-wrap{ order:2; align-self:center; padding:0 !important; justify-content:center; }
   .story-img,
   .story-img-wrap > img{
     width:100% !important;
@@ -171,7 +170,6 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
     margin:0 auto;
   }
 
-  /* Mobile back-to-top placements (README/index handles injection) */
   .car-backlink{ display:none; }
   .backlink--injected{ display:block; text-align:right; margin:10px 0 8px; }
   .m-divider{ display:block; border:0; border-top:1px solid var(--card-border); margin:10px 0 8px; }
