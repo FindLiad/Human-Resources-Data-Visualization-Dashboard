@@ -29,8 +29,8 @@
     {% endif %}
 
     <!-- Cayman first, then overrides -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle58" />
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle58" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle59" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle59" />
   </head>
   <body>
 
@@ -85,9 +85,7 @@
 
         <div class="hero-main__welcome">{{ site.hero_welcome | default: 'Welcome!' }}</div>
 
-        {% comment %}
-        The tagline’s width is auto-matched to the H1 below via the tiny script at the bottom.
-        {% endcomment %}
+        {% comment %} Tagline width = H1 width {% endcomment %}
         {% if site.hero_tagline or site.description %}
           <p class="hero-main__tagline" id="heroTagline">{{ site.hero_tagline | default: site.description }}</p>
         {% endif %}
@@ -125,7 +123,6 @@
       </footer>
     </main>
 
-    <!-- Match Project 1: make the tagline width equal the H1 width, centered -->
     <script>
       (function () {
         function syncTaglineWidth(){
@@ -145,4 +142,3 @@
     </script>
   </body>
 </html>
-
