@@ -29,8 +29,8 @@
     {% endif %}
 
     <!-- Cayman first, then overrides -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle61" />
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle61" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle62" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle62" />
   </head>
   <body>
 
@@ -80,7 +80,9 @@
         {% endif %}
 
         {% if site.hero_screenshot_url %}
-          <img class="hero-screenshot" src="{{ site.hero_screenshot_url }}" alt="Dashboard preview"
+          <img class="hero-screenshot"
+               src="{{ site.hero_screenshot_url }}"
+               alt="Dashboard preview"
                decoding="async" fetchpriority="high" />
         {% endif %}
 
@@ -110,7 +112,7 @@
       </footer>
     </main>
 
-    <!-- Tagline width = H1 width -->
+    <!-- Tagline width = H1 shrink-wrapped width -->
     <script>
       (function () {
         function syncTaglineWidth(){
@@ -118,9 +120,10 @@
           var tg = document.getElementById('heroTagline');
           if(!h1 || !tg) return;
           try{
+            // h1 is inline-block (CSS) so width equals text width
             var w = Math.ceil(h1.getBoundingClientRect().width);
-            tg.style.width = w + 'px';       // exact clamp
-            tg.style.maxWidth = w + 'px';    // belt-and-suspenders
+            tg.style.width = w + 'px';
+            tg.style.maxWidth = w + 'px';
             tg.style.marginLeft = 'auto';
             tg.style.marginRight = 'auto';
           }catch(e){}

@@ -29,8 +29,8 @@
     {% endif %}
 
     <!-- Cayman first, then overrides -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle62" />
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle62" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle63" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle63" />
   </head>
   <body>
 
@@ -50,7 +50,7 @@
       </div>
     </nav>
 
-    <!-- HERO -->
+    <!-- HERO (author card | divider | main) -->
     <header class="hero-split" id="hero">
       <aside class="author-card author-card--desktop">
         <div class="author-card__heading">About the Author</div>
@@ -73,6 +73,7 @@
 
       <section class="hero-main">
         <h1 class="hero-main__title">Project 2 | Human Resources Dashboard</h1>
+
         <div class="hero-main__welcome">{{ site.hero_welcome | default: 'Welcome!' }}</div>
 
         {% if site.hero_tagline or site.description %}
@@ -112,22 +113,36 @@
       </footer>
     </main>
 
-    <!-- Tagline width = H1 shrink-wrapped width -->
+    <!-- Clamp tagline: never wider than H1 or the screenshot; keep equal gap by centering -->
     <script>
       (function () {
         function syncTaglineWidth(){
           var h1 = document.querySelector('.hero-main__title');
           var tg = document.getElementById('heroTagline');
+          var ss = document.querySelector('.hero-screenshot');
           if(!h1 || !tg) return;
+
           try{
-            // h1 is inline-block (CSS) so width equals text width
-            var w = Math.ceil(h1.getBoundingClientRect().width);
+            // shrink-wrap H1 to its text if not already
+            h1.style.display = 'inline-block';
+
+            var wH1 = h1.getBoundingClientRect().width || 0;
+            var wSS = ss ? ss.getBoundingClientRect().width : Infinity;
+
+            // Final width = min(H1 width, screenshot width)
+            var w = Math.floor(Math.min(wH1 || 0, wSS || Infinity));
+
+            // safety: if either is 0/NaN, fall back to H1 width after a frame
+            if (!w || !isFinite(w)) { w = Math.floor(wH1); }
+
             tg.style.width = w + 'px';
             tg.style.maxWidth = w + 'px';
             tg.style.marginLeft = 'auto';
             tg.style.marginRight = 'auto';
           }catch(e){}
         }
+
+        // run after images have laid out so screenshot width is correct
         window.addEventListener('load', syncTaglineWidth, {once:true});
         window.addEventListener('resize', syncTaglineWidth);
       })();
