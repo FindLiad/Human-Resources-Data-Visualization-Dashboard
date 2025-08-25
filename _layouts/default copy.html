@@ -29,8 +29,8 @@
     {% endif %}
 
     <!-- Cayman first, then overrides -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle61" />
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle61" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=hrjungle60" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css?v=hrjungle60" />
   </head>
   <body>
 
@@ -50,16 +50,24 @@
       </div>
     </nav>
 
-    <!-- HERO -->
+    <!-- HERO (match Project 1 structure & copy) -->
     <header class="hero-split" id="hero">
+      <!-- Desktop author card -->
       <aside class="author-card author-card--desktop">
         <div class="author-card__heading">About the Author</div>
+
         <a href="{{ site.author_photo }}" target="_blank" rel="noopener">
           <img class="author-card__photo" src="{{ site.author_photo }}" alt="{{ site.author }}" />
         </a>
+
         <div class="author-card__name">{{ site.author }}</div>
-        {% if site.author_title %}<div class="author-card__title">{{ site.author_title }}</div>{% endif %}
-        {% if site.author_subtitle %}<div class="author-card__subtitle">{{ site.author_subtitle }}</div>{% endif %}
+        {% if site.author_title %}
+          <div class="author-card__title">{{ site.author_title }}</div>
+        {% endif %}
+        {% if site.author_subtitle %}
+          <div class="author-card__subtitle">{{ site.author_subtitle }}</div>
+        {% endif %}
+
         <div class="author-card__links">
           {% for l in site.author_links %}
             <a class="author-card__btn" href="{{ l.url | escape }}" target="_blank" rel="noopener noreferrer">
@@ -71,8 +79,10 @@
 
       <div class="hero-divider" aria-hidden="true"></div>
 
+      <!-- Title + Welcome + Tagline + Screenshot + Buttons -->
       <section class="hero-main">
         <h1 class="hero-main__title">Project 2 | Human Resources Dashboard</h1>
+
         <div class="hero-main__welcome">{{ site.hero_welcome | default: 'Welcome!' }}</div>
 
         {% if site.hero_tagline or site.description %}
@@ -80,7 +90,9 @@
         {% endif %}
 
         {% if site.hero_screenshot_url %}
-          <img class="hero-screenshot" src="{{ site.hero_screenshot_url }}" alt="Dashboard preview"
+          <img class="hero-screenshot"
+               src="{{ site.hero_screenshot_url }}"
+               alt="Dashboard preview"
                decoding="async" fetchpriority="high" />
         {% endif %}
 
@@ -118,14 +130,13 @@
           var tg = document.getElementById('heroTagline');
           if(!h1 || !tg) return;
           try{
-            var w = Math.ceil(h1.getBoundingClientRect().width);
-            tg.style.width = w + 'px';       // exact clamp
-            tg.style.maxWidth = w + 'px';    // belt-and-suspenders
+            var w = h1.getBoundingClientRect().width;
+            tg.style.maxWidth = w + 'px';
             tg.style.marginLeft = 'auto';
             tg.style.marginRight = 'auto';
           }catch(e){}
         }
-        window.addEventListener('load', syncTaglineWidth, {once:true});
+        document.addEventListener('DOMContentLoaded', syncTaglineWidth, {once:true});
         window.addEventListener('resize', syncTaglineWidth);
       })();
     </script>
