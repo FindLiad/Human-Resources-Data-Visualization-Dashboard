@@ -1,5 +1,5 @@
 /* File: Human-Resources-Data-Visualization-Dashboard/assets/css/custom.css
-   Project 2 “Jungle” theme — parity with Project 1 at 100% zoom */
+   Project 2 “Jungle” theme — parity with Project 1, plus 40/60 text:image in Summary */
 
 /* ================= Theme palette ================= */
 :root{
@@ -27,8 +27,8 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
   border-bottom:1px solid rgba(255,255,255,.18); color:#fff; overflow-anchor:none; }
 .top-nav .brand{ font-family:"Brush Script MT","Brush Script Std","Segoe Script",cursive; font-weight:800; font-size:1.6rem; line-height:1; white-space:nowrap; }
 .top-nav__right{ display:flex; gap:2px; margin-left:auto; }
-.nav-btn{ display:inline-block; padding:6px 10px; border-radius:10px; background:var(--accent); color:#fff; border:1px solid rgba(0,0,0,.05);
-  font-weight:700; font-size:1rem; white-space:nowrap; box-shadow:0 4px 12px rgba(0,0,0,.15); }
+.nav-btn{ display:inline-block; padding:6px 10px; border-radius:10px; background:var(--accent); color:#fff;
+  border:1px solid rgba(0,0,0,.05); font-weight:700; font-size:1rem; white-space:nowrap; box-shadow:0 4px 12px rgba(0,0,0,.15); }
 .nav-btn:hover{ filter:brightness(1.06); }
 .label-mobile{ display:none; } .label-desktop{ display:inline; }
 
@@ -68,15 +68,33 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
 
 /* ========== Story / CAR grid (base) ========== */
 .story-grid{ margin-top:.25rem; }
+
+/* 40% text | 60% image by default (desktop-ish widths) */
 .story-row{
-  display:grid; grid-template-columns:44% 56%; column-gap:0; background:var(--card-bg); border:1px solid var(--card-border);
-  border-radius:14px; box-shadow:0 8px 20px rgba(0,0,0,.08); overflow:hidden; margin:18px 0; align-items:stretch; overflow-anchor:none; }
-.story-row.rev{ grid-template-columns:56% 44%; }
+  display:grid; grid-template-columns:40% 60%; column-gap:0; background:var(--card-bg); border:1px solid var(--card-border);
+  border-radius:14px; box-shadow:0 8px 20px rgba(0,0,0,.08); overflow:hidden; margin:18px 0; align-items:stretch; overflow-anchor:none;
+}
+.story-row.rev{ grid-template-columns:60% 40%; }
+
 .story-copy{ padding:20px 22px; display:flex; flex-direction:column; justify-content:flex-start; background:var(--card-bg-2); }
 .story-copy h3{ margin:2px 0 10px; font-size:1.12rem; color:var(--link-hover); }
 .story-copy p{ margin:0; }
+
 .story-img-wrap{ margin:0; padding:0; display:flex; align-items:center; justify-content:center; background:var(--card-bg); align-self:center; }
-.story-img{ width:auto; max-width:100%; height:100%; max-height:100%; aspect-ratio:3/2; object-fit:contain; display:block; border:0; box-shadow:none; }
+
+/* Bigger art: fill the cell width, keep aspect ratio */
+.story-img{
+  width:100%;
+  max-width:100%;
+  height:auto;
+  display:block; border:0; box-shadow:none;
+}
+
+.story-row + .story-row{ position:relative; }
+.story-row + .story-row::before{
+  content:""; position:absolute; top:-8px; left:12px; right:12px; height:1px;
+  background:var(--card-border); opacity:.9;
+}
 
 /* Desktop hides mobile about */
 .author-card--mobile{ display:none; margin:18px 0 0; }
@@ -100,7 +118,7 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
 }
 
 /* =================== PARITY BREAKPOINTS (match Project 1) =================== */
-/* ► DESKTOP (>= 841px): force split hero + shrink story art so 100% ≈ 80% look */
+/* ► DESKTOP (>= 841px): keep split hero; enforce 40/60 text:image and large art */
 @media (min-width: 841px){
   .hero-split{ grid-template-columns:minmax(260px,320px) 1px 1fr !important; padding:22px !important; }
   .hero-divider{ display:block !important; }
@@ -110,14 +128,13 @@ pre,code{ background:#e5f0e8; border:1px solid var(--card-border); border-radius
   .label-desktop{ display:inline !important; }
   .label-mobile{ display:none !important; }
 
-  /* Story: give text more width and cap illustrations */
-  .story-row{ grid-template-columns:78% 22% !important; }
-  .story-row.rev{ grid-template-columns:22% 78% !important; }
-  .story-img-wrap{ align-items:flex-start !important; }
+  .story-row{ grid-template-columns:40% 60% !important; }
+  .story-row.rev{ grid-template-columns:60% 40% !important; }
+  .story-img-wrap{ align-items:center !important; justify-content:center !important; padding:12px 0; }
   .story-img,
   .story-img-wrap > img{
-    max-width:200px !important;
     width:100% !important;
+    max-width:clamp(340px, 92%, 700px) !important;  /* bigger art */
     height:auto !important;
   }
 
