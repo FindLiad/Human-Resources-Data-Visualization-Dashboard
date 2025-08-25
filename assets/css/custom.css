@@ -1,5 +1,5 @@
 /* Human-Resources-Data-Visualization-Dashboard/assets/css/custom.css
-   Jungle theme — 40/60 Summary, zero side gap, vertical breathing room, tagline clamp */
+   Jungle theme — Summary image padding (no stretch) + hero tagline clamp to H1 */
 
 /* ================= Theme palette ================= */
 :root{
@@ -33,9 +33,9 @@ pre,code{background:#e5f0e8;border:1px solid var(--card-border);border-radius:8p
   border-bottom:1px solid rgba(0,0,0,.06);background:linear-gradient(120deg,var(--hero-grad-1) 0%,var(--hero-grad-2) 45%,var(--hero-grad-3) 100%);color:#fff;}
 .hero-divider{background:rgba(255,255,255,.18);width:1px;margin:0 20px;}
 .hero-main{display:flex;flex-direction:column;align-items:center;text-align:center;padding:10px 18px;}
-.hero-main__title{font-size:1.9rem;margin:.2rem 0 .35rem;font-weight:900;letter-spacing:.2px;}
+.hero-main__title{font-size:1.9rem;margin:.2rem 0 .35rem;font-weight:900;letter-spacing:.2px;display:inline-block;} /* shrink-wrap */
 .hero-main__welcome{font-size:1.1rem;font-weight:900;margin:.15rem 0 .35rem;letter-spacing:.2px;opacity:.98;}
-/* Let JS set the exact width to match the H1 */
+/* Width is set by JS to exactly match the H1. Keep it otherwise unconstrained. */
 .hero-main__tagline{opacity:.95;margin:.1rem auto 1rem;font-style:italic;font-size:calc(1rem - 3px);line-height:1.35;white-space:pre-line;display:block;}
 .hero-screenshot{width:560px;max-width:92%;aspect-ratio:16/10;height:auto;border-radius:10px;border:1px solid rgba(255,255,255,.20);
   box-shadow:0 10px 24px rgba(0,0,0,.35);margin-bottom:12px;}
@@ -65,7 +65,7 @@ pre,code{background:#e5f0e8;border:1px solid var(--card-border);border-radius:8p
 .story-row.rev{grid-template-columns:60% 40%;}
 .story-copy{padding:20px 22px;display:flex;flex-direction:column;justify-content:flex-start;background:var(--card-bg-2);}
 .story-copy h3{margin:2px 0 10px;font-size:1.12rem;color:var(--link-hover);} .story-copy p{margin:0;}
-/* ZERO side gap, but a little top/bottom breathing room; never stretch vertically */
+/* zero side gap; a bit of top/bottom padding to avoid stretching */
 .story-img-wrap{margin:0;padding:12px 0;display:flex;align-items:center;justify-content:center;background:var(--card-bg);}
 .story-img{display:block;width:100%;max-width:100%;height:auto;border:0;box-shadow:none;object-fit:contain;}
 
@@ -87,14 +87,13 @@ pre,code{background:#e5f0e8;border:1px solid var(--card-border);border-radius:8p
   .author-card__photo{border-color:var(--card-border);box-shadow:0 6px 18px rgba(0,0,0,.4);}
 }
 
-/* Parity breakpoints */
+/* Breakpoints */
 @media (min-width:841px){
   .hero-split{grid-template-columns:minmax(260px,320px) 1px 1fr !important;padding:22px !important;}
   .hero-divider{display:block !important;}
   .author-card--desktop{display:flex !important;} .author-card--mobile{display:none !important;}
   .label-desktop{display:inline !important;} .label-mobile{display:none !important;}
 
-  /* keep 40/60 and zero side gaps; add top/bottom padding only */
   .story-row{grid-template-columns:40% 60% !important;}
   .story-row.rev{grid-template-columns:60% 40% !important;}
   .story-img-wrap{padding:12px 0 !important;}
